@@ -7,7 +7,7 @@ Centralize, automatize e escale o atendimento sem perder o toque humano.
 [![Status do Projeto](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow.svg)](#)
 
 🔗 **Acesse o repositório:**  
-👉 https://github.com/Calegor/LinkAid
+👉 https://github.com/juliarichesky/linkaid
 
 🔗 **Acesse o vídeo:**  
 👉 https://youtu.be/IK4B1GOjPhk
@@ -289,7 +289,7 @@ Siga os passos abaixo para executar o projeto localmente:
 
 ### 📥 Clonando o repositório
 ```bash
-git clone https://github.com/Calegor/LinkAid.git
+git clone https://github.com/juliarichesky/linkaid.git
 cd LinkAid
 ```
 
@@ -359,20 +359,6 @@ mvn -q exec:java -Dexec.mainClass=com.turmadobem.MainTeste
         <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
       </a>
     </td>
-    <td align="center">
-      <a href="https://github.com/thiagogramorelli">
-        <img src="frontend/link-aid/src/assets/images/team/thiago-lima.png" width="200px;" style="border-radius: 50%;" alt="Thiago Gramorelli"/><br>
-        <sub><b>Thiago Gramorelli</b></sub>
-      </a><br>
-      RM: 567630<br>
-      Turma: 1TDSPA<br><br>
-      <a href="https://www.linkedin.com/in/thiago-gramorelli-lima-070097185/">
-        <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
-      </a>
-      <a href="https://github.com/Calegor">
-        <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
-      </a>
-    </td>
   </tr>
 </table>
 
@@ -385,6 +371,5 @@ Caso tenha dúvidas ou sugestões:
 <br/>
 📧 **Julia Spanopoulos:** jusspan@gmail.com
 <br/>
-📧 **Thiago Gramorelli:** thigralima@hotmail.com
 
-[![GitHub](https://img.shields.io/badge/GitHub-Repositório-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Calegor/LinkAid)
+[![GitHub](https://img.shields.io/badge/GitHub-Repositório-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/juliarichesky/linkaid)
