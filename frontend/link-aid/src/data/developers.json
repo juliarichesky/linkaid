@@ -11,17 +11,6 @@
     "image": "julia-guimaraes.png"
   },
   {
-    "id": 2,
-    "name": "Thiago Gramorelli Lima",
-    "rm": "RM 567630",
-    "role": "Desenvolvedor Back-End",
-    "class": "1TDSPA",
-    "description": "Arquiteto de sistemas focado na robustez e escalabilidade do backend, gerenciando integrações e fluxos de dados para sustentar toda a inteligência do LinkAid.",
-    "code": "https://github.com/Calegor",
-    "link": "https://www.linkedin.com/in/thiago-gramorelli-lima-070097185/",
-    "image": "thiago-lima.png"
-  },
-  {
     "id": 3,
     "name": "Julia Silva Spanopoulos",
     "rm": "RM 566754",

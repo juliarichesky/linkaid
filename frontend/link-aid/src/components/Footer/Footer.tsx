@@ -136,7 +136,7 @@ const Footer = () => {
                   {
                     icon: <Code size={14} />,
                     label: "GitHub",
-                    url: "https://github.com/Calegor/LinkAid",
+                    url: "https://github.com/juliarichesky/linkaid",
                   },
                 ].map((social, i) => (
                   <a
@@ -177,10 +177,10 @@ const Footer = () => {
             <div className="flex flex-col sm:flex-row gap-6 lg:gap-12">
               <div className="space-y-1">
                 <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest block">
-                  Desenvolvedores
+                  Desenvolvedoras
                 </span>
                 <p className="text-[11px] text-slate-500 font-medium">
-                  Julia Guimarães • Thiago Gramorelli • Julia Spanopoulos
+                  Julia Guimarães • Julia Spanopoulos
                 </p>
               </div>
               <div className="space-y-1">
