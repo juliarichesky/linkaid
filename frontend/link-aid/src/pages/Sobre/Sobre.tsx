@@ -9,7 +9,7 @@ import AboutClosing from "../../components/AboutClosing/AboutClosing";
 
 const Sobre = () => {
   return (
-    <main className="w-full bg-white">
+    <main className="w-full bg-white dark:bg-slate-950">
       <AboutScrollCards />
       <AboutMeaning />
       <AboutFeaturesOrbit />

@@ -43,7 +43,7 @@ const TeamSection = () => {
   return (
     <section
       ref={containerRef}
-      className="py-24 -mt-51 -mb-5 lg:-mt-45 lg:-mb-12 bg-white"
+      className="py-24 -mt-51 -mb-5 lg:-mt-45 lg:-mb-12 bg-white dark:bg-slate-950"
     >
       <div className="container mx-auto px-6 max-w-[1400px]">
         {/* container */}
@@ -61,7 +61,7 @@ const TeamSection = () => {
                 transition-all duration-500 
                 group-hover:scale-[1.03] 
                 group-hover:shadow-[0_35px_100px_-20px_rgba(37,99,235,0.25)] 
-                border border-slate-100/50"
+                border border-slate-100/50 dark:border-slate-800/80"
               >
                 {/* images */}
                 <img
@@ -71,14 +71,14 @@ const TeamSection = () => {
                 />
 
                 {/* overlay */}
-                <div className="absolute inset-0 bg-white/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center gap-3">
+                <div className="absolute inset-0 bg-white/40 dark:bg-slate-900/50 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center gap-3">
                   {/* icon */}
                   <div className="w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-[0_10px_25px_rgba(37,99,235,0.4)] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
                     <ArrowRight size={32} strokeWidth={2.5} />
                   </div>
 
                   {/* text */}
-                  <span className="text-blue-600 font-bold uppercase text-[10px] tracking-[0.3em] bg-white px-5 py-2 rounded-full shadow-lg transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 delay-150">
+                  <span className="text-blue-600 font-bold uppercase text-[10px] tracking-[0.3em] bg-white dark:bg-slate-950 px-5 py-2 rounded-full shadow-lg transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500 delay-150">
                     Ver Perfil
                   </span>
                 </div>
@@ -86,7 +86,7 @@ const TeamSection = () => {
 
               {/* texts */}
               <div className="mt-8 flex flex-col items-center">
-                <h3 className="text-2xl md:text-3xl font-bold text-slate-950 tracking-tight group-hover:text-blue-600 transition-colors duration-300">
+                <h3 className="text-2xl md:text-3xl font-bold text-slate-950 dark:text-white tracking-tight group-hover:text-blue-600 transition-colors duration-300">
                   {dev.name}
                 </h3>
                 <p className="text-blue-600 text-base md:text-lg font-medium mt-2 uppercase tracking-[0.2em]">

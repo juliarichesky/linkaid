@@ -31,12 +31,12 @@ const Breadcrumb = () => {
 
       <div className="hidden lg:block w-[1px] h-3 bg-slate-400" />
 
-      <div className="flex items-center justify-center lg:justify-start gap-2 text-slate-500 text-[10px] uppercase tracking-[0.2em] font-semibold flex-wrap">
+      <div className="flex items-center justify-center lg:justify-start gap-2 text-slate-500 dark:text-slate-400 text-[10px] uppercase tracking-[0.2em] font-semibold flex-wrap">
         <Link
           to="/"
           className="hover:text-blue-600 transition-colors flex items-center gap-1.5"
         >
-          <Home size={13} className="text-slate-500" />
+          <Home size={13} className="text-slate-500 dark:text-slate-400" />
           Início
         </Link>
 
@@ -50,11 +50,11 @@ const Breadcrumb = () => {
             <div key={to} className="flex items-center gap-2">
               <ChevronRight
                 size={14}
-                className="text-slate-400"
+                className="text-slate-400 dark:text-slate-500"
                 strokeWidth={3}
               />
               {last ? (
-                <span className="text-slate-900 font-bold">{displayName}</span>
+                <span className="text-slate-900 dark:text-slate-100 font-bold">{displayName}</span>
               ) : (
                 <Link to={to} className="hover:text-blue-600 transition-colors">
                   {displayName}

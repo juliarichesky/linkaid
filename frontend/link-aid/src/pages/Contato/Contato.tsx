@@ -6,7 +6,7 @@ import ContactMap from "../../components/ContactMap/ContactMap";
 
 const Contato = () => {
   return (
-    <main className="w-full bg-white">
+    <main className="w-full bg-white dark:bg-slate-950">
       <HeroDefault
         titleBlack="Adoramos uma"
         titleBlue="boa conversa."

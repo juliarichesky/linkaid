@@ -4,7 +4,7 @@ import Footer from "../components/Footer/Footer";
 
 const DefaultLayout = () => {
   return (
-    <div className="relative min-h-screen">
+    <div className="linkaid-site relative min-h-screen bg-white dark:bg-slate-950 text-slate-950 dark:text-slate-100 transition-colors duration-500">
       <Header />
       <main className="pt-20 overflow-x-clip">
         <Outlet />

@@ -49,9 +49,9 @@ const AboutScrollCards = () => {
   return (
     <section
       ref={container}
-      className="relative w-full bg-white overflow-hidden"
+      className="relative w-full bg-white dark:bg-slate-950 overflow-hidden"
     >
-      <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-blue-50/40 blur-[100px] rounded-full -z-10" />
+      <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-blue-50/40 dark:bg-blue-950/30 blur-[100px] rounded-full -z-10" />
 
       <HeroDefault
         titleBlack="Comunicação"
@@ -67,9 +67,9 @@ const AboutScrollCards = () => {
           className="flex gap-4 md:gap-8 px-6 md:px-20 lg:px-32 flex-nowrap w-max will-change-transform items-center"
         >
           {/* card 1 */}
-          <div className="w-[85vw] sm:w-[60vw] md:w-[450px] lg:w-[550px] h-[320px] md:h-[450px] lg:h-[500px] rounded-[2rem] md:rounded-[3.5rem] bg-slate-100 overflow-hidden shrink-0 relative group">
+          <div className="w-[85vw] sm:w-[60vw] md:w-[450px] lg:w-[550px] h-[320px] md:h-[450px] lg:h-[500px] rounded-[2rem] md:rounded-[3.5rem] bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0 relative group">
             <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-transparent z-10" />
-            <h3 className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20 text-slate-600 text-xl md:text-4xl font-bold leading-tight">
+            <h3 className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20 text-slate-600 dark:text-slate-300 text-xl md:text-4xl font-bold leading-tight">
               Nunca mais <br /> perder clientes.
             </h3>
             <img
@@ -95,13 +95,13 @@ const AboutScrollCards = () => {
           </div>
 
           {/* card 3 */}
-          <div className="w-[85vw] sm:w-[60vw] md:w-[450px] lg:w-[550px] h-[320px] md:h-[450px] lg:h-[500px] rounded-[2rem] md:rounded-[3.5rem] bg-slate-100 overflow-hidden shrink-0 relative group">
+          <div className="w-[85vw] sm:w-[60vw] md:w-[450px] lg:w-[550px] h-[320px] md:h-[450px] lg:h-[500px] rounded-[2rem] md:rounded-[3.5rem] bg-slate-100 dark:bg-slate-800 overflow-hidden shrink-0 relative group">
             <img
               src="https://images.unsplash.com/photo-1567201864585-6baec9110dac?q=80&w=1974&auto=format&fit=crop"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               alt=""
             />
-            <div className="absolute inset-0 bg-white/20 z-10" />
+            <div className="absolute inset-0 bg-white/20 dark:bg-slate-900/40 z-10" />
             <div className="absolute top-6 right-6 px-3 py-1 bg-black/40 backdrop-blur-md rounded-full text-white text-[10px] uppercase tracking-widest font-bold">
               AI Hub
             </div>
@@ -138,12 +138,12 @@ const AboutScrollCards = () => {
           </div>
 
           {/* card final */}
-          <div className="w-[90vw] md:w-[500px] lg:w-[800px] h-[320px] md:h-[450px] lg:h-[500px] rounded-[2rem] md:rounded-[3.5rem] bg-slate-50 border border-slate-100 overflow-hidden shrink-0 relative group flex flex-col justify-end p-10 md:p-16">
+          <div className="w-[90vw] md:w-[500px] lg:w-[800px] h-[320px] md:h-[450px] lg:h-[500px] rounded-[2rem] md:rounded-[3.5rem] bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 overflow-hidden shrink-0 relative group flex flex-col justify-end p-10 md:p-16">
             <div className="relative z-20">
-              <h3 className="text-slate-900 text-3xl md:text-6xl font-black italic leading-none tracking-tighter">
+              <h3 className="text-slate-900 dark:text-slate-100 text-3xl md:text-6xl font-black italic leading-none tracking-tighter">
                 Let's LinkAid.
               </h3>
-              <p className="text-slate-400 text-[10px] md:text-sm font-mono mt-4 uppercase tracking-[0.4em]">
+              <p className="text-slate-400 dark:text-slate-500 text-[10px] md:text-sm font-mono mt-4 uppercase tracking-[0.4em]">
                 O futuro da comunicação
               </p>
             </div>

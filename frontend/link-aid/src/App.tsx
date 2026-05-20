@@ -10,6 +10,7 @@ import Mapa from "./pages/Mapa/Mapa";
 import NotFound from "./pages/NotFound/NotFound";
 import TeamDetails from "./components/TeamDetails/TeamDetails";
 import Breadcrumb from "./components/Breadcrumb/Breadcrumb";
+import PlatformApp from "./platform/App";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
           <Route path="/breadcrumb" element={<Breadcrumb />} />
         </Route>
+        <Route path="/plataforma/*" element={<PlatformApp />} />
       </Routes>
     </>
   );

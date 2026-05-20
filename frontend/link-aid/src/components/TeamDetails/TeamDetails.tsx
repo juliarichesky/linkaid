@@ -43,7 +43,7 @@ const TeamDetails = () => {
   return (
     <main
       ref={containerRef}
-      className="pt-30 pb-24 bg-white min-h-screen overflow-hidden relative"
+      className="pt-30 pb-24 bg-white dark:bg-slate-950 min-h-screen overflow-hidden relative"
     >
       <div className="container mx-auto px-6 max-w-[1200px] relative z-10">
         {/* breadcrumb */}
@@ -67,7 +67,7 @@ const TeamDetails = () => {
           {/* images */}
           <div
             ref={imageRef}
-            className="relative aspect-square overflow-hidden rounded-[3rem] shadow-2xl bg-slate-50 border border-slate-100 w-full max-w-[500px] mx-auto md:mx-0"
+            className="relative aspect-square overflow-hidden rounded-[3rem] shadow-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 w-full max-w-[500px] mx-auto md:mx-0"
           >
             <img
               src={getImageUrl(dev.image)}
@@ -83,15 +83,15 @@ const TeamDetails = () => {
           >
             {/* labels */}
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-sm">
                 <ChevronsUpDown size={12} className="text-blue-600" />
-                <span className="text-slate-900 text-[10px] font-bold uppercase tracking-widest">
+                <span className="text-slate-900 dark:text-slate-100 text-[10px] font-bold uppercase tracking-widest">
                   {dev.class}
                 </span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 shadow-sm">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-sm">
                 <User size={12} className="text-blue-600" />
-                <span className="text-slate-900 text-[10px] font-bold uppercase tracking-widest">
+                <span className="text-slate-900 dark:text-slate-100 text-[10px] font-bold uppercase tracking-widest">
                   {dev.rm}
                 </span>
               </div>
@@ -99,7 +99,7 @@ const TeamDetails = () => {
 
             {/* name and role */}
             <div className="space-y-2">
-              <h1 className="text-[10vw] sm:text-[6vw] md:text-[4vw] font-bold text-slate-950 tracking-[-0.05em] leading-[0.85]">
+              <h1 className="text-[10vw] sm:text-[6vw] md:text-[4vw] font-bold text-slate-950 dark:text-white tracking-[-0.05em] leading-[0.85]">
                 {dev.name}
               </h1>
               <p className="text-xl md:text-2xl text-blue-600 font-light tracking-tight">
@@ -110,7 +110,7 @@ const TeamDetails = () => {
             <div className="h-[1px] w-20 bg-blue-600/30" />
 
             {/* description */}
-            <p className="text-slate-500 text-lg md:text-xl font-light leading-relaxed max-w-[500px] tracking-tight">
+            <p className="text-slate-500 dark:text-slate-400 text-lg md:text-xl font-light leading-relaxed max-w-[500px] tracking-tight">
               {dev.description}
             </p>
 

@@ -61,7 +61,7 @@ const pages = [
 const Mapa = () => {
   return (
     <>
-      <main className="w-full bg-white">
+      <main className="w-full bg-white dark:bg-slate-950">
         <HeroDefault
           titleBlack="Explore toda"
           titleBlue="nossa estrutura."
@@ -78,13 +78,13 @@ const Mapa = () => {
               // Sombra shadow-2xl com opacidade alta para não ficar "claro"
               // items-center e text-center no mobile
               const commonClasses =
-                "group p-8 rounded-[2rem] border border-slate-100 bg-white shadow-2xl shadow-slate-300/80 hover:shadow-blue-500/30 transition-all duration-500 flex flex-col items-center text-center lg:items-start lg:text-left gap-4";
+                "group p-8 rounded-[2rem] border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-2xl shadow-slate-300/80 dark:shadow-black/40 hover:shadow-blue-500/30 transition-all duration-500 flex flex-col items-center text-center lg:items-start lg:text-left gap-4";
 
               const CardContent = (
                 <>
                   <div className="flex items-center justify-between w-full">
                     {/* Icone centralizado no mobile com mx-auto */}
-                    <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 mx-auto lg:mx-0">
+                    <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 mx-auto lg:mx-0">
                       {page.icon}
                     </div>
                     {/* Seta escondida no mobile para manter foco na centralização */}
@@ -92,21 +92,21 @@ const Mapa = () => {
                       {page.isExternal ? (
                         <ExternalLink
                           size={16}
-                          className="text-slate-300 group-hover:text-blue-500 transition-all"
+                          className="text-slate-300 dark:text-slate-600 group-hover:text-blue-500 transition-all"
                         />
                       ) : (
                         <ChevronRight
                           size={18}
-                          className="text-slate-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all"
+                          className="text-slate-300 dark:text-slate-600 group-hover:text-blue-500 group-hover:translate-x-1 transition-all"
                         />
                       )}
                     </div>
                   </div>
                   <div className="w-full">
-                    <h3 className="text-lg font-bold text-slate-800">
+                    <h3 className="text-lg font-bold text-slate-800 dark:text-slate-200">
                       {page.name}
                     </h3>
-                    <p className="text-sm text-slate-500 mt-2 leading-relaxed">
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
                       {page.desc}
                     </p>
                   </div>

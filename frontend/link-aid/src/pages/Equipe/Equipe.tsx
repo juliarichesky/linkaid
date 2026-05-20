@@ -4,7 +4,7 @@ import { Heart } from "lucide-react";
 
 const Equipe = () => {
   return (
-    <main className="w-full bg-white">
+    <main className="w-full bg-white dark:bg-slate-950">
       <HeroDefault
         titleBlack="Gente que"
         titleBlue="faz acontecer."

@@ -16,18 +16,14 @@ import {
   X,
 } from "lucide-react";
 import logo from "../../assets/icons/logo.png";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const Navbar = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
   const menuRef = useRef(null);
   const overlayRef = useRef(null);
-
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle("dark");
-  };
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
@@ -83,7 +79,7 @@ const Navbar = () => {
   ];
 
   const buttonBaseClass =
-    "w-10 h-10 flex items-center justify-center rounded-full bg-slate-900/5 border border-slate-950/10 hover:bg-white transition-all shadow-sm cursor-pointer active:scale-95 z-[150]";
+    "w-10 h-10 flex items-center justify-center rounded-full bg-slate-900/5 border border-slate-950/10 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-900 transition-all shadow-sm cursor-pointer active:scale-95 z-[150]";
 
   return (
     <nav className="fixed top-0 left-0 w-full z-[100] px-4 pt-0 md:px-10 font-sans">
@@ -92,7 +88,7 @@ const Navbar = () => {
         className={`max-w-[2000px] mx-auto h-20 px-8 flex items-center justify-between rounded-b-[2rem] transition-all duration-500 shadow-2xl relative z-[120] ${
           isMenuOpen
             ? "opacity-0 invisible pointer-events-none"
-            : "bg-white/10 backdrop-blur-xl border border-white/20 border-t-0 opacity-100 visible"
+            : "bg-white/10 dark:bg-slate-950/70 backdrop-blur-xl border border-white/20 dark:border-blue-400/15 border-t-0 opacity-100 visible"
         }`}
       >
         <Link to="/" onClick={() => setIsMenuOpen(false)}>
@@ -107,7 +103,7 @@ const Navbar = () => {
               const linkStyles = `transition-all relative group py-2 ${
                 isActive
                   ? "text-blue-600"
-                  : "text-slate-900/80 hover:text-blue-600"
+                  : "text-slate-900/80 dark:text-slate-100/85 hover:text-blue-600"
               }`;
 
               const linkContent = (
@@ -139,11 +135,15 @@ const Navbar = () => {
             })}
           </div>
 
-          <button onClick={toggleTheme} className={buttonBaseClass}>
+          <button
+            onClick={toggleTheme}
+            className={buttonBaseClass}
+            aria-label={isDark ? "Ativar modo claro" : "Ativar modo noturno"}
+          >
             {isDark ? (
-              <Moon size={16} className="text-blue-500" />
-            ) : (
               <Sun size={16} className="text-amber-500" />
+            ) : (
+              <Moon size={16} className="text-blue-500" />
             )}
           </button>
         </div>
@@ -151,11 +151,15 @@ const Navbar = () => {
 
       {/* mobile buttons */}
       <div className="md:hidden fixed top-5 right-8 flex items-center gap-3 z-[150]">
-        <button onClick={toggleTheme} className={buttonBaseClass}>
+        <button
+          onClick={toggleTheme}
+          className={buttonBaseClass}
+          aria-label={isDark ? "Ativar modo claro" : "Ativar modo noturno"}
+        >
           {isDark ? (
-            <Moon size={16} className="text-blue-500" />
-          ) : (
             <Sun size={16} className="text-amber-500" />
+          ) : (
+            <Moon size={16} className="text-blue-500" />
           )}
         </button>
         <button
@@ -163,9 +167,9 @@ const Navbar = () => {
           className={buttonBaseClass}
         >
           {isMenuOpen ? (
-            <X size={20} className="text-slate-700" />
+            <X size={20} className="text-slate-700 dark:text-slate-300" />
           ) : (
-            <Menu size={20} className="text-slate-700" />
+            <Menu size={20} className="text-slate-700 dark:text-slate-300" />
           )}
         </button>
       </div>
@@ -181,11 +185,11 @@ const Navbar = () => {
       {/* menu mobile open */}
       <div
         ref={menuRef}
-        className="fixed top-0 right-0 h-full w-[75%] max-w-[300px] bg-white/95 backdrop-blur-3xl border-l border-white/20 shadow-2xl z-[110] flex flex-col md:hidden"
+        className="fixed top-0 right-0 h-full w-[75%] max-w-[300px] bg-white/95 dark:bg-slate-950/95 backdrop-blur-3xl border-l border-white/20 dark:border-blue-400/15 shadow-2xl z-[110] flex flex-col md:hidden"
         style={{ transform: "translateX(100%)", visibility: "hidden" }}
       >
         <div className="pt-32 pb-10 px-8 flex flex-col h-full">
-          <p className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.3em] mb-10 opacity-70">
+          <p className="text-slate-500 dark:text-slate-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-10 opacity-70">
             Menu
           </p>
 
@@ -203,7 +207,7 @@ const Navbar = () => {
                 >
                   <div className="flex items-center gap-4">
                     <span
-                      className={`transition-colors ${isActive ? "text-blue-600" : "text-slate-500 group-hover:text-blue-600"}`}
+                      className={`transition-colors ${isActive ? "text-blue-600" : "text-slate-500 dark:text-slate-400 group-hover:text-blue-600"}`}
                     >
                       {link.icon}
                     </span>
@@ -211,7 +215,7 @@ const Navbar = () => {
                       className={`text-[16px] tracking-tight transition-all ${
                         isActive
                           ? "font-bold text-blue-600"
-                          : "font-medium text-slate-700"
+                          : "font-medium text-slate-700 dark:text-slate-300"
                       }`}
                     >
                       {link.name}
@@ -219,15 +223,15 @@ const Navbar = () => {
                   </div>
                   <ArrowRight
                     size={14}
-                    className={`transition-all ${isActive ? "text-blue-600 translate-x-1" : "text-slate-200 group-hover:text-blue-600"}`}
+                    className={`transition-all ${isActive ? "text-blue-600 translate-x-1" : "text-slate-200 dark:text-slate-700 group-hover:text-blue-600"}`}
                   />
                 </Link>
               );
             })}
           </div>
 
-          <div className="mt-auto text-center border-t border-slate-100 pt-6">
-            <p className="text-slate-500 text-[9px] font-bold uppercase tracking-[0.2em]">
+          <div className="mt-auto text-center border-t border-slate-100 dark:border-slate-800 pt-6">
+            <p className="text-slate-500 dark:text-slate-400 text-[9px] font-bold uppercase tracking-[0.2em]">
               LinkAid • 2026
             </p>
           </div>

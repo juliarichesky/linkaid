@@ -85,7 +85,7 @@ const HomeHero: FC<HeroProps> = ({ activeSection }) => {
             className={`char-reveal inline-block ${
               isHighlighted
                 ? "text-blue-600 font-bold"
-                : "font-semibold text-slate-950"
+                : "font-semibold text-slate-950 dark:text-white"
             }`}
           >
             {word}
@@ -106,7 +106,7 @@ const HomeHero: FC<HeroProps> = ({ activeSection }) => {
           {splitTitle(current.title, current.highlight)}
         </span>
         <br />
-        <span className="char-reveal inline-block font-light text-slate-400 tracking-[-0.02em]">
+        <span className="char-reveal inline-block font-light text-slate-400 dark:text-slate-500 tracking-[-0.02em]">
           é o nosso código.
         </span>
       </h1>
@@ -115,7 +115,7 @@ const HomeHero: FC<HeroProps> = ({ activeSection }) => {
       <div className="hero-line-animated w-full max-w-[320px] sm:max-w-[450px] h-[6px] bg-gradient-to-r from-green-400 via-green-500 to-green-300 rounded-full shadow-[0_10px_30px_rgba(34,197,94,0.2)]"></div>
 
       {/* descricao */}
-      <p className="hero-description-reveal text-base md:text-lg text-slate-500 font-light leading-relaxed tracking-tight max-w-[520px]">
+      <p className="hero-description-reveal text-base md:text-lg text-slate-500 dark:text-slate-400 font-light leading-relaxed tracking-tight max-w-[520px]">
         {current.description}
       </p>
 
@@ -129,7 +129,7 @@ const HomeHero: FC<HeroProps> = ({ activeSection }) => {
         <span className="relative z-10 font-bold uppercase text-[11px] tracking-[0.2em]">
           Acessar Solução
         </span>
-        <div className="relative z-10 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center transition-transform duration-500 group-hover:rotate-45 group-hover:bg-white/20">
+        <div className="relative z-10 w-8 h-8 rounded-full bg-white/10 dark:bg-slate-950/70 flex items-center justify-center transition-transform duration-500 group-hover:rotate-45 group-hover:bg-white/20">
           <ArrowUpRight size={18} strokeWidth={2.5} />
         </div>
       </a>

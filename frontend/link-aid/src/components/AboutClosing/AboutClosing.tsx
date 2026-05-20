@@ -37,7 +37,7 @@ const AboutClosing = () => {
   return (
     <section
       ref={containerRef}
-      className="relative w-full py-20 md:py-32 flex flex-col items-center justify-center overflow-hidden bg-white"
+      className="relative w-full py-20 md:py-32 flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-slate-950"
     >
       {/* background image with double gradient mask */}
       <div
@@ -51,15 +51,15 @@ const AboutClosing = () => {
         />
 
         {/* double gradient mask for seamless blending */}
-        <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white via-white/40 to-transparent z-10" />
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white via-white/40 to-transparent z-10" />
+        <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white dark:from-slate-950 via-white/40 dark:via-slate-950/40 to-transparent z-10" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white dark:from-slate-950 via-white/40 dark:via-slate-950/40 to-transparent z-10" />
       </div>
 
       <div className="container mx-auto px-10 max-w-[1200px] flex flex-col items-center text-center relative z-20">
         {/* heading: matching hero typography standards */}
         <div className="mb-10 lg:mb-16">
           <h2
-            className="font-bold text-slate-950 tracking-[-0.05em] leading-[0.85]
+            className="font-bold text-slate-950 dark:text-white tracking-[-0.05em] leading-[0.85]
                          text-[14vw] sm:text-[12vw] md:text-[10vw] 
                          lg:text-[7vw] xl:text-[6vw]"
           >
@@ -72,7 +72,7 @@ const AboutClosing = () => {
 
         {/* paragraph: box width increased for desktop as requested */}
         <div className="max-w-[450px] lg:max-w-[650px] mb-12 lg:mb-16">
-          <p className="text-slate-500 text-base md:text-lg lg:text-xl font-light leading-relaxed tracking-tight">
+          <p className="text-slate-500 dark:text-slate-400 text-base md:text-lg lg:text-xl font-light leading-relaxed tracking-tight">
             Sem complicações. Um jeito novo de organizar seu dia a dia com
             leveza e inteligência.
           </p>
@@ -87,7 +87,7 @@ const AboutClosing = () => {
             <span className="relative z-10 font-bold uppercase text-[11px] tracking-[0.2em]">
               Ver Painel Completo
             </span>
-            <div className="relative z-10 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center transition-transform duration-500 group-hover:rotate-45 group-hover:bg-white/20">
+            <div className="relative z-10 w-8 h-8 rounded-full bg-white/10 dark:bg-slate-950/70 flex items-center justify-center transition-transform duration-500 group-hover:rotate-45 group-hover:bg-white/20">
               <ArrowUpRight size={18} strokeWidth={2.5} />
             </div>
           </a>
