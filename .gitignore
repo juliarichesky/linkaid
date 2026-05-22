@@ -1,3 +1,6 @@
+# Backend build output
+/backend/api/target/
+
 # Logs
 logs
 *.log
