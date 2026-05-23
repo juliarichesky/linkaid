@@ -8,6 +8,7 @@ from contato_dao import (
     consultar_contato_por_numero_documento,
     consultar_contato_por_tipo_documento
 )
+from api_externa import consultar_cep_viacep
 from utils import (
     ler_texto,
     ler_email,
@@ -148,3 +149,30 @@ def consulta_contato_por_tipo_documento():
 
     except Exception as e:
         print(f"Erro na consulta por tipo de documento: {e}")
+
+#consulta um endereco usando a API publica ViaCEP
+def consultar_endereco_por_cep():
+    try:
+        cep = ler_cep("CEP para consulta na API ViaCEP: ")
+        endereco = consultar_cep_viacep(cep)
+
+        if not endereco:
+            print("CEP nao encontrado na base do ViaCEP.")
+            return
+
+        print("\n=== ENDERECO ENCONTRADO ===")
+        print(f"CEP: {endereco['cep']}")
+        print(f"Logradouro: {endereco['logradouro']}")
+        print(f"Complemento: {endereco['complemento']}")
+        print(f"Bairro: {endereco['bairro']}")
+        print(f"Cidade: {endereco['localidade']}")
+        print(f"UF: {endereco['uf']}")
+        print(f"Estado: {endereco['estado']}")
+        print(f"Regiao: {endereco['regiao']}")
+        print(f"IBGE: {endereco['ibge']}")
+        print(f"DDD: {endereco['ddd']}")
+
+    except ValueError as e:
+        print(e)
+    except Exception as e:
+        print(f"Erro ao consultar API externa ViaCEP: {e}")

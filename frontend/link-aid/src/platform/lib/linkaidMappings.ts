@@ -28,9 +28,7 @@ export const CANAL_LABELS = {
   WHATSAPP: "WhatsApp",
   EMAIL: "E-mail",
   INSTAGRAM: "Instagram",
-  TELEFONE: "Telefone",
-  MANUAL: "Outro",
-  WATSON_SANDBOX: "Watson Sandbox",
+  OUTROS: "Outros",
 } as const;
 
 export const CLASSIFICACAO_LABELS = {
@@ -87,9 +85,11 @@ const STATUS_TICKET_ALIASES: Record<string, StatusTicketCodigo> = {
 };
 
 const CANAL_ALIASES: Record<string, CanalCodigo> = {
-  OUTRO: "MANUAL",
-  OUTROS: "MANUAL",
-  CADASTRO_MANUAL: "MANUAL",
+  OUTRO: "OUTROS",
+  OUTROS: "OUTROS",
+  TELEFONE: "OUTROS",
+  MANUAL: "OUTROS",
+  CADASTRO_MANUAL: "OUTROS",
 };
 
 const normalize = (value: string) =>

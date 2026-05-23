@@ -36,7 +36,7 @@ public class WebhookBO {
 
         String prioridade = primeiroValor(request.prioridadeCodigo(), inferirPrioridade(request.body()));
         String classificacao = primeiroValor(request.classificacaoCodigo(), inferirClassificacao(request.body(), request.intent()));
-        String origem = primeiroValor(request.origem(), "WATSON_SANDBOX").toUpperCase();
+        String origem = normalizarOrigem(primeiroValor(request.origem(), "WHATSAPP"));
         String nome = primeiroValor(request.nome(), request.from(), "Contato WhatsApp");
         boolean encaminharHumano = deveEncaminharHumano(request, classificacao);
         Ticket ticketAberto = ticketDAO.buscarAbertoPorTelefone(request.from());
@@ -141,10 +141,30 @@ public class WebhookBO {
     }
 
     private String canalPorOrigem(String origem) {
-        if (origem != null && (origem.contains("TWILIO") || origem.contains("WHATSAPP"))) {
+        return switch (origem) {
+            case "WHATSAPP", "EMAIL", "INSTAGRAM" -> origem;
+            default -> "OUTROS";
+        };
+    }
+
+    private String normalizarOrigem(String origem) {
+        if (origem == null || origem.isBlank()) {
+            return "OUTROS";
+        }
+        String valor = origem.trim().toUpperCase();
+        if (valor.contains("TWILIO") || valor.contains("WATSON") || valor.contains("WHATSAPP")) {
             return "WHATSAPP";
         }
-        return "WATSON_SANDBOX";
+        if (valor.contains("INSTAGRAM")) {
+            return "INSTAGRAM";
+        }
+        if (valor.contains("EMAIL") || valor.contains("E-MAIL")) {
+            return "EMAIL";
+        }
+        if (valor.equals("SISTEMA")) {
+            return "SISTEMA";
+        }
+        return "OUTROS";
     }
 
     private String payloadBasico(LinkAidDtos.WebhookTicketRequest request) {

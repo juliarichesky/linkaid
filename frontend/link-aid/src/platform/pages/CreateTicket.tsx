@@ -24,7 +24,7 @@ const channelMap: Record<string, string> = {
   whatsapp: CANAL_LABELS.WHATSAPP,
   instagram: CANAL_LABELS.INSTAGRAM,
   email: CANAL_LABELS.EMAIL,
-  other: CANAL_LABELS.MANUAL,
+  other: CANAL_LABELS.OUTROS,
 };
 
 const priorityMap: Record<string, Priority> = {

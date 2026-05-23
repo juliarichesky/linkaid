@@ -4,7 +4,8 @@ from contato_service import (
     alterar_contato,
     remover_contato,
     consulta_contato_por_numero_documento,
-    consulta_contato_por_tipo_documento
+    consulta_contato_por_tipo_documento,
+    consultar_endereco_por_cep
 )
 from contato_dao import criar_tabela_contato
 
@@ -81,9 +82,10 @@ def menu_crud_contato(tipo_contato):
 #menu de consultas
 def menu_consultas():
     while True:
-        print("\n=== CONSULTAS POR DOCUMENTO ===")
+        print("\n=== CONSULTAS ===")
         print("1. Consultar contato por número do documento")
         print("2. Consultar contatos por tipo de documento")
+        print("3. Consultar endereco por CEP (API ViaCEP)")
         print("0. Voltar")
 
         opcao = input("Escolha uma opção: ").strip()
@@ -92,6 +94,8 @@ def menu_consultas():
             consulta_contato_por_numero_documento()
         elif opcao == "2":
             consulta_contato_por_tipo_documento()
+        elif opcao == "3":
+            consultar_endereco_por_cep()
         elif opcao == "0":
             break
         else:

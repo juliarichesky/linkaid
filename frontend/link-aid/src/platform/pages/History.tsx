@@ -81,14 +81,14 @@ const channelIcon: Record<string, React.ElementType> = {
   [CANAL_LABELS.WHATSAPP]: MessageCircle,
   [CANAL_LABELS.INSTAGRAM]: Camera,
   [CANAL_LABELS.EMAIL]: Mail,
-  [CANAL_LABELS.MANUAL]: MoreHorizontal,
+  [CANAL_LABELS.OUTROS]: MoreHorizontal,
 };
 
 const channelColors: Record<string, string> = {
   [CANAL_LABELS.WHATSAPP]: "text-green-500",
   [CANAL_LABELS.INSTAGRAM]: "text-pink-500",
   [CANAL_LABELS.EMAIL]: "text-blue-500",
-  [CANAL_LABELS.MANUAL]: "text-muted-foreground",
+  [CANAL_LABELS.OUTROS]: "text-muted-foreground",
 };
 
 const priorityClasses: Record<string, string> = {
@@ -133,15 +133,7 @@ const CHANNEL_FILTER_OPTIONS: ChannelFilterOption[] = [
   {
     value: "whatsapp",
     label: "WhatsApp",
-    channels: [
-      CANAL_LABELS.WHATSAPP,
-      CANAL_LABELS.WATSON_SANDBOX,
-      "WATSON_SANDBOX",
-      "Twilio",
-      "Twilio Sandbox",
-      "Twilio WhatsApp",
-      "TWILIO_WATSON",
-    ],
+    channels: [CANAL_LABELS.WHATSAPP],
   },
   {
     value: "instagram",
@@ -156,7 +148,7 @@ const CHANNEL_FILTER_OPTIONS: ChannelFilterOption[] = [
   {
     value: "outros",
     label: "Outros",
-    channels: [CANAL_LABELS.MANUAL, "Manual", "Cadastro manual", "Outro", "Outros"],
+    channels: [CANAL_LABELS.OUTROS],
   },
 ];
 
@@ -177,6 +169,9 @@ const ticketChannelLabel = (channel: string) => {
   }
   if (normalizedChannel === "email") {
     return CANAL_LABELS.EMAIL;
+  }
+  if (["outro", "outros", "manual", "telefone", "cadastro manual"].includes(normalizedChannel)) {
+    return CANAL_LABELS.OUTROS;
   }
   return channel;
 };

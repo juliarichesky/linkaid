@@ -383,7 +383,7 @@ export function TicketsProvider({ children }: { children: ReactNode }) {
       tipoContatoCodigo: tipoContatoCodigo(ticket.type) || "SOLICITANTE",
       cidadeContato: city,
       ufContato: uf,
-      canalCodigo: canalCodigo(ticket.channel) || "MANUAL",
+      canalCodigo: canalCodigo(ticket.channel) || "OUTROS",
       prioridadeCodigo: prioridadeCodigo(ticket.priority) || "MEDIA",
       classificacaoCodigo: classificacaoCodigo(ticket.classification) || "GERAL",
       idUsuarioResponsavel: responsavel?.id,
