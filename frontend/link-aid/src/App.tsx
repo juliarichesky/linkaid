@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
 import DefaultLayout from "./Layout/DefaultLayout";
 import Home from "./pages/Home/Home";
 import Sobre from "./pages/Sobre/Sobre";
@@ -29,6 +29,8 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
           <Route path="/breadcrumb" element={<Breadcrumb />} />
         </Route>
+        <Route path="/solucao" element={<Navigate to="/plataforma" replace />} />
+        <Route path="/painel" element={<Navigate to="/plataforma" replace />} />
         <Route path="/plataforma/*" element={<PlatformApp />} />
       </Routes>
     </>

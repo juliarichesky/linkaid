@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "name": "Julia V. Guimarães da Silva",
+    "rm": "RM 568275",
+    "role": "Desenvolvedora Front-End",
+    "class": "1TDSPA",
+    "description": "Especialista em transformar designs complexos em interfaces responsivas e intuitivas, garantindo uma experiência de usuário fluida e de alta performance no front-end.",
+    "code": "https://github.com/juliarichesky",
+    "link": "https://linkedin.com/in/juliarichesky",
+    "image": "julia-guimaraes.png"
+  },
+  {
+    "id": 3,
+    "name": "Julia Silva Spanopoulos",
+    "rm": "RM 566754",
+    "role": "Project Lead",
+    "class": "1TDSPA",
+    "description": "Responsável por alinhar a visão de negócio, a arquitetura de dados e coordenar o fluxo de desenvolvimento para garantir que cada entrega gere valor real.",
+    "code": "https://github.com/juspanopoulos",
+    "link": "https://www.linkedin.com/in/juspanopoulos/",
+    "image": "julia-spanopoulos.png"
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "id": "canais",
+    "name": "Canais",
+    "desc": "Integração total com WhatsApp, Instagram e E-mail em um só lugar.",
+    "tech": "Omnichannel v2",
+    "icon": "Link2",
+    "color": "#2563eb"
+  },
+  {
+    "id": "real-time",
+    "name": "Real-time",
+    "desc": "Processamento de dados instantâneo para respostas imediatas.",
+    "tech": "Websockets Low-Latency",
+    "icon": "Zap",
+    "color": "#f59e0b"
+  },
+  {
+    "id": "ia-triagem",
+    "name": "IA Triagem",
+    "desc": "Nossa IA analisa a urgência e o departamento de cada ticket automaticamente.",
+    "tech": "LLM Custom Training",
+    "icon": "Cpu",
+    "color": "#7c3aed"
+  },
+  {
+    "id": "analytics",
+    "name": "Analytics",
+    "desc": "Dashboards com relatórios e análises de dados úteis.",
+    "tech": "Data Viz High-Res",
+    "icon": "BarChart3",
+    "color": "#10b981"
+  },
+  {
+    "id": "seguranca",
+    "name": "Segurança",
+    "desc": "Criptografia de ponta a ponta em todos os dados sensíveis.",
+    "tech": "ISO 27001 Ready",
+    "icon": "ShieldCheck",
+    "color": "#ef4444"
+  },
+  {
+    "id": "global",
+    "name": "Global",
+    "desc": "Infraestrutura resiliente preparada para escala global.",
+    "tech": "Edge Computing",
+    "icon": "Globe",
+    "color": "#06b6d4"
+  },
+  {
+    "id": "modular",
+    "name": "Modular",
+    "desc": "Personalize sua experiência e ative apenas os módulos que sua equipe precisa.",
+    "tech": "Microservices Based",
+    "icon": "Layers",
+    "color": "#6366f1"
+  },
+  {
+    "id": "mobile",
+    "name": "Mobile",
+    "desc": "Gerencie toda a sua operação na palma da sua mão.",
+    "tech": "Native Performance",
+    "icon": "Smartphone",
+    "color": "#ec4899"
+  }
+]
