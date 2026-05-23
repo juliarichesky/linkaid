@@ -1,4 +1,5 @@
-const API_BASE_URL = (import.meta.env.VITE_API_URL || "http://localhost:8080").replace(/\/$/, "");
+const configuredApiUrl = import.meta.env.VITE_API_URL?.trim();
+const API_BASE_URL = (configuredApiUrl || (import.meta.env.DEV ? "http://localhost:8080" : "")).replace(/\/$/, "");
 
 export interface ApiUsuarioResponse {
   idUsuario: number;
@@ -180,6 +181,10 @@ export class ApiError extends Error {
 }
 
 async function request<T>(path: string, options: RequestOptions = {}): Promise<T> {
+  if (!API_BASE_URL) {
+    throw new ApiError("Configuração da API ausente. Defina VITE_API_URL no deploy do frontend.", 0);
+  }
+
   const headers = new Headers(options.headers);
   headers.set("Accept", "application/json");
 
