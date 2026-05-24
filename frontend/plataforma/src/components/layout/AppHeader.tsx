@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Bell, Moon, Sun, Users, Check, LogOut, User as UserIcon, Camera, Home } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useTheme } from "@/contexts/ThemeContext";
+import { useTheme } from "@/contexts/platform/ThemeContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { linkAidApi, type ApiNotificacaoResponse } from "@/lib/linkaidApi";
+import { platformPath } from "@/routes/platform";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -169,7 +170,7 @@ export function AppHeader({ onToggleTeam }: AppHeaderProps) {
     markNotificationAsRead(notification.id);
     setNotifOpen(false);
     if (notification.idTicket) {
-      navigate(`/tickets/${notification.idTicket}`);
+      navigate(platformPath(`/tickets/${notification.idTicket}`));
     }
   };
 
@@ -182,7 +183,7 @@ export function AppHeader({ onToggleTeam }: AppHeaderProps) {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate(platformPath("/login"));
   };
 
   const handleBackToSite = () => {

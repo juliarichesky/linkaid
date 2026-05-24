@@ -15,9 +15,9 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import logo from "../../assets/icons/logo.png";
+import logo from "../../assets/icons/logo.png?url";
 import { useTheme } from "../../contexts/ThemeContext";
-import { platformPath } from "../../platform/lib/routes";
+import { platformPath } from "@/routes/platform";
 
 const Navbar = () => {
   const location = useLocation();
@@ -83,14 +83,11 @@ const Navbar = () => {
     "w-10 h-10 flex items-center justify-center rounded-full bg-slate-900/5 border border-slate-950/10 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-900 transition-all shadow-sm cursor-pointer active:scale-95 z-[150]";
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-[100] px-4 pt-0 md:px-10 font-sans">
+    <nav style={{ display: isMenuOpen ? "none" : "block" }} className="fixed top-0 left-0 w-full z-[100] px-4 pt-0 md:px-10 font-sans">
       {/* nav desktop */}
       <div
-        className={`max-w-[2000px] mx-auto h-20 px-8 flex items-center justify-between rounded-b-[2rem] transition-all duration-500 shadow-2xl relative z-[120] ${
-          isMenuOpen
-            ? "opacity-0 invisible pointer-events-none"
-            : "bg-white/10 dark:bg-slate-950/70 backdrop-blur-xl border border-white/20 dark:border-blue-400/15 border-t-0 opacity-100 visible"
-        }`}
+        style={{ display: isMenuOpen ? "none" : "flex" }}
+        className="max-w-[2000px] mx-auto h-20 px-8 items-center justify-between rounded-b-[2rem] transition-all duration-500 shadow-2xl relative z-[120] bg-white/10 dark:bg-slate-950/70 backdrop-blur-xl border border-white/20 dark:border-blue-400/15 border-t-0"
       >
         <Link to="/" onClick={() => setIsMenuOpen(false)}>
           <img src={logo} alt="LinkAid" className="h-7 md:h-8 opacity-90" />

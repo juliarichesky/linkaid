@@ -115,7 +115,7 @@ const FaqSection = ({ searchTerm, activeId }: FaqSectionProps) => {
                 <div
                   key={item.id}
                   id={`faq-item-${item.id}`}
-                  className={`faq-item group relative transition-all duration-500 bg-white dark:bg-slate-950 border-b border-slate-100 dark:border-slate-800 overflow-hidden ${isActive ? "pb-4" : ""}`}
+                  className={`faq-item group relative transition-all duration-500 border-b dark:border-slate-800 overflow-hidden ${isActive ? "pb-4" : ""}`}
                 >
                   <button
                     onClick={() => toggleAccordion(index)}

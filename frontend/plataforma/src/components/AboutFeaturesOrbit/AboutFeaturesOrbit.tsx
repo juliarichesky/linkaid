@@ -73,11 +73,11 @@ const AboutFeaturesOrbit = () => {
                             style={{
                               backgroundColor: isActive
                                 ? feature.color
-                                : "white",
+                                : undefined,
                               color: isActive ? "white" : feature.color,
                               borderColor: isActive
                                 ? feature.color
-                                : "transparent",
+                                : undefined,
                               boxShadow: isActive
                                 ? `0 15px 35px ${feature.color}66`
                                 : "",

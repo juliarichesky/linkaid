@@ -6,7 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import imgDesktop from "../../assets/images/painel/financeiro-desktop.png";
 import imgMobile from "../../assets/images/painel/financeiro-mobile.png";
-import { platformPath } from "../../platform/lib/routes";
+import { platformPath } from "@/routes/platform";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,14 +36,12 @@ const HomeFinalShowCase: FC = () => {
       gsap.fromTo(
         imageRef.current,
         {
-          opacity: 0,
           y: 150,
           rotateX: 10,
           scale: 0.9,
           filter: "blur(20px)",
         },
         {
-          opacity: 1,
           y: 0,
           rotateX: 0,
           scale: 1,
@@ -87,7 +85,7 @@ const HomeFinalShowCase: FC = () => {
         <div className="relative w-full max-w-[1450px] px-4 md:px-12 z-10 perspective-1000">
           <div
             ref={imageRef}
-            className="relative w-full rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950"
+            className="relative w-full rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-950 opacity-100"
             style={{
               boxShadow:
                 "0 -50px 70px -30px rgba(0, 0, 0, 0.05), 0 80px 120px -40px rgba(0, 0, 0, 0.12), 0 30px 60px -20px rgba(0, 0, 0, 0.08)",

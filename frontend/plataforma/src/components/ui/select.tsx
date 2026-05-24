@@ -69,7 +69,8 @@ const SelectGroup = ({ children }: { children: React.ReactNode }) => <>{children
 const SelectValue = ({ placeholder }: { placeholder?: React.ReactNode }) => {
   const context = React.useContext(SelectContext);
   const shouldShowPlaceholder = !context?.value || context.value === "all";
-  return <span>{shouldShowPlaceholder ? placeholder : context.items.get(context.value) ?? context.value}</span>;
+  if (shouldShowPlaceholder || !context?.value) return <span>{placeholder}</span>;
+  return <span>{context.items.get(context.value) ?? context.value}</span>;
 };
 
 const SelectTrigger = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
@@ -87,7 +88,7 @@ const SelectTrigger = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttrib
         )}
         onClick={(event) => {
           onClick?.(event);
-          context?.setOpen(!context.open);
+          if (context) context.setOpen(!context.open);
         }}
         {...props}
       >
