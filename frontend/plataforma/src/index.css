@@ -144,6 +144,12 @@
     border-color: hsl(var(--border));
   }
 
+  a[href],
+  button:not(:disabled),
+  [role="button"] {
+    @apply cursor-pointer;
+  }
+
   body {
     font-family: "Inter", sans-serif;
     background: hsl(var(--background));

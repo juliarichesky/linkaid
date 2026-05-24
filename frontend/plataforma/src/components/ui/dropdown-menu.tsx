@@ -30,7 +30,7 @@ const DropdownMenuTrigger = ({ asChild, children }: { asChild?: boolean; childre
     });
   }
   return (
-    <button type="button" onClick={() => context?.setOpen(!context.open)}>
+    <button type="button" className="cursor-pointer" onClick={() => context?.setOpen(!context.open)}>
       {children}
     </button>
   );
@@ -71,7 +71,7 @@ const DropdownMenuItem = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAtt
       <button
         ref={ref}
         type="button"
-        className={cn("relative flex w-full cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground", inset && "pl-8", className)}
+        className={cn("relative flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground", inset && "pl-8", className)}
         onClick={(event) => {
           onClick?.(event);
           context?.setOpen(false);
