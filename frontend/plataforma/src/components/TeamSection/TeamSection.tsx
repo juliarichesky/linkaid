@@ -4,12 +4,19 @@ import developers from "../../data/developers.json";
 import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import juliaGuimaraesImage from "../../assets/images/team/julia-guimaraes.png";
+import juliaSpanopoulosImage from "../../assets/images/team/julia-spanopoulos.png";
+
+const developerImages: Record<string, string> = {
+  "julia-guimaraes.png": juliaGuimaraesImage,
+  "julia-spanopoulos.png": juliaSpanopoulosImage,
+};
 
 const TeamSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const getImageUrl = (name: string) => {
-    return new URL(`../../assets/images/team/${name}`, import.meta.url).href;
+    return developerImages[name];
   };
 
   useGSAP(
