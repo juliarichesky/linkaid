@@ -1,16 +1,16 @@
 import { Navigate, Routes, Route } from "react-router-dom";
-import DefaultLayout from "./Layout/DefaultLayout";
-import Home from "./pages/Home/Home";
-import Sobre from "./pages/Sobre/Sobre";
-import Equipe from "./pages/Equipe/Equipe";
-import Faq from "./pages/Faq/Faq";
-import Contato from "./pages/Contato/Contato";
+import DefaultLayout from "./layouts/DefaultLayout";
+import Home from "./pages/site/Home/Home";
+import Sobre from "./pages/site/Sobre/Sobre";
+import Equipe from "./pages/site/Equipe/Equipe";
+import Faq from "./pages/site/Faq/Faq";
+import Contato from "./pages/site/Contato/Contato";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
-import Mapa from "./pages/Mapa/Mapa";
-import NotFound from "./pages/NotFound/NotFound";
+import Mapa from "./pages/site/Mapa/Mapa";
+import NotFound from "./pages/site/NotFound/NotFound";
 import TeamDetails from "./components/TeamDetails/TeamDetails";
 import Breadcrumb from "./components/Breadcrumb/Breadcrumb";
-import PlatformApp from "./platform/App";
+import PlatformApp from "./routes/PlatformRoutes";
 
 const App = () => {
   return (

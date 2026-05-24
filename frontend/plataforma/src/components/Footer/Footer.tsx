@@ -15,7 +15,7 @@ import {
   Mail,
 } from "lucide-react";
 import logo from "../../assets/icons/logo.png?url";
-import { platformPath } from "../../platform/lib/routes";
+import { platformPath } from "@/routes/platform";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

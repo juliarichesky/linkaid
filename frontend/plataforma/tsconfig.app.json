@@ -14,7 +14,7 @@
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "paths": {
-      "@/*": ["./src/platform/*"]
+      "@/*": ["./src/*"]
     },
     "noEmit": true,
     "jsx": "react-jsx",
@@ -28,14 +28,5 @@
     "noUncheckedSideEffectImports": true
   },
   "include": ["src"],
-  "exclude": [
-    "src/components/NavLink.tsx",
-    "src/components/feedback",
-    "src/components/layout",
-    "src/components/ui",
-    "src/contexts/AuthContext.tsx",
-    "src/contexts/TicketsContext.tsx",
-    "src/lib",
-    "src/pages/*.tsx"
-  ]
+  "exclude": []
 }

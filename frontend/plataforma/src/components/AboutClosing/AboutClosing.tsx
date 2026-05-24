@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { platformPath } from "../../platform/lib/routes";
+import { platformPath } from "@/routes/platform";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);

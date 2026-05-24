@@ -1,6 +1,6 @@
 import { ArrowRight, Globe, ShieldCheck, Target } from "lucide-react";
 import { Link } from "react-router-dom";
-import { platformPath } from "../../platform/lib/routes";
+import { platformPath } from "@/routes/platform";
 import "../../index.css";
 
 const AboutProject = () => {

@@ -4,7 +4,7 @@ import developers from "../../data/developers.json";
 import { ArrowLeft, Code, Link2, User, ChevronsUpDown } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import NotFound from "../../pages/NotFound/NotFound";
+import NotFound from "../../pages/site/NotFound/NotFound";
 
 const TeamDetails = () => {
   const { id } = useParams();

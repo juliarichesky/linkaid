@@ -6,7 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import imgDesktop from "../../assets/images/painel/financeiro-desktop.png";
 import imgMobile from "../../assets/images/painel/financeiro-mobile.png";
-import { platformPath } from "../../platform/lib/routes";
+import { platformPath } from "@/routes/platform";
 
 gsap.registerPlugin(ScrollTrigger);
 

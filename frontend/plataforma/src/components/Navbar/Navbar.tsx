@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import logo from "../../assets/icons/logo.png?url";
 import { useTheme } from "../../contexts/ThemeContext";
-import { platformPath } from "../../platform/lib/routes";
+import { platformPath } from "@/routes/platform";
 
 const Navbar = () => {
   const location = useLocation();

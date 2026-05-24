@@ -9,7 +9,7 @@ import {
   BarChart3,
   Heart,
 } from "lucide-react";
-import HeroDefault from "../../Layout/HeroDefault";
+import HeroDefault from "../../layouts/HeroDefault";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);

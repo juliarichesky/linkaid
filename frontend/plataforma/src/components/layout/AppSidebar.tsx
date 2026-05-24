@@ -13,7 +13,8 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/classnames";
 import { useState } from "react";
-import { useAuth, Role } from "@/contexts/AuthContext";
+import { useAuth, type Role } from "@/contexts/AuthContext";
+import { platformPath, stripPlatformBase } from "@/routes/platform";
 
 type MenuItem = { title: string; url: string; icon: LucideIcon; roles?: Role[] };
 
@@ -51,8 +52,9 @@ export function AppSidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const { user } = useAuth();
 
+  const currentPath = stripPlatformBase(location.pathname);
   const isActive = (path: string) =>
-    location.pathname === path || (path !== "/" && location.pathname.startsWith(`${path}/`));
+    currentPath === path || (path !== "/" && currentPath.startsWith(`${path}/`));
   const canSee = (item: MenuItem) =>
     !item.roles || (user && item.roles.includes(user.role));
 
@@ -87,7 +89,7 @@ export function AppSidebar() {
           {visibleMain.map((item) => (
             <Link
               key={item.url}
-              to={item.url}
+              to={platformPath(item.url)}
               className={cn(
                 "flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors",
                 isActive(item.url)
@@ -111,7 +113,7 @@ export function AppSidebar() {
             {visibleExtra.map((item) => (
               <Link
                 key={item.url}
-                to={item.url}
+                to={platformPath(item.url)}
                 className={cn(
                   "flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors",
                   isActive(item.url)

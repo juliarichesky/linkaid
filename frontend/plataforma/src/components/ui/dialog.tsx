@@ -31,9 +31,10 @@ const Dialog = ({ open, defaultOpen = false, onOpenChange, children }: DialogPro
 const DialogTrigger = ({ children }: { children: React.ReactNode }) => {
   const context = React.useContext(DialogContext);
   if (!React.isValidElement(children)) return null;
-  return React.cloneElement(children as React.ReactElement<{ onClick?: React.MouseEventHandler }>, {
+  const child = children as React.ReactElement<{ onClick?: React.MouseEventHandler }>;
+  return React.cloneElement(child, {
     onClick: (event: React.MouseEvent) => {
-      children.props.onClick?.(event);
+      child.props.onClick?.(event);
       context?.setOpen(true);
     },
   });

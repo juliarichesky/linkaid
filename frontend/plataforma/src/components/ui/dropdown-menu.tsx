@@ -21,9 +21,10 @@ const DropdownMenu = ({ children }: { children: React.ReactNode }) => {
 const DropdownMenuTrigger = ({ asChild, children }: { asChild?: boolean; children: React.ReactNode }) => {
   const context = React.useContext(DropdownContext);
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children as React.ReactElement<{ onClick?: React.MouseEventHandler }>, {
+    const child = children as React.ReactElement<{ onClick?: React.MouseEventHandler }>;
+    return React.cloneElement(child, {
       onClick: (event: React.MouseEvent) => {
-        children.props.onClick?.(event);
+        child.props.onClick?.(event);
         context?.setOpen(!context.open);
       },
     });
