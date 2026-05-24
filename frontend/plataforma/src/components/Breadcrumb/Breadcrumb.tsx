@@ -20,7 +20,9 @@ const Breadcrumb = () => {
       {/* voltar para a pagina anterior */}
       <button
         onClick={handleBack}
-        className="group flex items-center gap-2 text-blue-600 font-bold text-[10px] uppercase tracking-[0.3em] w-fit shrink-0 transition-colors hover:text-blue-700 cursor-pointer"
+        // inline style to ensure transparent background (overrides global .dark nav button)
+        style={{ backgroundColor: "transparent" }}
+        className="group flex items-center gap-2 text-blue-600 font-bold text-[10px] uppercase tracking-[0.3em] w-fit shrink-0 transition-colors hover:text-blue-700 cursor-pointer bg-transparent"
       >
         <ArrowLeft
           size={14}
@@ -54,7 +56,9 @@ const Breadcrumb = () => {
                 strokeWidth={3}
               />
               {last ? (
-                <span className="text-slate-900 dark:text-slate-100 font-bold">{displayName}</span>
+                <span className="text-slate-900 dark:text-slate-100 font-bold">
+                  {displayName}
+                </span>
               ) : (
                 <Link to={to} className="hover:text-blue-600 transition-colors">
                   {displayName}

@@ -23,7 +23,7 @@ const Home = () => {
             >
               <div className="absolute z-20 w-4 h-4 rounded-full bg-white dark:bg-slate-950 border-[3px] border-blue-600 shadow-lg transition-all duration-500 group-hover:scale-125 top-1/2 -translate-y-1/2 left-[0px] sm:left-[-15px] md:left-[25px] lg:left-[25px] xl:left-[25px]"></div>
 
-              <div className="w-full bg-white dark:bg-slate-950 transition-all duration-700 md:group-hover:-translate-y-2 p-8 sm:p-12 md:p-12 max-w-xl sm:max-w-[650px] md:max-w-[650px]">
+              <div className="w-full transition-all duration-700 md:group-hover:-translate-y-2 p-8 sm:p-12 md:p-12 max-w-xl sm:max-w-[650px] md:max-w-[650px]">
                 <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 md:mb-10 gap-4 sm:gap-0">
                   <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-blue-50 dark:bg-blue-950/45 text-blue-600 flex items-center justify-center shadow-inner transition-colors group-hover:bg-blue-600 group-hover:text-white">
                     <Link2 size={24} strokeWidth={1.5} />
@@ -64,7 +64,7 @@ const Home = () => {
             >
               <div className="absolute z-20 w-4 h-4 rounded-full bg-white dark:bg-slate-950 border-[3px] border-green-500 shadow-lg transition-all duration-500 group-hover:scale-125 top-1/2 -translate-y-1/2 left-[0px] sm:left-[-15px] md:left-[25px] lg:left-[25px] xl:left-[25px]"></div>
 
-              <div className="w-full bg-white dark:bg-slate-950 transition-all duration-700 md:group-hover:-translate-y-2 p-8 sm:p-12 md:p-12 max-w-xl sm:max-w-[650px] md:max-w-[650px]">
+              <div className="w-full transition-all duration-700 md:group-hover:-translate-y-2 p-8 sm:p-12 md:p-12 max-w-xl sm:max-w-[650px] md:max-w-[650px]">
                 <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 md:mb-10 gap-4 sm:gap-0">
                   <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-green-50 dark:bg-green-950/45 text-green-600 flex items-center justify-center shadow-inner transition-colors group-hover:bg-green-500 group-hover:text-white">
                     <BarChart3 size={24} strokeWidth={1.5} />
@@ -103,7 +103,7 @@ const Home = () => {
             >
               <div className="absolute z-20 w-4 h-4 rounded-full bg-white dark:bg-slate-950 border-[3px] border-indigo-700 shadow-lg transition-all duration-500 group-hover:scale-125 top-1/2 -translate-y-1/2 left-[0px] sm:left-[-15px] md:left-[25px] lg:left-[25px] xl:left-[25px]"></div>
 
-              <div className="w-full bg-white dark:bg-slate-950 transition-all duration-700 md:group-hover:-translate-y-2 p-8 sm:p-12 md:p-12 max-w-xl sm:max-w-[650px] md:max-w-[650px]">
+              <div className="w-full transition-all duration-700 md:group-hover:-translate-y-2 p-8 sm:p-12 md:p-12 max-w-xl sm:max-w-[650px] md:max-w-[650px]">
                 <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 md:mb-10 gap-4 sm:gap-0">
                   <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-indigo-50 dark:bg-indigo-950/45 text-indigo-600 flex items-center justify-center shadow-inner transition-colors group-hover:bg-indigo-700 group-hover:text-white">
                     <Rocket size={24} strokeWidth={1.5} />
@@ -141,7 +141,7 @@ const Home = () => {
         </div>
       </HomeLayout>
 
-        <HomeFinalShowCase />
+      <HomeFinalShowCase />
     </>
   );
 };
