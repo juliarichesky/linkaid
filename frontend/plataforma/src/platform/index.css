@@ -119,6 +119,12 @@
     @apply border-border;
   }
 
+  a[href],
+  button:not(:disabled),
+  [role="button"] {
+    @apply cursor-pointer;
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: "Inter", system-ui, sans-serif;

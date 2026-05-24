@@ -144,7 +144,7 @@ const SelectItem = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttribute
         role="option"
         aria-selected={selected}
         className={cn(
-          "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none hover:bg-accent hover:text-accent-foreground",
+          "relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none hover:bg-accent hover:text-accent-foreground",
           className,
         )}
         onClick={(event) => {
