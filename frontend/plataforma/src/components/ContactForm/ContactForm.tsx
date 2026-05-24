@@ -80,14 +80,16 @@ const ContactForm = () => {
                 </div>
               </div>
 
-              <picture>
-                <source media="(max-width: 768px)" srcSet={robotMobile} />
-                <img
-                  src={robotDesktop}
-                  alt="Robot"
-                  className="absolute -top-25 left-1/2 -translate-x-1/2 w-[150px] md:-top-24 md:right-auto md:left-[-87px] md:translate-x-0 lg:-top-29 lg:left-[-105px] lg:w-[180px] scale-x-[-1] pointer-events-none select-none z-20 transition-all duration-500"
-                />
-              </picture>
+              <div className="absolute -top-25 left-1/2 z-20 w-[150px] -translate-x-1/2 md:-top-24 md:left-[-87px] md:translate-x-0 lg:-top-29 lg:left-[-105px] lg:w-[180px]">
+                <picture>
+                  <source media="(max-width: 768px)" srcSet={robotMobile} />
+                  <img
+                    src={robotDesktop}
+                    alt="Robot"
+                    className="h-auto w-full scale-x-[-1] select-none transition-all duration-500"
+                  />
+                </picture>
+              </div>
 
               <div
                 className="bg-white dark:bg-slate-950 p-8 lg:p-10 rounded-[32px] border border-slate-100/60 dark:border-slate-800/80 relative z-10"
