@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Bell, Moon, Sun, Users, Check, LogOut, User as UserIcon, Camera } from "lucide-react";
+import { Bell, Moon, Sun, Users, Check, LogOut, User as UserIcon, Camera, Home } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useAuth } from "@/contexts/AuthContext";
@@ -185,6 +185,10 @@ export function AppHeader({ onToggleTeam }: AppHeaderProps) {
     navigate("/login");
   };
 
+  const handleBackToSite = () => {
+    navigate("/");
+  };
+
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -212,6 +216,10 @@ export function AppHeader({ onToggleTeam }: AppHeaderProps) {
   return (
     <header className="h-14 border-b border-border bg-card flex items-center justify-end px-4 sm:px-6 sticky top-0 z-20">
       <div className="flex items-center gap-1">
+        <Button variant="ghost" size="icon" onClick={handleBackToSite} aria-label="Voltar ao site">
+          <Home className="w-4 h-4" />
+        </Button>
+
         <Button variant="ghost" size="icon" onClick={onToggleTeam} className="relative">
           <Users className="w-4 h-4" />
         </Button>
