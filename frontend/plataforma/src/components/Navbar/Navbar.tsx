@@ -15,7 +15,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import logo from "../../assets/icons/logo.png";
+import logo from "../../assets/icons/logo.png?url";
 import { useTheme } from "../../contexts/ThemeContext";
 import { platformPath } from "../../platform/lib/routes";
 

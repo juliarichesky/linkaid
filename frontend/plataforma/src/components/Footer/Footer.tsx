@@ -14,7 +14,7 @@ import {
   HelpCircle,
   Mail,
 } from "lucide-react";
-import logo from "../../assets/icons/logo.png";
+import logo from "../../assets/icons/logo.png?url";
 import { platformPath } from "../../platform/lib/routes";
 
 const Footer = () => {
