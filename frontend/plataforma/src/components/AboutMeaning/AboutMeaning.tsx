@@ -73,7 +73,7 @@ const AboutMeaning = () => {
                   <img
                     src={LogoLinkAid}
                     alt="Logo LinkAid"
-                    className="w-[85%] h-[85%] object-contain drop-shadow-[0_35px_45px_rgba(0,0,0,0.08)]"
+                    className="w-[85%] h-[85%] object-contain"
                   />
                 </div>
               </div>

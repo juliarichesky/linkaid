@@ -10,6 +10,11 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+const lightBackgroundImage =
+  "https://images.unsplash.com/photo-1619252584172-a83a949b6efd?q=80&w=1974&auto=format&fit=crop";
+const darkBackgroundImage =
+  "https://images.unsplash.com/photo-1651746605872-66fec1defdb5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
 const AboutClosing = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
@@ -47,9 +52,14 @@ const AboutClosing = () => {
         className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden"
       >
         <img
-          src="https://images.unsplash.com/photo-1619252584172-a83a949b6efd?q=80&w=1974&auto=format&fit=crop"
+          src={lightBackgroundImage}
           alt="background connection"
-          className="w-full h-full object-cover"
+          className="h-full w-full object-cover dark:hidden"
+        />
+        <img
+          src={darkBackgroundImage}
+          alt="background connection"
+          className="hidden h-full w-full object-cover dark:block"
         />
 
         {/* double gradient mask for seamless blending */}
