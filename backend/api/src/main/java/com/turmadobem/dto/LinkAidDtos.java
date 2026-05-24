@@ -43,6 +43,32 @@ public final class LinkAidDtos {
     ) {
     }
 
+    public record UsuarioCreateRequest(
+            @NotBlank String nome,
+            @NotBlank @Email String email,
+            String senha,
+            String password,
+            @NotBlank String perfilCodigo,
+            String status
+    ) {
+        public String senhaInformada() {
+            return senha != null && !senha.isBlank() ? senha : password;
+        }
+    }
+
+    public record UsuarioUpdateRequest(
+            String nome,
+            @Email String email,
+            String senha,
+            String password,
+            String perfilCodigo,
+            String status
+    ) {
+        public String senhaInformada() {
+            return senha != null && !senha.isBlank() ? senha : password;
+        }
+    }
+
     public record ContatoRequest(
             @NotBlank String nome,
             String documento,
@@ -93,6 +119,37 @@ public final class LinkAidDtos {
             String uf,
             String status,
             LocalDateTime dataCadastro
+    ) {
+    }
+
+    public record AgendaDentistaRequest(
+            @NotNull Long idDentista,
+            @NotNull LocalDateTime dataHoraInicio,
+            @NotNull LocalDateTime dataHoraFim,
+            String statusAgenda,
+            @Size(max = 300) String observacao
+    ) {
+    }
+
+    public record AgendaDentistaUpdateRequest(
+            Long idDentista,
+            LocalDateTime dataHoraInicio,
+            LocalDateTime dataHoraFim,
+            String statusAgenda,
+            @Size(max = 300) String observacao
+    ) {
+    }
+
+    public record AgendaDentistaStatusRequest(@NotBlank String statusAgenda) {
+    }
+
+    public record AgendaDentistaResponse(
+            Long idAgendaDentista,
+            DentistaResponse dentista,
+            LocalDateTime dataHoraInicio,
+            LocalDateTime dataHoraFim,
+            String statusAgenda,
+            String observacao
     ) {
     }
 
@@ -193,6 +250,40 @@ public final class LinkAidDtos {
             LocalDateTime dataAtualizacao,
             LocalDateTime dataFechamento,
             List<MensagemResponse> mensagens
+    ) {
+    }
+
+    public record TriagemRequest(
+            @NotNull Long idTicket,
+            @NotNull Long idUsuarioResponsavel,
+            Long idDentista,
+            LocalDateTime dataHoraTriagem,
+            String statusTriagem,
+            String descricaoTriagem
+    ) {
+    }
+
+    public record TriagemUpdateRequest(
+            Long idUsuarioResponsavel,
+            Long idDentista,
+            LocalDateTime dataHoraTriagem,
+            String statusTriagem,
+            String descricaoTriagem
+    ) {
+    }
+
+    public record TriagemStatusRequest(@NotBlank String statusTriagem) {
+    }
+
+    public record TriagemResponse(
+            Long idTriagem,
+            TicketResponse ticket,
+            ContatoResponse contato,
+            UsuarioResponse usuarioResponsavel,
+            DentistaResponse dentista,
+            LocalDateTime dataHoraTriagem,
+            String statusTriagem,
+            String descricaoTriagem
     ) {
     }
 

@@ -6,6 +6,7 @@ import com.turmadobem.exception.BusinessException;
 import com.turmadobem.exception.ForbiddenException;
 import com.turmadobem.model.Usuario;
 import com.turmadobem.security.AuthSessionService;
+import com.turmadobem.security.PasswordService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -18,6 +19,9 @@ public class AuthBO {
     @Inject
     AuthSessionService authSessionService;
 
+    @Inject
+    PasswordService passwordService;
+
     @Transactional(Transactional.TxType.SUPPORTS)
     public LinkAidDtos.LoginResponse login(LinkAidDtos.LoginRequest request) {
         String senha = request.senhaInformada();
@@ -26,7 +30,7 @@ public class AuthBO {
         }
 
         Usuario usuario = usuarioDAO.buscarPorEmail(request.email());
-        if (usuario == null || usuario.getSenha() == null || !usuario.getSenha().equals(senha)) {
+        if (usuario == null || !passwordService.matches(senha, usuario.getSenha())) {
             throw new BusinessException("Credenciais invalidas.");
         }
         if (!usuario.isAtivo()) {

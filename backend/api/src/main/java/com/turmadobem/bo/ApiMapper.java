@@ -1,11 +1,13 @@
 package com.turmadobem.bo;
 
 import com.turmadobem.dto.LinkAidDtos;
+import com.turmadobem.model.AgendaDentista;
 import com.turmadobem.model.Contato;
 import com.turmadobem.model.Dentista;
 import com.turmadobem.model.Ticket;
 import com.turmadobem.model.TicketMensagem;
 import com.turmadobem.model.TicketNotaInterna;
+import com.turmadobem.model.Triagem;
 import com.turmadobem.model.Usuario;
 
 import java.util.List;
@@ -61,6 +63,20 @@ final class ApiMapper {
                 dentista.getUf(),
                 dentista.getStatus(),
                 dentista.getDataCadastro()
+        );
+    }
+
+    static LinkAidDtos.AgendaDentistaResponse agendaDentista(AgendaDentista agenda) {
+        if (agenda == null) {
+            return null;
+        }
+        return new LinkAidDtos.AgendaDentistaResponse(
+                agenda.getIdAgendaDentista(),
+                dentista(agenda.getDentista()),
+                agenda.getDataHoraInicio(),
+                agenda.getDataHoraFim(),
+                agenda.getStatusAgenda(),
+                agenda.getObservacao()
         );
     }
 
@@ -124,6 +140,22 @@ final class ApiMapper {
                 ticket.getDataAtualizacao(),
                 ticket.getDataFechamento(),
                 mensagensResponse
+        );
+    }
+
+    static LinkAidDtos.TriagemResponse triagem(Triagem triagem) {
+        if (triagem == null) {
+            return null;
+        }
+        return new LinkAidDtos.TriagemResponse(
+                triagem.getIdTriagem(),
+                ticket(triagem.getTicket(), List.of()),
+                contato(triagem.getContato()),
+                usuario(triagem.getUsuarioResponsavel()),
+                dentista(triagem.getDentista()),
+                triagem.getDataHoraTriagem(),
+                triagem.getStatusTriagem(),
+                triagem.getDescricaoTriagem()
         );
     }
 }
