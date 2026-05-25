@@ -45,19 +45,21 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useTickets } from "@/contexts/TicketsContext";
+import { useTickets, type Ticket } from "@/contexts/TicketsContext";
 import { cn } from "@/lib/classnames";
 import { CANAL_LABELS, PRIORIDADE_LABELS } from "@/lib/linkaidMappings";
+import { ticketDisplayProtocol } from "@/lib/ticketDisplay";
 import { toast } from "sonner";
 
 interface HistoryTicket {
   id: string;
-  protocol?: string;
+  protocol: string;
   sender: string;
   cpf: string;
   subject: string;
   date: string;
   openedAt: string;
+  updatedAt: string;
   channel: string;
   dentist: string;
   status: string;
@@ -74,331 +76,21 @@ interface HistoryTicket {
   timeline: { date: string; action: string; user: string }[];
   relatedTickets: {
     id: string;
-    protocol?: string;
+    protocol: string;
     subject: string;
     date: string;
     status: string;
   }[];
-  isFromGlobal?: boolean;
 }
-
-const staticHistoryTickets: HistoryTicket[] = [
-  {
-    id: "TKT-089",
-    sender: "Carlos Mendes",
-    cpf: "111.222.333-44",
-    subject: "Consulta finalizada",
-    date: "01/03/2025",
-    openedAt: "01/03/2025 08:30",
-    channel: "WhatsApp",
-    dentist: "Dra. Fernanda Costa",
-    status: "Resolvido",
-    priority: "Média",
-    classification: "Saúde",
-    description:
-      "Paciente solicitou informações sobre tratamento ortodôntico e foi atendido com sucesso.",
-    responsible: "Carlos Silva",
-    phone: "(11) 91111-2222",
-    email: "carlos.m@email.com",
-    location: "São Paulo, SP",
-    procedureDescription:
-      "Avaliação ortodôntica completa com radiografia panorâmica.",
-    medications: "Amoxicilina 500mg 8/8h por 7 dias",
-    surgeryHistory: "Extração de terceiros molares em 2023",
-    timeline: [
-      {
-        date: "01/03/2025 08:30",
-        action: "Ticket criado via WhatsApp",
-        user: "Sistema",
-      },
-      {
-        date: "01/03/2025 09:00",
-        action: "Atribuído a Carlos Silva",
-        user: "Ana Costa",
-      },
-      {
-        date: "01/03/2025 10:15",
-        action: "Resposta enviada ao paciente",
-        user: "Carlos Silva",
-      },
-      {
-        date: "01/03/2025 14:00",
-        action: "Paciente confirmou resolução",
-        user: "Sistema",
-      },
-      {
-        date: "01/03/2025 14:05",
-        action: "Ticket finalizado",
-        user: "Carlos Silva",
-      },
-    ],
-    relatedTickets: [
-      {
-        id: "TKT-027",
-        subject: "Consulta odontológica",
-        date: "15/01/2025",
-        status: "Resolvido",
-      },
-      {
-        id: "TKT-015",
-        subject: "Agendamento inicial",
-        date: "10/12/2024",
-        status: "Resolvido",
-      },
-    ],
-  },
-  {
-    id: "TKT-076",
-    sender: "ONG Vida Nova",
-    cpf: "12.345.678/0001-00",
-    subject: "Doação concluída",
-    date: "25/02/2025",
-    openedAt: "25/02/2025 10:00",
-    channel: "E-mail",
-    dentist: "-",
-    status: "Resolvido",
-    priority: "Baixa",
-    classification: "Doação",
-    description: "Doação mensal processada com sucesso.",
-    responsible: "Paula Rocha",
-    phone: "(21) 3333-4444",
-    email: "contato@vidanova.org",
-    location: "Rio de Janeiro, RJ",
-    timeline: [
-      {
-        date: "25/02/2025 10:00",
-        action: "Ticket criado via E-mail",
-        user: "Sistema",
-      },
-      {
-        date: "25/02/2025 10:30",
-        action: "Doação confirmada",
-        user: "Paula Rocha",
-      },
-    ],
-    relatedTickets: [],
-  },
-  {
-    id: "TKT-062",
-    sender: "Ana Luiza",
-    cpf: "222.333.444-55",
-    subject: "Feedback positivo",
-    date: "18/02/2025",
-    openedAt: "18/02/2025 14:20",
-    channel: "Instagram",
-    dentist: "Dr. Ricardo Souza",
-    status: "Fechado",
-    priority: "Baixa",
-    classification: "Feedback",
-    description:
-      "Paciente agradeceu atendimento odontológico e elogiou equipe.",
-    responsible: "Maria Santos",
-    phone: "(11) 92222-3333",
-    email: "ana.luiza@email.com",
-    location: "São Paulo, SP",
-    timeline: [
-      {
-        date: "18/02/2025 14:20",
-        action: "Mensagem recebida via Instagram",
-        user: "Sistema",
-      },
-      {
-        date: "18/02/2025 15:00",
-        action: "Feedback registrado",
-        user: "Maria Santos",
-      },
-      {
-        date: "18/02/2025 15:05",
-        action: "Ticket fechado",
-        user: "Maria Santos",
-      },
-    ],
-    relatedTickets: [
-      {
-        id: "TKT-040",
-        subject: "Tratamento canal",
-        date: "05/01/2025",
-        status: "Resolvido",
-      },
-    ],
-  },
-  {
-    id: "TKT-055",
-    sender: "João Santos",
-    cpf: "333.444.555-66",
-    subject: "Tratamento concluído",
-    date: "10/02/2025",
-    openedAt: "10/02/2025 09:00",
-    channel: "WhatsApp",
-    dentist: "Dr. Marcos Lima",
-    status: "Resolvido",
-    priority: "Alta",
-    classification: "Saúde",
-    description: "Tratamento de implante finalizado.",
-    responsible: "Carlos Silva",
-    phone: "(31) 93333-4444",
-    email: "joao.s@email.com",
-    location: "Belo Horizonte, MG",
-    procedureDescription: "Implante dentário completo - dente 36.",
-    medications: "Ibuprofeno 600mg, Amoxicilina 875mg",
-    surgeryHistory: "Implante dentário realizado em 10/02/2025",
-    timeline: [
-      { date: "10/02/2025 09:00", action: "Ticket criado", user: "Sistema" },
-      {
-        date: "10/02/2025 16:00",
-        action: "Tratamento concluído",
-        user: "Dr. Marcos Lima",
-      },
-    ],
-    relatedTickets: [
-      {
-        id: "TKT-030",
-        subject: "Implante dental - início",
-        date: "20/12/2024",
-        status: "Resolvido",
-      },
-    ],
-  },
-  {
-    id: "TKT-048",
-    sender: "Lucia Ferreira",
-    cpf: "444.555.666-77",
-    subject: "Atendimento encerrado",
-    date: "03/02/2025",
-    openedAt: "03/02/2025 11:30",
-    channel: "WhatsApp",
-    dentist: "Dra. Ana Ribeiro",
-    status: "Fechado",
-    priority: "Média",
-    classification: "Saúde",
-    description: "Tratamento gengival finalizado com sucesso.",
-    responsible: "João Lima",
-    phone: "(85) 94444-5555",
-    email: "lucia.f@email.com",
-    location: "Fortaleza, CE",
-    procedureDescription: "Tratamento periodontal - raspagem subgengival.",
-    medications: "Clorexidina 0,12% bochecho 2x/dia",
-    timeline: [
-      { date: "03/02/2025 11:30", action: "Ticket criado", user: "Sistema" },
-      { date: "03/02/2025 17:00", action: "Ticket fechado", user: "João Lima" },
-    ],
-    relatedTickets: [],
-  },
-  {
-    id: "TKT-041",
-    sender: "Pedro Almeida",
-    cpf: "555.666.777-88",
-    subject: "Doação processada",
-    date: "28/01/2025",
-    openedAt: "28/01/2025 08:00",
-    channel: "E-mail",
-    dentist: "-",
-    status: "Resolvido",
-    priority: "Baixa",
-    classification: "Doação",
-    description: "Doação eventual registrada.",
-    responsible: "Ana Costa",
-    phone: "(31) 95555-6666",
-    email: "pedro.a@email.com",
-    location: "Belo Horizonte, MG",
-    timeline: [
-      { date: "28/01/2025 08:00", action: "Ticket criado", user: "Sistema" },
-    ],
-    relatedTickets: [
-      {
-        id: "TKT-004",
-        subject: "Urgência odontológica",
-        date: "05/04/2025",
-        status: "Novo",
-      },
-    ],
-  },
-  {
-    id: "TKT-034",
-    sender: "Fundação ABC",
-    cpf: "98.765.432/0001-00",
-    subject: "Parceria encerrada",
-    date: "20/01/2025",
-    openedAt: "20/01/2025 09:00",
-    channel: "E-mail",
-    dentist: "-",
-    status: "Fechado",
-    priority: "Média",
-    classification: "Parceria",
-    description: "Contrato de parceria finalizado.",
-    responsible: "Paula Rocha",
-    phone: "(71) 3222-1111",
-    email: "contato@fundacaoabc.org",
-    location: "Salvador, BA",
-    timeline: [
-      { date: "20/01/2025 09:00", action: "Ticket criado", user: "Sistema" },
-      {
-        date: "20/01/2025 16:00",
-        action: "Ticket fechado",
-        user: "Paula Rocha",
-      },
-    ],
-    relatedTickets: [
-      {
-        id: "TKT-005",
-        subject: "Doação mensal",
-        date: "05/04/2025",
-        status: "Aberto",
-      },
-    ],
-  },
-  {
-    id: "TKT-027",
-    sender: "Maria Oliveira",
-    cpf: "123.456.789-00",
-    subject: "Consulta odontológica",
-    date: "15/01/2025",
-    openedAt: "15/01/2025 07:45",
-    channel: "WhatsApp",
-    dentist: "Dra. Fernanda Costa",
-    status: "Resolvido",
-    priority: "Alta",
-    classification: "Saúde",
-    description: "Consulta de retorno ortodôntico.",
-    responsible: "Carlos Silva",
-    phone: "(11) 99999-0000",
-    email: "maria@email.com",
-    location: "São Paulo, SP",
-    procedureDescription: "Ajuste de aparelho ortodôntico fixo.",
-    medications: "Paracetamol 750mg se dor",
-    timeline: [
-      { date: "15/01/2025 07:45", action: "Ticket criado", user: "Sistema" },
-      { date: "15/01/2025 08:00", action: "Atribuído", user: "Ana Costa" },
-      {
-        date: "15/01/2025 12:00",
-        action: "Consulta realizada",
-        user: "Dra. Fernanda Costa",
-      },
-      {
-        date: "15/01/2025 12:30",
-        action: "Ticket resolvido",
-        user: "Carlos Silva",
-      },
-    ],
-    relatedTickets: [
-      {
-        id: "TKT-089",
-        subject: "Consulta finalizada",
-        date: "01/03/2025",
-        status: "Resolvido",
-      },
-      {
-        id: "TKT-001",
-        subject: "Dúvida sobre tratamento",
-        date: "05/04/2025",
-        status: "Aberto",
-      },
-    ],
-  },
-];
 
 const ITEMS_PER_PAGE = 10;
 const FILTER_SELECT_CLASS = "w-56";
+const FINAL_STATUSES = new Set([
+  "Resolvido",
+  "Arquivado",
+  "Cancelado",
+  "Fechado",
+]);
 const selectFilterValue = (value: string) =>
   value === "all" ? undefined : value;
 
@@ -540,7 +232,7 @@ const parseSortableDate = (value: string) => {
 const sortValueForHistoryTicket = (ticket: HistoryTicket, key: SortKey) => {
   switch (key) {
     case "id":
-      return ticket.protocol || ticket.id;
+      return ticket.protocol;
     case "channel":
       return ticketChannelLabel(ticket.channel);
     case "sender":
@@ -570,6 +262,74 @@ const compareSortValues = (left: string | number, right: string | number) => {
     sensitivity: "base",
   });
 };
+
+const displayDateOnly = (value: string) =>
+  value.split(",")[0]?.trim() || value.split(" ")[0] || value;
+
+const ticketTimeline = (ticket: Ticket) => {
+  const timeline = [
+    {
+      date: ticket.openedAt,
+      action: "Ticket criado",
+      user: "Sistema",
+    },
+  ];
+
+  if (ticket.updated && ticket.updated !== ticket.openedAt) {
+    timeline.push({
+      date: ticket.updated,
+      action: FINAL_STATUSES.has(ticket.status)
+        ? "Status final registrado"
+        : "Ticket atualizado",
+      user: ticket.responsible || "Sistema",
+    });
+  }
+
+  return timeline;
+};
+
+const ticketToHistoryTicket = (
+  ticket: Ticket,
+  allTickets: Ticket[],
+): HistoryTicket => ({
+  id: ticket.id,
+  protocol: ticketDisplayProtocol(ticket),
+  sender: ticket.sender,
+  cpf: ticket.cpf,
+  subject: ticket.subject,
+  date: displayDateOnly(ticket.openedAt),
+  openedAt: ticket.openedAt,
+  updatedAt: ticket.updated,
+  channel: ticket.channel,
+  dentist: ticket.dentistResponsible || "-",
+  status: ticket.status,
+  priority: ticket.priority,
+  classification: ticket.classification,
+  description: ticket.description || ticket.subject,
+  responsible: ticket.responsible,
+  phone: ticket.phone,
+  email: ticket.email,
+  location: ticket.location,
+  procedureDescription: ticket.procedureDescription,
+  medications: ticket.medications,
+  surgeryHistory: ticket.surgeryHistory,
+  timeline: ticketTimeline(ticket),
+  relatedTickets: allTickets
+    .filter(
+      (candidate) =>
+        candidate.id !== ticket.id &&
+        candidate.cpf &&
+        candidate.cpf !== "-" &&
+        candidate.cpf === ticket.cpf,
+    )
+    .map((candidate) => ({
+      id: candidate.id,
+      protocol: ticketDisplayProtocol(candidate),
+      subject: candidate.subject,
+      date: displayDateOnly(candidate.openedAt),
+      status: candidate.status,
+    })),
+});
 
 type SortableHeaderProps = {
   label: string;
@@ -623,65 +383,45 @@ export default function History() {
   const [channelFilter, setChannelFilter] = useState<ChannelFilterValue>("all");
   const [sortConfig, setSortConfig] = useState<SortConfig>(null);
   const [page, setPage] = useState(1);
-  const [selected, setSelected] = useState<HistoryTicket | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  const resolvedFromGlobal: HistoryTicket[] = globalTickets
-    .filter((t) => t.status === "Resolvido" || t.status === "Arquivado")
-    .map((t) => ({
-      id: t.id,
-      protocol: t.protocol,
-      sender: t.sender,
-      cpf: t.cpf,
-      subject: t.subject,
-      date: t.openedAt.split(" ")[0],
-      openedAt: t.openedAt,
-      channel: t.channel,
-      dentist: t.dentistResponsible || "-",
-      status: t.status,
-      priority: t.priority,
-      classification: t.classification,
-      description: t.subject,
-      responsible: t.responsible,
-      phone: t.phone,
-      email: t.email,
-      location: t.location,
-      procedureDescription: t.procedureDescription,
-      medications: t.medications,
-      surgeryHistory: t.surgeryHistory,
-      timeline: [
-        { date: t.openedAt, action: "Ticket criado", user: "Sistema" },
-        { date: "Agora", action: "Ticket resolvido", user: t.responsible },
-      ],
-      relatedTickets: [],
-      isFromGlobal: true,
-    }));
+  const historyTickets = useMemo(
+    () =>
+      globalTickets
+        .filter((ticket) => FINAL_STATUSES.has(ticket.status))
+        .map((ticket) => ticketToHistoryTicket(ticket, globalTickets)),
+    [globalTickets],
+  );
 
-  const existingIds = new Set(staticHistoryTickets.map((t) => t.id));
-  const merged = loading
-    ? []
-    : [
-        ...staticHistoryTickets,
-        ...resolvedFromGlobal.filter((t) => !existingIds.has(t.id)),
-      ];
+  const selected = useMemo(
+    () =>
+      selectedId
+        ? historyTickets.find((ticket) => ticket.id === selectedId) || null
+        : null,
+    [historyTickets, selectedId],
+  );
 
-  const defaultSorted = [...merged].sort((a, b) => {
-    const statusOrder: Record<string, number> = { Resolvido: 0, Fechado: 1 };
-    return (statusOrder[a.status] ?? 2) - (statusOrder[b.status] ?? 2);
-  });
+  const defaultSorted = useMemo(
+    () =>
+      [...historyTickets].sort(
+        (a, b) => parseSortableDate(b.openedAt) - parseSortableDate(a.openedAt),
+      ),
+    [historyTickets],
+  );
 
-  const filtered = defaultSorted.filter((t) => {
+  const filtered = defaultSorted.filter((ticket) => {
     const selectedChannel = CHANNEL_FILTER_OPTIONS.find(
       (option) => option.value === channelFilter,
     );
-    const ticketCode = t.protocol || t.id;
     const matchSearch =
-      t.sender.toLowerCase().includes(search.toLowerCase()) ||
-      ticketCode.toLowerCase().includes(search.toLowerCase()) ||
-      t.subject.toLowerCase().includes(search.toLowerCase());
+      ticket.sender.toLowerCase().includes(search.toLowerCase()) ||
+      ticket.protocol.toLowerCase().includes(search.toLowerCase()) ||
+      ticket.subject.toLowerCase().includes(search.toLowerCase());
     const matchChannel =
       channelFilter === "all" ||
       Boolean(
-        selectedChannel && matchesChannelOption(t.channel, selectedChannel),
+        selectedChannel &&
+          matchesChannelOption(ticket.channel, selectedChannel),
       );
     return matchSearch && matchChannel;
   });
@@ -717,7 +457,7 @@ export default function History() {
     try {
       await updateTicket(ticketId, { status: "Aberto" });
       toast.success("Ticket revertido para status Aberto");
-      setSelected(null);
+      setSelectedId(null);
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : "Erro ao reverter ticket",
@@ -729,23 +469,21 @@ export default function History() {
     return (
       <div className="p-6 space-y-5 animate-fade-in">
         <div className="flex items-center justify-between">
-          <Button variant="ghost" size="sm" onClick={() => setSelected(null)}>
+          <Button variant="ghost" size="sm" onClick={() => setSelectedId(null)}>
             <ArrowLeft className="w-4 h-4 mr-1" /> Voltar para Histórico
           </Button>
-          {selected.isFromGlobal && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => handleRevert(selected.id)}
-            >
-              <RotateCcw className="w-4 h-4 mr-1" /> Reverter para Ativo
-            </Button>
-          )}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => handleRevert(selected.id)}
+          >
+            <RotateCcw className="w-4 h-4 mr-1" /> Reverter para Ativo
+          </Button>
         </div>
 
         <div className="flex items-center gap-3 mb-2">
           <h1 className="text-xl font-display font-bold">
-            {selected.protocol || selected.id}
+            {selected.protocol}
           </h1>
           <Badge variant="secondary">{selected.status}</Badge>
           <Badge variant="outline">{selected.priority}</Badge>
@@ -763,7 +501,7 @@ export default function History() {
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
                   {selected.sender
                     .split(" ")
-                    .map((n) => n[0])
+                    .map((part) => part[0])
                     .join("")
                     .slice(0, 2)}
                 </div>
@@ -801,6 +539,12 @@ export default function History() {
                 <div>
                   <p className="text-xs text-muted-foreground">Abertura</p>
                   <p className="font-medium">{selected.openedAt}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground">
+                    Última atualização
+                  </p>
+                  <p className="font-medium">{selected.updatedAt}</p>
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">Responsável</p>
@@ -878,17 +622,24 @@ export default function History() {
                 <div className="relative">
                   <div className="absolute left-[7px] top-2 bottom-2 w-0.5 bg-border" />
                   <div className="space-y-4">
-                    {selected.timeline.map((t, i) => (
-                      <div key={i} className="flex items-start gap-3 relative">
+                    {selected.timeline.map((item, index) => (
+                      <div
+                        key={`${item.date}-${index}`}
+                        className="flex items-start gap-3 relative"
+                      >
                         <div
-                          className={`w-4 h-4 rounded-full shrink-0 z-10 ${i === selected.timeline.length - 1 ? "bg-success" : "bg-primary"} flex items-center justify-center`}
+                          className={`w-4 h-4 rounded-full shrink-0 z-10 ${
+                            index === selected.timeline.length - 1
+                              ? "bg-success"
+                              : "bg-primary"
+                          } flex items-center justify-center`}
                         >
                           <div className="w-1.5 h-1.5 rounded-full bg-background" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium">{t.action}</p>
+                          <p className="text-sm font-medium">{item.action}</p>
                           <p className="text-xs text-muted-foreground">
-                            {t.date} · {t.user}
+                            {item.date} · {item.user}
                           </p>
                         </div>
                       </div>
@@ -901,35 +652,39 @@ export default function History() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
-                  <FileText className="w-4 h-4" /> Visão 360° do Paciente —
+                  <FileText className="w-4 h-4" /> Visão 360° do Paciente -
                   Todos os Atendimentos ({selected.relatedTickets.length})
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 {selected.relatedTickets.length > 0 ? (
                   <div className="space-y-2">
-                    {selected.relatedTickets.map((rt) => {
-                      const fullTicket = merged.find((h) => h.id === rt.id);
+                    {selected.relatedTickets.map((related) => {
+                      const fullTicket = historyTickets.find(
+                        (historyTicket) => historyTicket.id === related.id,
+                      );
                       return (
                         <button
-                          key={rt.id}
+                          key={related.id}
                           className="w-full flex items-center justify-between px-3 py-2.5 bg-muted/50 hover:bg-accent rounded-md transition-colors text-left"
-                          onClick={() => fullTicket && setSelected(fullTicket)}
+                          onClick={() =>
+                            fullTicket && setSelectedId(fullTicket.id)
+                          }
                         >
                           <div className="flex items-center gap-3 min-w-0">
                             <span className="font-mono text-xs text-muted-foreground">
-                              {rt.protocol || rt.id}
+                              {related.protocol}
                             </span>
                             <span className="text-sm truncate">
-                              {rt.subject}
+                              {related.subject}
                             </span>
                           </div>
                           <div className="flex items-center gap-2 shrink-0">
                             <span className="text-xs text-muted-foreground">
-                              {rt.date}
+                              {related.date}
                             </span>
                             <Badge variant="secondary" className="text-[10px]">
-                              {rt.status}
+                              {related.status}
                             </Badge>
                             <ChevronRight className="w-3 h-3 text-muted-foreground" />
                           </div>
@@ -974,8 +729,8 @@ export default function History() {
         </div>
         <Select
           value={selectFilterValue(channelFilter)}
-          onValueChange={(v) => {
-            setChannelFilter(v as ChannelFilterValue);
+          onValueChange={(value) => {
+            setChannelFilter(value as ChannelFilterValue);
             setPage(1);
           }}
         >
@@ -1069,19 +824,19 @@ export default function History() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {paginated.map((t) => {
-              const channelLabel = ticketChannelLabel(t.channel);
+            {paginated.map((ticket) => {
+              const channelLabel = ticketChannelLabel(ticket.channel);
               const ChIcon = channelIcon[channelLabel] || MoreHorizontal;
               const chColor =
                 channelColors[channelLabel] || "text-muted-foreground";
               return (
                 <TableRow
-                  key={t.id}
+                  key={ticket.id}
                   className="cursor-pointer hover:bg-accent/60 transition-colors"
-                  onClick={() => setSelected(t)}
+                  onClick={() => setSelectedId(ticket.id)}
                 >
                   <TableCell className="font-mono text-xs whitespace-nowrap">
-                    {t.protocol || t.id}
+                    {ticket.protocol}
                   </TableCell>
                   <TableCell
                     className="text-center"
@@ -1092,16 +847,16 @@ export default function History() {
                   </TableCell>
                   <TableCell
                     className="font-medium text-xs truncate"
-                    title={t.sender}
+                    title={ticket.sender}
                   >
-                    {t.sender}
+                    {ticket.sender}
                   </TableCell>
                   <TableCell className="text-xs">
                     <span
                       className="block max-w-[208px] truncate"
-                      title={t.subject}
+                      title={ticket.subject}
                     >
-                      {t.subject}
+                      {ticket.subject}
                     </span>
                   </TableCell>
                   <TableCell>
@@ -1109,40 +864,38 @@ export default function History() {
                       variant="secondary"
                       className="text-xs min-w-[80px] flex items-center justify-center text-center"
                     >
-                      {t.classification}
+                      {ticket.classification}
                     </Badge>
                   </TableCell>
                   <TableCell>
                     <span
                       className={cn(
                         "inline-flex items-center justify-center text-xs font-medium px-2.5 py-0.5 rounded-full min-w-[72px]",
-                        priorityClasses[t.priority] ||
+                        priorityClasses[ticket.priority] ||
                           "bg-muted text-muted-foreground",
                       )}
                     >
-                      {t.priority}
+                      {ticket.priority}
                     </span>
                   </TableCell>
-                  <TableCell className="text-xs truncate" title={t.status}>
-                    {t.status}
+                  <TableCell className="text-xs truncate" title={ticket.status}>
+                    {ticket.status}
                   </TableCell>
                   <TableCell className="text-xs text-muted-foreground whitespace-nowrap">
-                    {t.date}
+                    {ticket.date}
                   </TableCell>
                   <TableCell>
-                    {t.isFromGlobal && (
-                      <button
-                        className="text-muted-foreground hover:text-foreground transition-colors"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleRevert(t.id);
-                        }}
-                        title="Reverter para ativo"
-                        aria-label="Reverter para ativo"
-                      >
-                        <RotateCcw className="w-4 h-4" />
-                      </button>
-                    )}
+                    <button
+                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handleRevert(ticket.id);
+                      }}
+                      title="Reverter para ativo"
+                      aria-label="Reverter para ativo"
+                    >
+                      <RotateCcw className="w-4 h-4" />
+                    </button>
                   </TableCell>
                 </TableRow>
               );
@@ -1169,31 +922,31 @@ export default function History() {
             <PaginationItem>
               <PaginationPrevious
                 href="#"
-                onClick={(e) => {
-                  e.preventDefault();
+                onClick={(event) => {
+                  event.preventDefault();
                   setPage(Math.max(1, page - 1));
                 }}
               />
             </PaginationItem>
-            {Array.from({ length: totalPages }, (_, i) => (
-              <PaginationItem key={i}>
+            {Array.from({ length: totalPages }, (_, index) => (
+              <PaginationItem key={index}>
                 <PaginationLink
                   href="#"
-                  isActive={page === i + 1}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setPage(i + 1);
+                  isActive={page === index + 1}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    setPage(index + 1);
                   }}
                 >
-                  {i + 1}
+                  {index + 1}
                 </PaginationLink>
               </PaginationItem>
             ))}
             <PaginationItem>
               <PaginationNext
                 href="#"
-                onClick={(e) => {
-                  e.preventDefault();
+                onClick={(event) => {
+                  event.preventDefault();
                   setPage(Math.min(totalPages, page + 1));
                 }}
               />

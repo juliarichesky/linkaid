@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -49,6 +49,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { maskCurrency } from "@/lib/masks";
+import { useTickets } from "@/contexts/TicketsContext";
 
 type Period = "weekly" | "monthly" | "yearly";
 
@@ -68,6 +69,7 @@ interface Transaction {
   history: { date: string; action: string; user: string }[];
 }
 
+// Os dados financeiros estão mockados para não ficarem vazios, mas os outros são todos de banco de dados
 const summaryByPeriod: Record<
   Period,
   { label: string; value: string; icon: React.ElementType; color: string }[]
@@ -377,6 +379,7 @@ const categoryOptions = [
 ];
 
 export default function Financial() {
+  const { teamMembers } = useTickets();
   const [period, setPeriod] = useState<Period>("monthly");
   const [statusFilter, setStatusFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
@@ -403,6 +406,7 @@ export default function Financial() {
   const dentistsList = [
     ...new Set(transactions.map((t) => t.dentist).filter((d) => d !== "-")),
   ];
+  const responsibleOptions = teamMembers.map((member) => member.name);
 
   const filtered = transactions.filter((t) => {
     const matchSearch =
@@ -912,9 +916,11 @@ export default function Financial() {
                     <SelectValue placeholder="Selecione o responsável" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="Ana Costa">Ana Costa</SelectItem>
-                    <SelectItem value="Paula Rocha">Paula Rocha</SelectItem>
-                    <SelectItem value="Carlos Silva">Carlos Silva</SelectItem>
+                    {responsibleOptions.map((responsibleName) => (
+                      <SelectItem key={responsibleName} value={responsibleName}>
+                        {responsibleName}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>

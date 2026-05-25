@@ -2,7 +2,8 @@
   
 <img src="plataforma/src/assets/icons/logo-em-pe.png" width="500px;" alt="Logo do LinkAid"/><br>
 
-## Plataforma de Atendimento Inteligente e Humanizada  
+## Plataforma de Atendimento Inteligente e Humanizada
+
 Centralize, automatize e escale o atendimento sem perder o toque humano.
 
 <div>
@@ -17,7 +18,7 @@ Centralize, automatize e escale o atendimento sem perder o toque humano.
 👉 [github.com/juliarichesky/linkaid](https://github.com/juliarichesky/linkaid)
 
 🔗 **Acesse o vídeo:**
-👉 [YouTube](xxx)
+👉 [YouTube](https://youtu.be/vtP7XV8s66Y)
 
 🔗 **Veja o site online:**
 👉 [link-aid-connect.vercel.app](https://link-aid-connect.vercel.app/)
@@ -26,7 +27,7 @@ Centralize, automatize e escale o atendimento sem perder o toque humano.
 
 <img src="plataforma/src/assets/images/site/home.png" alt="Interface da home do LinkAid" width="100%">
 
-<br/> 
+<br/>
 
 <div align="left">
   
@@ -35,6 +36,7 @@ Centralize, automatize e escale o atendimento sem perder o toque humano.
 > Este repositório contém o Front-End do site institucional e de apresentação do LinkAid. O objetivo é fornecer uma experiência de usuário impecável, rápida e totalmente responsiva para apresentar a solução LinkAid ao mercado corporativo.
 
 ---
+
 <br/>
 
 ## 💡 Sobre o Projeto
@@ -43,9 +45,9 @@ O **LinkAid** é uma plataforma de **atendimento inteligente e humanizado**, pro
 
 Em cenários com múltiplos canais de contato (como e-mail, WhatsApp, Instagram e formulários), é comum enfrentar:
 
-- ❌ Perda de mensagens importantes  
-- ⏳ Demora no atendimento  
-- ⚠️ Sobrecarga operacional com triagens manuais  
+- ❌ Perda de mensagens importantes
+- ⏳ Demora no atendimento
+- ⚠️ Sobrecarga operacional com triagens manuais
 
 O LinkAid resolve esse problema ao transformar todas as interações em um **fluxo estruturado e rastreável**, através de um sistema de **ticketing inteligente com automação de processos**.
 
@@ -57,8 +59,8 @@ O LinkAid resolve esse problema ao transformar todas as interações em um **flu
 
 O objetivo do LinkAid é unir:
 
-- 🤖 **Eficiência tecnológica** (automação, IA, organização de dados)  
-- ❤️ **Cuidado humano** (atendimento empático e personalizado)  
+- 🤖 **Eficiência tecnológica** (automação, IA, organização de dados)
+- ❤️ **Cuidado humano** (atendimento empático e personalizado)
 
 Criando um modelo de atendimento **híbrido, escalável e estratégico**.
 
@@ -66,23 +68,23 @@ Criando um modelo de atendimento **híbrido, escalável e estratégico**.
 
 ## ✨ Funcionalidades Principais
 
-| Funcionalidade | Descrição |
-| :--- | :--- |
-| 📊 Dashboard Centralizado | Visualização em tempo real de todas as interações |
-| 🎫 Ticketing Inteligente | Criação automática de tickets com histórico |
-| ⚙️ Automação de Fluxos | Regras inteligentes de triagem e encaminhamento |
-| 👥 Base de Contatos | Histórico completo de usuários |
-| 📈 Relatórios e Insights | Métricas estratégicas de atendimento |
-| 🧠 Classificação com IA | Identificação automática de tipo de usuário e intenção da mensagem |
-| 🔔 Notificações em Tempo Real | Alertas sobre novos tickets e atualizações importantes |
-| 🏷️ Gestão de Status e Prioridade | Organização de atendimentos por nível de urgência |
-| 🔍 Filtros e Busca Avançada | Localização rápida de tickets e contatos |
-| 📜 Histórico Completo de Atendimentos | Rastreamento detalhado de todas as interações |
-| 🔗 Integração com Múltiplos Canais | Centralização de mensagens de diferentes plataformas |
-| 👤 Atribuição de Responsáveis | Distribuição automática ou manual de tickets entre usuários |
-| 📱 Interface Responsiva | Acesso completo via desktop e dispositivos móveis |
-| 💰 Módulo Financeiro | Gestão de dados financeiros relacionados aos atendimentos |
-| 📎 Registro de Informações Adicionais | Inclusão de observações e dados complementares nos tickets |
+| Funcionalidade                        | Descrição                                                          |
+| :------------------------------------ | :----------------------------------------------------------------- |
+| 📊 Dashboard Centralizado             | Visualização em tempo real de todas as interações                  |
+| 🎫 Ticketing Inteligente              | Criação automática de tickets com histórico                        |
+| ⚙️ Automação de Fluxos                | Regras inteligentes de triagem e encaminhamento                    |
+| 👥 Base de Contatos                   | Histórico completo de usuários                                     |
+| 📈 Relatórios e Insights              | Métricas estratégicas de atendimento                               |
+| 🧠 Classificação com IA               | Identificação automática de tipo de usuário e intenção da mensagem |
+| 🔔 Notificações em Tempo Real         | Alertas sobre novos tickets e atualizações importantes             |
+| 🏷️ Gestão de Status e Prioridade      | Organização de atendimentos por nível de urgência                  |
+| 🔍 Filtros e Busca Avançada           | Localização rápida de tickets e contatos                           |
+| 📜 Histórico Completo de Atendimentos | Rastreamento detalhado de todas as interações                      |
+| 🔗 Integração com Múltiplos Canais    | Centralização de mensagens de diferentes plataformas               |
+| 👤 Atribuição de Responsáveis         | Distribuição automática ou manual de tickets entre usuários        |
+| 📱 Interface Responsiva               | Acesso completo via desktop e dispositivos móveis                  |
+| 💰 Módulo Financeiro                  | Gestão de dados financeiros relacionados aos atendimentos          |
+| 📎 Registro de Informações Adicionais | Inclusão de observações e dados complementares nos tickets         |
 
 <br/>
 
@@ -92,7 +94,8 @@ Criando um modelo de atendimento **híbrido, escalável e estratégico**.
 <tr>
 <td width="50%">
 
-### 📊 Relatórios  
+### 📊 Relatórios
+
 Visualize métricas e dados de atendimentos para monitoramento e melhoria contínua.
 
 </td>
@@ -107,7 +110,8 @@ Visualize métricas e dados de atendimentos para monitoramento e melhoria contí
 </td>
 <td width="50%">
 
-### 🎫 Gestão de Tickets  
+### 🎫 Gestão de Tickets
+
 Gerencie atendimentos com status, responsáveis e histórico completo.
 
 </td>
@@ -116,7 +120,8 @@ Gerencie atendimentos com status, responsáveis e histórico completo.
 <tr>
 <td width="50%">
 
-### ➕ Criação de Tickets  
+### ➕ Criação de Tickets
+
 Registre novas solicitações de forma rápida e estruturada.
 
 </td>
@@ -131,7 +136,8 @@ Registre novas solicitações de forma rápida e estruturada.
 </td>
 <td width="50%">
 
-### 📜 Histórico Completo  
+### 📜 Histórico Completo
+
 Acompanhe todo o ciclo de atendimento com rastreabilidade total.
 
 </td>
@@ -140,7 +146,8 @@ Acompanhe todo o ciclo de atendimento com rastreabilidade total.
 <tr>
 <td width="50%">
 
-### 💰 Módulo Financeiro  
+### 💰 Módulo Financeiro
+
 Controle financeiro integrado à plataforma.
 
 </td>
@@ -154,48 +161,51 @@ Controle financeiro integrado à plataforma.
 <br/>
 
 ### 📐 Responsividade
+
 O layout foi desenvolvido para funcionar perfeitamente em:
 
-- 📱 Mobile (até 480px)  
-- 📲 Tablet (até 768px)  
-- 💻 Desktop (992px+)  
-- 🖥️ Telas grandes (1300px+)  
+- 📱 Mobile (até 480px)
+- 📲 Tablet (até 768px)
+- 💻 Desktop (992px+)
+- 🖥️ Telas grandes (1300px+)
 
 <br/>
 
 ## 🚀 Stack Tecnológica
+
 O front-end do **LinkAid** foi desenvolvido com tecnologias de ponta para garantir performance, segurança e uma experiência de usuário fluida.
 
-| Tecnologia | Função | Descrição |
-| :--- | :--- | :--- |
-| <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" /> | **Framework** | Biblioteca principal para criação de interfaces baseadas em componentes reutilizáveis. |
-| <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" /> | **Linguagem** | Superset de JavaScript que adiciona tipagem estática e segurança ao código. |
-| <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" /> | **Estilização** | Framework utility-first para um design responsivo, moderno e de carregamento rápido. |
-| <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" /> | **Build Tool** | Ferramenta de build de próxima geração para um ambiente de desenvolvimento ágil. |
+| Tecnologia                                                                                                           | Função          | Descrição                                                                              |
+| :------------------------------------------------------------------------------------------------------------------- | :-------------- | :------------------------------------------------------------------------------------- |
+| <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" />               | **Framework**   | Biblioteca principal para criação de interfaces baseadas em componentes reutilizáveis. |
+| <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />     | **Linguagem**   | Superset de JavaScript que adiciona tipagem estática e segurança ao código.            |
+| <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" /> | **Estilização** | Framework utility-first para um design responsivo, moderno e de carregamento rápido.   |
+| <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" />                 | **Build Tool**  | Ferramenta de build de próxima geração para um ambiente de desenvolvimento ágil.       |
 
 <br/>
 
 ## 💻 Entregas Funcionais
+
 Abaixo estão as funcionalidades centrais implementadas no Frontend:
 
-| Categoria | Tecnologia / Recurso | Status | Uso no Projeto |
-| :--- | :--- | :---: | :--- |
-| **Definição de Rotas** | **React Router Dom** | :heavy_check_mark: | Estruturação das rotas da aplicação para organização das páginas e fluxo de navegação entre módulos do sistema. |
-| **Navegação SPA** | **Navegação Fluida** | :heavy_check_mark: | Implementação de navegação sem recarregamento de página, garantindo experiência fluida em toda a aplicação. |
-| **Parâmetros e Rotas Dinâmicas** | **useParams** | :heavy_check_mark: | Uso de parâmetros dinâmicos para identificação e carregamento de conteúdos específicos através da URL. |
-| **Feedback ao Usuário** | **Mensagens e Estados Visuais** | :heavy_check_mark: | Implementação de feedback visual para carregamento, sucesso, falha e estados da aplicação, melhorando a experiência do usuário. |
-| **Criação de Tipos de Dados** | **TypeScript** | :heavy_check_mark: | Estruturação de tipagem para garantir maior segurança, previsibilidade e manutenção do código. |
-| **Tipos Básicos** | **string, number, boolean, arrays e object** | :heavy_check_mark: | Utilização de tipos básicos em diversos componentes para definição e manipulação de dados. <br>Ex.: `FaqSearch.tsx`, `technologies.ts`, `TeamSection.tsx`. |
-| **Interfaces** | **interface** | :heavy_check_mark: | Uso extensivo de interfaces para modelagem de entidades e tipagem de props. <br>Ex.: `Ticket`, `User`, `ButtonProps`. |
-| **Union Types** | **Tipos Literais** | :heavy_check_mark: | Implementação de tipos restritivos utilizando unions para aumentar segurança de dados. <br>Ex.: `Theme = "light" \| "dark"` e `Role = "admin" \| "colaborador"`. |
-| **Intersection Types** | **Composição de Tipos** | :heavy_check_mark: | Combinação e adaptação de tipos através de `Omit<>`, `extends` e `React.HTMLAttributes`. <br>Ex.: `linkaidApi.ts`, `tabs.tsx`. |
-| **Tipos Avançados** | **TypeScript Avançado** | :heavy_check_mark: | Aplicação de recursos avançados para composição e reutilização de estruturas tipadas. |
-| **Responsividade Total** | **Mobile / Tablet / Desktop** | :heavy_check_mark: | Desenvolvimento adaptável para diferentes tamanhos de tela, garantindo compatibilidade em múltiplos dispositivos. |
-| **Consumo de API** | **Fetch API** | :heavy_check_mark: | Integração com APIs para obtenção e envio de dados dinâmicos utilizados pela aplicação. |
-| **Manipulação HTTP** | **GET, POST, PUT, DELETE** | :heavy_check_mark: | Implementação completa dos principais métodos HTTP para operações de consulta, criação, atualização e remoção de dados. |
-| **Tratamento de Dados e Erros** | **try/catch e ApiError** | :heavy_check_mark: | Implementação de tratamento de respostas inesperadas e gerenciamento de erros através do `request()` presente em `linkaidApi.ts`, realizando validações, tratamento de status HTTP e mensagens personalizadas. |
-| **Tratamento de Respostas** | **Serialização e Controle de Fluxo** | :heavy_check_mark: | Conversão automática de JSON, validação de respostas (`response.ok`) e tratamento de respostas vazias (`204 No Content`). |
-| **Organização do Projeto** | **Arquitetura Modular** | :heavy_check_mark: | Estruturação organizada em componentes, páginas, contextos, serviços, hooks e tipagens, visando manutenção, escalabilidade e reutilização de código. |
+| Categoria                        | Tecnologia / Recurso                         |       Status       | Uso no Projeto                                                                                                                                                                                                 |
+| :------------------------------- | :------------------------------------------- | :----------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Definição de Rotas**           | **React Router Dom**                         | :heavy_check_mark: | Estruturação das rotas da aplicação para organização das páginas e fluxo de navegação entre módulos do sistema.                                                                                                |
+| **Navegação SPA**                | **Navegação Fluida**                         | :heavy_check_mark: | Implementação de navegação sem recarregamento de página, garantindo experiência fluida em toda a aplicação.                                                                                                    |
+| **Parâmetros e Rotas Dinâmicas** | **useParams**                                | :heavy_check_mark: | Uso de parâmetros dinâmicos para identificação e carregamento de conteúdos específicos através da URL.                                                                                                         |
+| **Feedback ao Usuário**          | **Mensagens e Estados Visuais**              | :heavy_check_mark: | Implementação de feedback visual para carregamento, sucesso, falha e estados da aplicação, melhorando a experiência do usuário.                                                                                |
+| **Criação de Tipos de Dados**    | **TypeScript**                               | :heavy_check_mark: | Estruturação de tipagem para garantir maior segurança, previsibilidade e manutenção do código.                                                                                                                 |
+| **Tipos Básicos**                | **string, number, boolean, arrays e object** | :heavy_check_mark: | Utilização de tipos básicos em diversos componentes para definição e manipulação de dados. <br>Ex.: `FaqSearch.tsx`, `technologies.ts`, `TeamSection.tsx`.                                                     |
+| **Interfaces**                   | **interface**                                | :heavy_check_mark: | Uso extensivo de interfaces para modelagem de entidades e tipagem de props. <br>Ex.: `Ticket`, `User`, `ButtonProps`.                                                                                          |
+| **Union Types**                  | **Tipos Literais**                           | :heavy_check_mark: | Implementação de tipos restritivos utilizando unions para aumentar segurança de dados. <br>Ex.: `Theme = "light" \| "dark"` e `Role = "admin" \| "colaborador"`.                                               |
+| **Intersection Types**           | **Composição de Tipos**                      | :heavy_check_mark: | Combinação e adaptação de tipos através de `Omit<>`, `extends` e `React.HTMLAttributes`. <br>Ex.: `linkaidApi.ts`, `tabs.tsx`.                                                                                 |
+| **Tipos Avançados**              | **TypeScript Avançado**                      | :heavy_check_mark: | Aplicação de recursos avançados para composição e reutilização de estruturas tipadas.                                                                                                                          |
+| **Responsividade Total**         | **Mobile / Tablet / Desktop**                | :heavy_check_mark: | Desenvolvimento adaptável para diferentes tamanhos de tela, garantindo compatibilidade em múltiplos dispositivos.                                                                                              |
+| **Consumo de API**               | **Fetch API**                                | :heavy_check_mark: | Integração com APIs para obtenção e envio de dados dinâmicos utilizados pela aplicação.                                                                                                                        |
+| **Manipulação HTTP**             | **GET, POST, PUT, DELETE**                   | :heavy_check_mark: | Implementação completa dos principais métodos HTTP para operações de consulta, criação, atualização e remoção de dados.                                                                                        |
+| **Tratamento de Dados e Erros**  | **try/catch e ApiError**                     | :heavy_check_mark: | Implementação de tratamento de respostas inesperadas e gerenciamento de erros através do `request()` presente em `linkaidApi.ts`, realizando validações, tratamento de status HTTP e mensagens personalizadas. |
+| **Tratamento de Respostas**      | **Serialização e Controle de Fluxo**         | :heavy_check_mark: | Conversão automática de JSON, validação de respostas (`response.ok`) e tratamento de respostas vazias (`204 No Content`).                                                                                      |
+| **Organização do Projeto**       | **Arquitetura Modular**                      | :heavy_check_mark: | Estruturação organizada em componentes, páginas, contextos, serviços, hooks e tipagens, visando manutenção, escalabilidade e reutilização de código.                                                           |
 
 <br/>
 
@@ -309,6 +319,7 @@ plataforma/
 <br/>
 
 ## 🚀 Execução
+
 Siga os passos abaixo para executar o projeto localmente:
 
 > ⚠️ Esse projeto faz parte do repositório principal do LinkAid.  
@@ -317,6 +328,7 @@ Siga os passos abaixo para executar o projeto localmente:
 <br/>
 
 ### Clonando o repositório
+
 ```bash
 git clone https://github.com/juliarichesky/linkaid.git
 cd LinkAid
@@ -325,8 +337,10 @@ cd LinkAid
 ---
 
 ## ▶️ Executando o Backend / API
+
 A API foi desenvolvida em **Java 17** com **Quarkus** e utiliza banco de dados **Oracle**.
 Acesse a pasta do backend:
+
 ```bash
 cd backend/api
 ```
@@ -334,6 +348,7 @@ cd backend/api
 Configure as variáveis de ambiente necessárias para conexão com o banco Oracle:
 
 ### Windows (PowerShell)
+
 ```bash
 $env:ORACLE_USERNAME="rm"
 $env:ORACLE_PASSWORD="senha"
@@ -342,12 +357,15 @@ $env:PORT="8080"
 ```
 
 ### Linux / macOS
+
 Garanta permissão de execução no Maven wrapper:
+
 ```bash
 chmod +x ./mvnw
 ```
 
 Configure as variáveis de ambiente:
+
 ```bash
 export ORACLE_USERNAME="rm"
 export ORACLE_PASSWORD="senha"
@@ -358,11 +376,13 @@ export PORT="8080"
 Depois execute a aplicação em modo desenvolvimento:
 
 ### Windows (PowerShell)
+
 ```bash
 mvnw.cmd quarkus:dev
 ```
 
 ### Linux / macOS
+
 ```bash
 ./mvnw quarkus:dev
 ```
@@ -376,23 +396,29 @@ A documentação Swagger estará disponível em:
 </br>
 
 ## ▶️ Executando o Frontend
+
 Com o backend ainda em execução, abra um **novo terminal** e acesse a pasta do frontend:
+
 ```bash
 cd front-end
 ```
 
 Instale as dependências:
+
 ### Windows (PowerShell)
+
 ```powershell
 npm install
 ```
 
 ### Linux / macOS
+
 ```bash
 npm install
 ```
 
 ### Configuração da API
+
 O frontend já possui configuração automática para ambiente local.
 Durante o desenvolvimento (`npm run dev`), caso nenhuma variável seja definida, a aplicação utilizará automaticamente:
 
@@ -403,11 +429,13 @@ http://localhost:8080
 Opcionalmente, é possível sobrescrever a URL da API através de uma variável de ambiente.
 
 ### Windows (PowerShell)
+
 ```powershell
 $env:VITE_API_URL="http://localhost:8080"
 ```
 
 ### Linux / macOS
+
 ```bash
 export VITE_API_URL="http://localhost:8080"
 ```
@@ -415,12 +443,15 @@ export VITE_API_URL="http://localhost:8080"
 > Caso nenhuma variável seja informada, o sistema utilizará automaticamente a configuração padrão para desenvolvimento local.
 
 Execute a aplicação:
+
 ### Windows (PowerShell)
+
 ```powershell
 npm run dev
 ```
 
 ### Linux / macOS
+
 ```bash
 npm run dev
 ```
@@ -434,10 +465,10 @@ O frontend estará disponível em:
 
 Para funcionamento completo da aplicação, o backend e frontend precisam estar executando simultaneamente.
 
-| Serviço | Tecnologia | URL local |
-| :--- | :--- | :--- |
+| Serviço       | Tecnologia     | URL local             |
+| :------------ | :------------- | :-------------------- |
 | Backend / API | Java + Quarkus | http://localhost:8080 |
-| Frontend | React + Vite | http://localhost:5173 |
+| Frontend      | React + Vite   | http://localhost:5173 |
 
 > Caso o backend não esteja em execução, o frontend continuará abrindo normalmente, porém funcionalidades que dependem da API (login, dashboard, tickets, contatos, relatórios, financeiro e demais recursos dinâmicos) poderão apresentar erros ou não carregar informações.
 
@@ -483,6 +514,7 @@ Para funcionamento completo da aplicação, o backend e frontend precisam estar 
 </br>
 
 ## 📬 Contato da Equipe
+
 Caso tenha dúvidas ou sugestões:
 
 📧 **Julia Guimarães:** juliavaleriogs@gmail.com
