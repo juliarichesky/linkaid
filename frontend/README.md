@@ -1,7 +1,9 @@
 <div align="center">
+  
+<img src="plataforma/src/assets/icons/logo-em-pe.png" width="500px;" alt="Logo do LinkAid"/><br>
 
-# LinkAid
-A vitrine digital da próxima geração em automação e centralização de contatos.
+## Plataforma de Atendimento Inteligente e Humanizada  
+Centralize, automatize e escale o atendimento sem perder o toque humano.
 
 <div>
   <img src="https://img.shields.io/badge/Status-Concluído-3D4053?style=flat&logo=github&logoColor=white" alt="Status: Concluído">
@@ -35,18 +37,119 @@ A vitrine digital da próxima geração em automação e centralização de cont
 ---
 <br/>
 
-## 🌟 Objetivo e Problema Resolvido
-### O Problema: A Fragmentação da Experiência Digital
-No cenário atual, empresas e profissionais lidam com um problema comum: a comunicação está espalhada em vários lugares. São links perdidos, atendimentos feitos manualmente e tempo desperdiçado alternando entre diferentes plataformas. Essa falta de organização dificulta o contato, gera confusão e pode fazer oportunidades importantes se perderem.
+## 💡 Sobre o Projeto
 
-O **LinkAid** surge como a solução para esse cenário. Ele é um painel inteligente que centraliza todos os pontos de contato em um único lugar. Com uma interface simples e intuitiva, o LinkAid organiza, automatiza e otimiza a comunicação, tornando o atendimento mais ágil, eficiente e profissional.
+O **LinkAid** é uma plataforma de **atendimento inteligente e humanizado**, projetada para centralizar, organizar e otimizar a comunicação entre organizações e seus públicos.
+
+Em cenários com múltiplos canais de contato (como e-mail, WhatsApp, Instagram e formulários), é comum enfrentar:
+
+- ❌ Perda de mensagens importantes  
+- ⏳ Demora no atendimento  
+- ⚠️ Sobrecarga operacional com triagens manuais  
+
+O LinkAid resolve esse problema ao transformar todas as interações em um **fluxo estruturado e rastreável**, através de um sistema de **ticketing inteligente com automação de processos**.
+
+> 💡 Embora possa ser aplicado em contextos como ONGs (ex: gestão de doadores, voluntários e beneficiários), o LinkAid foi concebido como uma solução **flexível**, capaz de atender diferentes tipos de organizações que lidam com alto volume de comunicação.
 
 <br/>
 
-## 🎯 Pilares da Plataforma
-* **Centralização Profissional:** Um hub único para todos os seus ativos e canais de contato.
-* **Performance & Escalabilidade:** Site otimizado com React para carregamento instantâneo.
-* **Design Humanizado:** Interface limpa que foca na facilidade de uso, reduzindo a carga cognitiva do usuário.
+## 🎯 Proposta do Projeto
+
+O objetivo do LinkAid é unir:
+
+- 🤖 **Eficiência tecnológica** (automação, IA, organização de dados)  
+- ❤️ **Cuidado humano** (atendimento empático e personalizado)  
+
+Criando um modelo de atendimento **híbrido, escalável e estratégico**.
+
+<br/>
+
+## ✨ Funcionalidades Principais
+
+| Funcionalidade | Descrição |
+| :--- | :--- |
+| 📊 Dashboard Centralizado | Visualização em tempo real de todas as interações |
+| 🎫 Ticketing Inteligente | Criação automática de tickets com histórico |
+| ⚙️ Automação de Fluxos | Regras inteligentes de triagem e encaminhamento |
+| 👥 Base de Contatos | Histórico completo de usuários |
+| 📈 Relatórios e Insights | Métricas estratégicas de atendimento |
+| 🧠 Classificação com IA | Identificação automática de tipo de usuário e intenção da mensagem |
+| 🔔 Notificações em Tempo Real | Alertas sobre novos tickets e atualizações importantes |
+| 🏷️ Gestão de Status e Prioridade | Organização de atendimentos por nível de urgência |
+| 🔍 Filtros e Busca Avançada | Localização rápida de tickets e contatos |
+| 📜 Histórico Completo de Atendimentos | Rastreamento detalhado de todas as interações |
+| 🔗 Integração com Múltiplos Canais | Centralização de mensagens de diferentes plataformas |
+| 👤 Atribuição de Responsáveis | Distribuição automática ou manual de tickets entre usuários |
+| 📱 Interface Responsiva | Acesso completo via desktop e dispositivos móveis |
+| 💰 Módulo Financeiro | Gestão de dados financeiros relacionados aos atendimentos |
+| 📎 Registro de Informações Adicionais | Inclusão de observações e dados complementares nos tickets |
+
+<br/>
+
+## 🚀 Conheça o LinkAid
+
+<table>
+<tr>
+<td width="50%">
+
+### 📊 Relatórios  
+Visualize métricas e dados de atendimentos para monitoramento e melhoria contínua.
+
+</td>
+<td width="50%">
+<img src="plataforma/src/assets/images/painel/relatorios.png" style="border-radius: 10px;">
+</td>
+</tr>
+
+<tr>
+<td width="50%">
+<img src="plataforma/src/assets/images/painel/tickets.png" style="border-radius: 10px;">
+</td>
+<td width="50%">
+
+### 🎫 Gestão de Tickets  
+Gerencie atendimentos com status, responsáveis e histórico completo.
+
+</td>
+</tr>
+
+<tr>
+<td width="50%">
+
+### ➕ Criação de Tickets  
+Registre novas solicitações de forma rápida e estruturada.
+
+</td>
+<td width="50%">
+<img src="plataforma/src/assets/images/painel/criar-ticket.png" style="border-radius: 10px;">
+</td>
+</tr>
+
+<tr>
+<td width="50%">
+<img src="plataforma/src/assets/images/painel/historico.png" style="border-radius: 10px;">
+</td>
+<td width="50%">
+
+### 📜 Histórico Completo  
+Acompanhe todo o ciclo de atendimento com rastreabilidade total.
+
+</td>
+</tr>
+
+<tr>
+<td width="50%">
+
+### 💰 Módulo Financeiro  
+Controle financeiro integrado à plataforma.
+
+</td>
+<td width="50%">
+<img src="plataforma/src/assets/images/painel/financeiro-desktop.png" style="border-radius: 10px;">
+</td>
+</tr>
+
+</table>
 
 <br/>
 
