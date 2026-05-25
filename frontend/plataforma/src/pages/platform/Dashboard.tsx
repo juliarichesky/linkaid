@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useMemo, useState, type ElementType } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type ElementType,
+} from "react";
 import {
   CheckCircle,
   Clock,
@@ -118,9 +124,15 @@ const contactTimestamp = (contact: ApiContatoResponse) =>
   toDate(contact.dataCadastro)?.getTime() ?? 0;
 
 const contactTypeName = (contact: ApiContatoResponse) =>
-  tipoContatoRegistroLabel(contact.tipoContatoCodigo, contact.tipoContatoNome) || "Sem tipo";
+  tipoContatoRegistroLabel(
+    contact.tipoContatoCodigo,
+    contact.tipoContatoNome,
+  ) || "Sem tipo";
 
-const buildContactVolume = (contacts: ApiContatoResponse[], period: Period): VolumeBucket[] => {
+const buildContactVolume = (
+  contacts: ApiContatoResponse[],
+  period: Period,
+): VolumeBucket[] => {
   const today = startOfDay(new Date());
 
   if (period === "weekly") {
@@ -132,14 +144,19 @@ const buildContactVolume = (contacts: ApiContatoResponse[], period: Period): Vol
       }).length;
 
       return {
-        label: day.toLocaleDateString("pt-BR", { weekday: "short", day: "2-digit" }),
+        label: day.toLocaleDateString("pt-BR", {
+          weekday: "short",
+          day: "2-digit",
+        }),
         contatos,
       };
     });
   }
 
   if (period === "monthly") {
-    const weeksInMonth = Math.ceil(new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate() / 7);
+    const weeksInMonth = Math.ceil(
+      new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate() / 7,
+    );
     return Array.from({ length: weeksInMonth }, (_, index) => {
       const week = index + 1;
       const contatos = contacts.filter((contact) => {
@@ -162,7 +179,8 @@ const buildContactVolume = (contacts: ApiContatoResponse[], period: Period): Vol
     const contatos = contacts.filter((contact) => {
       const createdAt = toDate(contact.dataCadastro);
       return createdAt
-        ? createdAt.getFullYear() === today.getFullYear() && createdAt.getMonth() === month
+        ? createdAt.getFullYear() === today.getFullYear() &&
+            createdAt.getMonth() === month
         : false;
     }).length;
 
@@ -203,7 +221,11 @@ export default function Dashboard() {
     } catch (loadError) {
       setDashboard(null);
       setContacts([]);
-      setError(loadError instanceof Error ? loadError.message : "Falha ao carregar dados reais do dashboard.");
+      setError(
+        loadError instanceof Error
+          ? loadError.message
+          : "Falha ao carregar dados reais do dashboard.",
+      );
     } finally {
       setLoading(false);
     }
@@ -216,11 +238,36 @@ export default function Dashboard() {
   const stats = useMemo<StatCard[]>(() => {
     const resumo = dashboard?.resumo;
     return [
-      { label: "Contatos", value: resumo?.totalContatos ?? null, icon: Users, color: "text-info" },
-      { label: "Tickets", value: resumo?.totalTickets ?? null, icon: FolderOpen, color: "text-warning" },
-      { label: "Novos", value: resumo?.ticketsNovos ?? null, icon: Inbox, color: "text-primary" },
-      { label: "Em atendimento", value: resumo?.ticketsEmAtendimento ?? null, icon: Clock, color: "text-muted-foreground" },
-      { label: "Resolvidos", value: resumo?.ticketsResolvidos ?? null, icon: CheckCircle, color: "text-success" },
+      {
+        label: "Contatos",
+        value: resumo?.totalContatos ?? null,
+        icon: Users,
+        color: "text-info",
+      },
+      {
+        label: "Tickets",
+        value: resumo?.totalTickets ?? null,
+        icon: FolderOpen,
+        color: "text-warning",
+      },
+      {
+        label: "Novos",
+        value: resumo?.ticketsNovos ?? null,
+        icon: Inbox,
+        color: "text-primary",
+      },
+      {
+        label: "Em atendimento",
+        value: resumo?.ticketsEmAtendimento ?? null,
+        icon: Clock,
+        color: "text-muted-foreground",
+      },
+      {
+        label: "Resolvidos",
+        value: resumo?.ticketsResolvidos ?? null,
+        icon: CheckCircle,
+        color: "text-success",
+      },
       {
         label: "Dentistas ativos",
         value: resumo?.dentistasAtivos ?? null,
@@ -231,7 +278,10 @@ export default function Dashboard() {
     ];
   }, [dashboard]);
 
-  const volumeData = useMemo(() => buildContactVolume(contacts, period), [contacts, period]);
+  const volumeData = useMemo(
+    () => buildContactVolume(contacts, period),
+    [contacts, period],
+  );
   const hasVolume = volumeData.some((item) => item.contatos > 0);
 
   const contactTypes = useMemo(() => {
@@ -282,7 +332,9 @@ export default function Dashboard() {
     ];
 
     const csv = rows.map((row) => row.map(escapeCsv).join(";")).join("\n");
-    const blob = new Blob([`\uFEFF${csv}`], { type: "text/csv;charset=utf-8;" });
+    const blob = new Blob([`\uFEFF${csv}`], {
+      type: "text/csv;charset=utf-8;",
+    });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
@@ -297,7 +349,9 @@ export default function Dashboard() {
         <div>
           <h1 className="text-2xl font-display font-bold">Dashboard</h1>
           <p className="text-sm text-muted-foreground">
-            {loading ? "Carregando dados reais..." : "Visão geral do atendimento"}
+            {loading
+              ? "Carregando dados reais..."
+              : "Visão geral do atendimento"}
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -311,7 +365,12 @@ export default function Dashboard() {
               <SelectItem value="yearly">Anual</SelectItem>
             </SelectContent>
           </Select>
-          <Button variant="outline" size="sm" onClick={handleExport} disabled={loading || !!error}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleExport}
+            disabled={loading || !!error}
+          >
             <Download className="w-4 h-4 mr-2" />
             Exportar
           </Button>
@@ -335,7 +394,11 @@ export default function Dashboard() {
                 {loading ? "--" : (stat.value ?? 0).toLocaleString("pt-BR")}
               </p>
               <p className="text-xs text-muted-foreground mt-1">{stat.label}</p>
-              {stat.detail && <p className="text-[11px] text-muted-foreground mt-1">{stat.detail}</p>}
+              {stat.detail && (
+                <p className="text-[11px] text-muted-foreground mt-1">
+                  {stat.detail}
+                </p>
+              )}
             </CardContent>
           </Card>
         ))}
@@ -351,8 +414,18 @@ export default function Dashboard() {
           <CardContent>
             <ResponsiveContainer width="100%" height={220}>
               <BarChart data={volumeData}>
-                <XAxis dataKey="label" tick={{ fontSize: 12 }} axisLine={false} tickLine={false} />
-                <YAxis allowDecimals={false} tick={{ fontSize: 12 }} axisLine={false} tickLine={false} />
+                <XAxis
+                  dataKey="label"
+                  tick={{ fontSize: 12 }}
+                  axisLine={false}
+                  tickLine={false}
+                />
+                <YAxis
+                  allowDecimals={false}
+                  tick={{ fontSize: 12 }}
+                  axisLine={false}
+                  tickLine={false}
+                />
                 <Tooltip
                   contentStyle={{
                     borderRadius: "8px",
@@ -361,7 +434,11 @@ export default function Dashboard() {
                     fontSize: 12,
                   }}
                 />
-                <Bar dataKey="contatos" fill="hsl(214, 80%, 52%)" radius={[4, 4, 0, 0]} />
+                <Bar
+                  dataKey="contatos"
+                  fill="hsl(214, 80%, 52%)"
+                  radius={[4, 4, 0, 0]}
+                />
               </BarChart>
             </ResponsiveContainer>
             {loading && (
@@ -379,14 +456,24 @@ export default function Dashboard() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Tipos de contato</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Tipos de contato
+            </CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col items-center">
             {contactTypes.length > 0 ? (
               <>
                 <ResponsiveContainer width="100%" height={160}>
                   <PieChart>
-                    <Pie data={contactTypes} cx="50%" cy="50%" innerRadius={40} outerRadius={65} paddingAngle={3} dataKey="value">
+                    <Pie
+                      data={contactTypes}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={40}
+                      outerRadius={65}
+                      paddingAngle={3}
+                      dataKey="value"
+                    >
                       {contactTypes.map((entry) => (
                         <Cell key={entry.name} fill={entry.color} />
                       ))}
@@ -397,7 +484,10 @@ export default function Dashboard() {
                 <div className="flex flex-wrap gap-3 mt-2">
                   {contactTypes.map((ct) => (
                     <div key={ct.name} className="flex items-center gap-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full" style={{ background: ct.color }} />
+                      <div
+                        className="w-2.5 h-2.5 rounded-full"
+                        style={{ background: ct.color }}
+                      />
                       <span className="text-[11px] text-muted-foreground">
                         {ct.name} ({ct.value})
                       </span>
@@ -407,7 +497,9 @@ export default function Dashboard() {
               </>
             ) : (
               <div className="h-40 flex items-center justify-center text-sm text-muted-foreground text-center">
-                {loading ? "Carregando tipos de contato..." : "Nenhum contato cadastrado."}
+                {loading
+                  ? "Carregando tipos de contato..."
+                  : "Nenhum contato cadastrado."}
               </div>
             )}
           </CardContent>
@@ -416,16 +508,25 @@ export default function Dashboard() {
 
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium">Últimos contatos</CardTitle>
+          <CardTitle className="text-sm font-medium">
+            Últimos contatos
+          </CardTitle>
         </CardHeader>
         <CardContent>
           {recentContacts.length > 0 ? (
             <div className="space-y-3">
               {recentContacts.map((contact) => (
-                <div key={contact.idContato ?? contact.nome} className="flex items-center justify-between py-1">
+                <div
+                  key={contact.idContato ?? contact.nome}
+                  className="flex items-center justify-between py-1"
+                >
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-xs font-medium">
-                      {contact.nome.split(" ").map((name) => name[0]).join("").slice(0, 2)}
+                      {contact.nome
+                        .split(" ")
+                        .map((name) => name[0])
+                        .join("")
+                        .slice(0, 2)}
                     </div>
                     <div>
                       <p className="text-sm font-medium">{contact.nome}</p>
@@ -434,13 +535,17 @@ export default function Dashboard() {
                       </p>
                     </div>
                   </div>
-                  <span className="text-xs text-muted-foreground">{formatRelativeDate(contact.dataCadastro)}</span>
+                  <span className="text-xs text-muted-foreground">
+                    {formatRelativeDate(contact.dataCadastro)}
+                  </span>
                 </div>
               ))}
             </div>
           ) : (
             <p className="text-sm text-muted-foreground text-center py-6">
-              {loading ? "Carregando contatos..." : "Nenhum contato cadastrado."}
+              {loading
+                ? "Carregando contatos..."
+                : "Nenhum contato cadastrado."}
             </p>
           )}
         </CardContent>

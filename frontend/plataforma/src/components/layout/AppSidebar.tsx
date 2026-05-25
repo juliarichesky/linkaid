@@ -16,7 +16,12 @@ import { useState } from "react";
 import { useAuth, type Role } from "@/contexts/AuthContext";
 import { platformPath, stripPlatformBase } from "@/routes/platform";
 
-type MenuItem = { title: string; url: string; icon: LucideIcon; roles?: Role[] };
+type MenuItem = {
+  title: string;
+  url: string;
+  icon: LucideIcon;
+  roles?: Role[];
+};
 
 const ToothIcon = (({ className }: { className?: string }) => (
   <svg
@@ -39,12 +44,22 @@ const mainMenu: MenuItem[] = [
   { title: "Histórico", url: "/history", icon: History },
   { title: "Contatos", url: "/contacts", icon: Users },
   { title: "Relatórios", url: "/reports", icon: BarChart3, roles: ["admin"] },
-  { title: "Configurações", url: "/settings", icon: Settings, roles: ["admin"] },
+  {
+    title: "Configurações",
+    url: "/settings",
+    icon: Settings,
+    roles: ["admin"],
+  },
 ];
 
 const extra: MenuItem[] = [
   { title: "Dentistas", url: "/dentists", icon: ToothIcon },
-  { title: "Financeiro", url: "/financial", icon: DollarSign, roles: ["admin"] },
+  {
+    title: "Financeiro",
+    url: "/financial",
+    icon: DollarSign,
+    roles: ["admin"],
+  },
 ];
 
 export function AppSidebar() {
@@ -54,7 +69,8 @@ export function AppSidebar() {
 
   const currentPath = stripPlatformBase(location.pathname);
   const isActive = (path: string) =>
-    currentPath === path || (path !== "/" && currentPath.startsWith(`${path}/`));
+    currentPath === path ||
+    (path !== "/" && currentPath.startsWith(`${path}/`));
   const canSee = (item: MenuItem) =>
     !item.roles || (user && item.roles.includes(user.role));
 
@@ -65,7 +81,7 @@ export function AppSidebar() {
     <aside
       className={cn(
         "flex flex-col bg-sidebar text-sidebar-foreground border-r border-sidebar-border transition-all duration-300 h-screen sticky top-0",
-        collapsed ? "w-16" : "w-60"
+        collapsed ? "w-16" : "w-60",
       )}
     >
       <div className="flex items-center gap-2 px-4 h-16 border-b border-sidebar-border">
@@ -118,7 +134,7 @@ export function AppSidebar() {
                   "flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors",
                   isActive(item.url)
                     ? "bg-sidebar-accent text-sidebar-primary-foreground font-medium"
-                    : "text-sidebar-foreground hover:bg-sidebar-accent/60"
+                    : "text-sidebar-foreground hover:bg-sidebar-accent/60",
                 )}
               >
                 <item.icon className="w-4 h-4 shrink-0" />
@@ -133,7 +149,11 @@ export function AppSidebar() {
         onClick={() => setCollapsed(!collapsed)}
         className="flex items-center justify-center h-12 border-t border-sidebar-border text-sidebar-muted hover:text-sidebar-foreground transition-colors"
       >
-        {collapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+        {collapsed ? (
+          <ChevronRight className="w-4 h-4" />
+        ) : (
+          <ChevronLeft className="w-4 h-4" />
+        )}
       </button>
     </aside>
   );

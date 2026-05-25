@@ -5,7 +5,13 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { platformPath } from "@/routes/platform";
 
 export default function Login() {
@@ -46,14 +52,18 @@ export default function Login() {
           </div>
           <div>
             <h1 className="font-display font-bold text-2xl">LinkAid</h1>
-            <p className="text-sm text-muted-foreground">Plataforma de gestão social</p>
+            <p className="text-sm text-muted-foreground">
+              Plataforma de gestão social
+            </p>
           </div>
         </div>
 
         <Card className="border-border/60 shadow-xl">
           <CardHeader className="space-y-1 text-left">
             <CardTitle className="text-xl">Acesse sua conta</CardTitle>
-            <CardDescription>Entre com suas credenciais para continuar</CardDescription>
+            <CardDescription>
+              Entre com suas credenciais para continuar
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -89,7 +99,11 @@ export default function Login() {
                     className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-muted-foreground hover:text-foreground transition-colors"
                     aria-label="Mostrar senha"
                   >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showPassword ? (
+                      <EyeOff className="w-4 h-4" />
+                    ) : (
+                      <Eye className="w-4 h-4" />
+                    )}
                   </button>
                 </div>
               </div>
@@ -107,12 +121,24 @@ export default function Login() {
             </form>
 
             <div className="mt-6 pt-4 border-t border-border space-y-2">
-              <p className="text-xs text-muted-foreground text-center">Contas de demonstração</p>
+              <p className="text-xs text-muted-foreground text-center">
+                Contas de demonstração
+              </p>
               <div className="grid grid-cols-2 gap-2">
-                <Button type="button" variant="outline" size="sm" onClick={() => fillDemo("admin")}>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => fillDemo("admin")}
+                >
                   Admin
                 </Button>
-                <Button type="button" variant="outline" size="sm" onClick={() => fillDemo("colab")}>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => fillDemo("colab")}
+                >
                   Colaborador
                 </Button>
               </div>

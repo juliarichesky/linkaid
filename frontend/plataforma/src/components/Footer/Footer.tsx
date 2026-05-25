@@ -66,8 +66,18 @@ const Footer = () => {
               </h3>
               <nav className="flex flex-col items-center lg:items-start gap-4">
                 {[
-                  { label: "Início", path: "/", icon: <Home size={14} />, external: false },
-                  { label: "Sobre", path: "/sobre", icon: <Info size={14} />, external: false },
+                  {
+                    label: "Início",
+                    path: "/",
+                    icon: <Home size={14} />,
+                    external: false,
+                  },
+                  {
+                    label: "Sobre",
+                    path: "/sobre",
+                    icon: <Info size={14} />,
+                    external: false,
+                  },
                   {
                     label: "Equipe",
                     path: "/equipe",

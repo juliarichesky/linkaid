@@ -29,7 +29,10 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
           <Route path="/breadcrumb" element={<Breadcrumb />} />
         </Route>
-        <Route path="/solucao" element={<Navigate to="/plataforma" replace />} />
+        <Route
+          path="/solucao"
+          element={<Navigate to="/plataforma" replace />}
+        />
         <Route path="/painel" element={<Navigate to="/plataforma" replace />} />
         <Route path="/plataforma/*" element={<PlatformApp />} />
       </Routes>

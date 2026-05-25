@@ -43,7 +43,10 @@ const ContactMap: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full bg-white dark:bg-slate-950 py-24 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="w-full bg-white dark:bg-slate-950 py-24 overflow-hidden"
+    >
       <div className="container mx-auto px-6 max-w-[1200px]">
         {/* grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20 items-center">

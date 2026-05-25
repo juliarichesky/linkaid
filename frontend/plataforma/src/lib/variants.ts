@@ -5,8 +5,10 @@ const buttonBase =
 
 const buttonVariantClasses = {
   default: "bg-primary text-primary-foreground hover:bg-primary/90",
-  destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-  outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+  destructive:
+    "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+  outline:
+    "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
   secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
   ghost: "hover:bg-accent hover:text-accent-foreground",
   link: "text-primary underline-offset-4 hover:underline",
@@ -29,22 +31,33 @@ export function buttonVariants(options?: {
 }) {
   const variant = options?.variant ?? "default";
   const size = options?.size ?? "default";
-  return cn(buttonBase, buttonVariantClasses[variant], buttonSizeClasses[size], options?.className);
+  return cn(
+    buttonBase,
+    buttonVariantClasses[variant],
+    buttonSizeClasses[size],
+    options?.className,
+  );
 }
 
 const badgeBase =
   "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2";
 
 const badgeVariantClasses = {
-  default: "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
-  secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
-  destructive: "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
+  default:
+    "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
+  secondary:
+    "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+  destructive:
+    "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
   outline: "text-foreground",
 } as const;
 
 export type BadgeVariant = keyof typeof badgeVariantClasses;
 
-export function badgeVariants(options?: { variant?: BadgeVariant; className?: string }) {
+export function badgeVariants(options?: {
+  variant?: BadgeVariant;
+  className?: string;
+}) {
   const variant = options?.variant ?? "default";
   return cn(badgeBase, badgeVariantClasses[variant], options?.className);
 }

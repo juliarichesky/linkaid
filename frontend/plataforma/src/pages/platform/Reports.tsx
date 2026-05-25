@@ -23,11 +23,14 @@ import {
 
 type Period = "weekly" | "monthly" | "yearly";
 
-const dataByPeriod: Record<Period, {
-  channelData: { channel: string; count: number }[];
-  classificationData: { name: string; value: number; color: string }[];
-  kpis: { label: string; value: string }[];
-}> = {
+const dataByPeriod: Record<
+  Period,
+  {
+    channelData: { channel: string; count: number }[];
+    classificationData: { name: string; value: number; color: string }[];
+    kpis: { label: string; value: string }[];
+  }
+> = {
   weekly: {
     channelData: [
       { channel: "WhatsApp", count: 38 },
@@ -110,7 +113,8 @@ export default function Reports() {
         <div>
           <h1 className="text-2xl font-display font-bold">Relatórios</h1>
           <p className="text-sm text-muted-foreground">
-            Análise e métricas de atendimento — período {periodLabels[period].toLowerCase()}
+            Análise e métricas de atendimento — período{" "}
+            {periodLabels[period].toLowerCase()}
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -151,8 +155,17 @@ export default function Reports() {
           <CardContent>
             <ResponsiveContainer width="100%" height={250}>
               <BarChart data={channelData}>
-                <XAxis dataKey="channel" tick={{ fontSize: 12 }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fontSize: 12 }} axisLine={false} tickLine={false} />
+                <XAxis
+                  dataKey="channel"
+                  tick={{ fontSize: 12 }}
+                  axisLine={false}
+                  tickLine={false}
+                />
+                <YAxis
+                  tick={{ fontSize: 12 }}
+                  axisLine={false}
+                  tickLine={false}
+                />
                 <Tooltip
                   contentStyle={{
                     borderRadius: "8px",
@@ -161,7 +174,11 @@ export default function Reports() {
                     fontSize: 12,
                   }}
                 />
-                <Bar dataKey="count" fill="hsl(214, 80%, 52%)" radius={[4, 4, 0, 0]} />
+                <Bar
+                  dataKey="count"
+                  fill="hsl(214, 80%, 52%)"
+                  radius={[4, 4, 0, 0]}
+                />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
@@ -176,7 +193,15 @@ export default function Reports() {
           <CardContent className="flex flex-col items-center">
             <ResponsiveContainer width="100%" height={200}>
               <PieChart>
-                <Pie data={classificationData} cx="50%" cy="50%" innerRadius={50} outerRadius={75} paddingAngle={3} dataKey="value">
+                <Pie
+                  data={classificationData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={50}
+                  outerRadius={75}
+                  paddingAngle={3}
+                  dataKey="value"
+                >
                   {classificationData.map((entry, i) => (
                     <Cell key={i} fill={entry.color} />
                   ))}
@@ -187,8 +212,13 @@ export default function Reports() {
             <div className="flex flex-wrap gap-3 mt-2">
               {classificationData.map((c) => (
                 <div key={c.name} className="flex items-center gap-1.5">
-                  <div className="w-2.5 h-2.5 rounded-full" style={{ background: c.color }} />
-                  <span className="text-[11px] text-muted-foreground">{c.name}</span>
+                  <div
+                    className="w-2.5 h-2.5 rounded-full"
+                    style={{ background: c.color }}
+                  />
+                  <span className="text-[11px] text-muted-foreground">
+                    {c.name}
+                  </span>
                 </div>
               ))}
             </div>

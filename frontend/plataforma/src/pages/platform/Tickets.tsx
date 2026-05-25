@@ -15,19 +15,41 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
-  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 import {
-  Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import {
-  Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious,
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
 } from "@/components/ui/pagination";
 import { cn } from "@/lib/classnames";
 import { ticketDisplayProtocol } from "@/lib/ticketDisplay";
 import { useNavigate } from "react-router-dom";
-import { useTickets, type Priority, type Ticket } from "@/contexts/TicketsContext";
-import { CANAL_LABELS, PRIORIDADE_LABELS, TIPO_CONTATO_LABELS } from "@/lib/linkaidMappings";
+import {
+  useTickets,
+  type Priority,
+  type Ticket,
+} from "@/contexts/TicketsContext";
+import {
+  CANAL_LABELS,
+  PRIORIDADE_LABELS,
+  TIPO_CONTATO_LABELS,
+} from "@/lib/linkaidMappings";
 import { platformPath } from "@/routes/platform";
 import { toast } from "sonner";
 
@@ -46,7 +68,8 @@ const channelColors: Record<string, string> = {
 };
 
 const priorityClasses: Record<Priority, string> = {
-  [PRIORIDADE_LABELS.CRITICA]: "bg-status-critical text-status-critical-foreground",
+  [PRIORIDADE_LABELS.CRITICA]:
+    "bg-status-critical text-status-critical-foreground",
   [PRIORIDADE_LABELS.ALTA]: "bg-status-high text-status-high-foreground",
   [PRIORIDADE_LABELS.MEDIA]: "bg-status-medium text-status-medium-foreground",
   [PRIORIDADE_LABELS.BAIXA]: "bg-status-low text-status-low-foreground",
@@ -69,7 +92,8 @@ const typeColors: Record<string, string> = {
 
 const ITEMS_PER_PAGE = 10;
 const FILTER_SELECT_CLASS = "w-56";
-const selectFilterValue = (value: string) => (value === "all" ? undefined : value);
+const selectFilterValue = (value: string) =>
+  value === "all" ? undefined : value;
 
 type SortKey =
   | "id"
@@ -88,7 +112,11 @@ type SortConfig = {
   direction: SortDirection;
 } | null;
 
-type StatusFilterOptionValue = "em-triagem" | "aguardando-atendimento" | "em-andamento" | "finalizados";
+type StatusFilterOptionValue =
+  | "em-triagem"
+  | "aguardando-atendimento"
+  | "em-andamento"
+  | "finalizados";
 type StatusFilterValue = "all" | StatusFilterOptionValue;
 
 type StatusFilterOption = {
@@ -106,7 +134,12 @@ const STATUS_FILTER_OPTIONS: StatusFilterOption[] = [
   {
     value: "aguardando-atendimento",
     label: "Aguardando Atendimento",
-    statuses: ["Aberto", "Aguardando", "Aguardando cliente", "Aguardando Atendimento"],
+    statuses: [
+      "Aberto",
+      "Aguardando",
+      "Aguardando cliente",
+      "Aguardando Atendimento",
+    ],
   },
   {
     value: "em-andamento",
@@ -154,7 +187,12 @@ const CHANNEL_FILTER_OPTIONS: ChannelFilterOption[] = [
   },
 ];
 
-type ClassificationFilterOptionValue = "saude" | "parceria" | "voluntariado" | "doacao" | "geral";
+type ClassificationFilterOptionValue =
+  | "saude"
+  | "parceria"
+  | "voluntariado"
+  | "doacao"
+  | "geral";
 type ClassificationFilterValue = "all" | ClassificationFilterOptionValue;
 
 type ClassificationFilterOption = {
@@ -202,11 +240,16 @@ const normalizeForFilter = (value: string) =>
     .toLowerCase();
 
 const ticketTypeLabel = (type: string) =>
-  normalizeForFilter(type) === "dentista voluntario" ? TIPO_CONTATO_LABELS.VOLUNTARIO : type;
+  normalizeForFilter(type) === "dentista voluntario"
+    ? TIPO_CONTATO_LABELS.VOLUNTARIO
+    : type;
 
 const ticketClassificationLabel = (classification: string) =>
-  normalizeForFilter(classification) === "emergencia" ? "Saúde" :
-  normalizeForFilter(classification) === "voluntariado odontologico" ? "Voluntariado" : classification;
+  normalizeForFilter(classification) === "emergencia"
+    ? "Saúde"
+    : normalizeForFilter(classification) === "voluntariado odontologico"
+      ? "Voluntariado"
+      : classification;
 
 const parseSortableDate = (value: string) => {
   const normalized = normalizeForFilter(value);
@@ -219,10 +262,18 @@ const parseSortableDate = (value: string) => {
   const hoursAgo = normalized.match(/^(\d+)\s*h/);
   if (hoursAgo) return Date.now() - Number(hoursAgo[1]) * 60 * 60_000;
 
-  const brDate = value.match(/^(\d{2})\/(\d{2})\/(\d{4})(?:,?\s+(\d{2}):(\d{2}))?/);
+  const brDate = value.match(
+    /^(\d{2})\/(\d{2})\/(\d{4})(?:,?\s+(\d{2}):(\d{2}))?/,
+  );
   if (brDate) {
     const [, day, month, year, hour = "0", minute = "0"] = brDate;
-    return new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute)).getTime();
+    return new Date(
+      Number(year),
+      Number(month) - 1,
+      Number(day),
+      Number(hour),
+      Number(minute),
+    ).getTime();
   }
 
   const parsed = new Date(value).getTime();
@@ -275,20 +326,39 @@ type SortableHeaderProps = {
   onSort: (column: SortKey) => void;
 };
 
-const SortableHeader = ({ label, column, widthClass, sortConfig, onSort }: SortableHeaderProps) => {
+const SortableHeader = ({
+  label,
+  column,
+  widthClass,
+  sortConfig,
+  onSort,
+}: SortableHeaderProps) => {
   const isActive = sortConfig?.key === column;
-  const Icon = isActive ? (sortConfig.direction === "asc" ? ArrowUp : ArrowDown) : ArrowUpDown;
-  const ariaSort = isActive ? (sortConfig.direction === "asc" ? "ascending" : "descending") : "none";
+  const Icon = isActive
+    ? sortConfig.direction === "asc"
+      ? ArrowUp
+      : ArrowDown
+    : ArrowUpDown;
+  const ariaSort = isActive
+    ? sortConfig.direction === "asc"
+      ? "ascending"
+      : "descending"
+    : "none";
 
   return (
-    <TableHead className={cn(widthClass, "p-0 text-center")} aria-sort={ariaSort}>
+    <TableHead
+      className={cn(widthClass, "p-0 text-center")}
+      aria-sort={ariaSort}
+    >
       <button
         type="button"
         className="inline-flex h-10 w-full items-center justify-center gap-1.5 px-2 text-center text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         onClick={() => onSort(column)}
       >
         <span className="truncate">{label}</span>
-        <Icon className={cn("h-3.5 w-3.5 shrink-0", isActive && "text-foreground")} />
+        <Icon
+          className={cn("h-3.5 w-3.5 shrink-0", isActive && "text-foreground")}
+        />
       </button>
     </TableHead>
   );
@@ -306,7 +376,11 @@ const ticketChannelLabel = (channel: string) => {
   if (normalizedChannel === "email") {
     return CANAL_LABELS.EMAIL;
   }
-  if (["outro", "outros", "manual", "telefone", "cadastro manual"].includes(normalizedChannel)) {
+  if (
+    ["outro", "outros", "manual", "telefone", "cadastro manual"].includes(
+      normalizedChannel,
+    )
+  ) {
     return CANAL_LABELS.OUTROS;
   }
   return channel;
@@ -314,74 +388,123 @@ const ticketChannelLabel = (channel: string) => {
 
 const matchesChannelOption = (channel: string, option: ChannelFilterOption) => {
   const normalizedChannel = normalizeForFilter(ticketChannelLabel(channel));
-  return option.channels.some((candidate) => normalizeForFilter(ticketChannelLabel(candidate)) === normalizedChannel);
+  return option.channels.some(
+    (candidate) =>
+      normalizeForFilter(ticketChannelLabel(candidate)) === normalizedChannel,
+  );
 };
 
-const ticketMatchesClassificationFilter = (ticket: Ticket, option: ClassificationFilterOption): boolean => {
+const ticketMatchesClassificationFilter = (
+  ticket: Ticket,
+  option: ClassificationFilterOption,
+): boolean => {
   if (option.value === "geral") {
     return !SPECIFIC_CLASSIFICATION_FILTERS.some((specificOption) =>
       ticketMatchesClassificationFilter(ticket, specificOption),
     );
   }
 
-  if (option.classifications.includes(ticketClassificationLabel(ticket.classification))) return true;
+  if (
+    option.classifications.includes(
+      ticketClassificationLabel(ticket.classification),
+    )
+  )
+    return true;
 
   const subject = normalizeForFilter(ticket.subject);
   if (option.value === "voluntariado") {
-    return ticketTypeLabel(ticket.type) === TIPO_CONTATO_LABELS.VOLUNTARIO ||
+    return (
+      ticketTypeLabel(ticket.type) === TIPO_CONTATO_LABELS.VOLUNTARIO ||
       subject.includes("voluntariado") ||
-      subject.includes("dentista voluntario");
+      subject.includes("dentista voluntario")
+    );
   }
   if (option.value === "doacao") {
-    return ticketTypeLabel(ticket.type) === TIPO_CONTATO_LABELS.DOADOR ||
+    return (
+      ticketTypeLabel(ticket.type) === TIPO_CONTATO_LABELS.DOADOR ||
       subject.includes("doacao") ||
-      subject.includes("doar");
+      subject.includes("doar")
+    );
   }
   if (option.value === "parceria") {
-    return ticketTypeLabel(ticket.type) === TIPO_CONTATO_LABELS.PARCEIRO ||
+    return (
+      ticketTypeLabel(ticket.type) === TIPO_CONTATO_LABELS.PARCEIRO ||
       subject.includes("parceria") ||
-      subject.includes("convenio");
+      subject.includes("convenio")
+    );
   }
   if (option.value === "saude") {
-    return subject.includes("triagem") ||
+    return (
+      subject.includes("triagem") ||
       subject.includes("odontolog") ||
       subject.includes("tratamento") ||
       subject.includes("agendamento") ||
-      subject.includes("dor de dente");
+      subject.includes("dor de dente")
+    );
   }
 
   return false;
 };
 
 export default function Tickets() {
+
+  //recebe ticket, loading e archiveticket do contexto, e tem estados para busca, filtros, ordenação e paginação
+
   const { tickets, loading, archiveTicket } = useTickets();
   const [search, setSearch] = useState("");
   const [channelFilter, setChannelFilter] = useState<ChannelFilterValue>("all");
   const [statusFilter, setStatusFilter] = useState<StatusFilterValue>("all");
   const [priorityFilter, setPriorityFilter] = useState("all");
-  const [classificationFilter, setClassificationFilter] = useState<ClassificationFilterValue>("all");
+  const [classificationFilter, setClassificationFilter] =
+    useState<ClassificationFilterValue>("all");
   const [sortConfig, setSortConfig] = useState<SortConfig>(null);
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
 
   const filtered = tickets.filter((t) => {
-    const selectedChannel = CHANNEL_FILTER_OPTIONS.find((option) => option.value === channelFilter);
-    const selectedStatus = STATUS_FILTER_OPTIONS.find((option) => option.value === statusFilter);
-    const selectedClassification = CLASSIFICATION_FILTER_OPTIONS.find((option) => option.value === classificationFilter);
-    const isFinalized = STATUS_FILTER_OPTIONS
-      .find((option) => option.value === FINALIZED_STATUS_FILTER)
-      ?.statuses.includes(t.status);
+    const selectedChannel = CHANNEL_FILTER_OPTIONS.find(
+      (option) => option.value === channelFilter,
+    );
+    const selectedStatus = STATUS_FILTER_OPTIONS.find(
+      (option) => option.value === statusFilter,
+    );
+    const selectedClassification = CLASSIFICATION_FILTER_OPTIONS.find(
+      (option) => option.value === classificationFilter,
+    );
+    const isFinalized = STATUS_FILTER_OPTIONS.find(
+      (option) => option.value === FINALIZED_STATUS_FILTER,
+    )?.statuses.includes(t.status);
 
     if (isFinalized && statusFilter !== FINALIZED_STATUS_FILTER) return false;
 
     const ticketCode = ticketDisplayProtocol(t);
-    const matchSearch = t.sender.toLowerCase().includes(search.toLowerCase()) || t.subject.toLowerCase().includes(search.toLowerCase()) || ticketCode.toLowerCase().includes(search.toLowerCase());
-    const matchStatus = statusFilter === "all" || Boolean(selectedStatus?.statuses.includes(t.status));
-    const matchPriority = priorityFilter === "all" || t.priority === priorityFilter;
-    const matchClassification = classificationFilter === "all" ||
-      Boolean(selectedClassification && ticketMatchesClassificationFilter(t, selectedClassification));
-    const matchChannel = channelFilter === "all" || Boolean(selectedChannel && matchesChannelOption(t.channel, selectedChannel));
-    return matchSearch && matchStatus && matchPriority && matchClassification && matchChannel;
+    const matchSearch =
+      t.sender.toLowerCase().includes(search.toLowerCase()) ||
+      t.subject.toLowerCase().includes(search.toLowerCase()) ||
+      ticketCode.toLowerCase().includes(search.toLowerCase());
+    const matchStatus =
+      statusFilter === "all" ||
+      Boolean(selectedStatus?.statuses.includes(t.status));
+    const matchPriority =
+      priorityFilter === "all" || t.priority === priorityFilter;
+    const matchClassification =
+      classificationFilter === "all" ||
+      Boolean(
+        selectedClassification &&
+        ticketMatchesClassificationFilter(t, selectedClassification),
+      );
+    const matchChannel =
+      channelFilter === "all" ||
+      Boolean(
+        selectedChannel && matchesChannelOption(t.channel, selectedChannel),
+      );
+    return (
+      matchSearch &&
+      matchStatus &&
+      matchPriority &&
+      matchClassification &&
+      matchChannel
+    );
   });
 
   const sorted = useMemo(() => {
@@ -397,7 +520,10 @@ export default function Tickets() {
   }, [filtered, sortConfig]);
 
   const totalPages = Math.ceil(sorted.length / ITEMS_PER_PAGE);
-  const paginated = sorted.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+  const paginated = sorted.slice(
+    (page - 1) * ITEMS_PER_PAGE,
+    page * ITEMS_PER_PAGE,
+  );
 
   const handleChannelFilterChange = (value: ChannelFilterValue) => {
     setChannelFilter(value);
@@ -407,10 +533,14 @@ export default function Tickets() {
   const handleSort = (column: SortKey) => {
     setSortConfig((current) => ({
       key: column,
-      direction: current?.key === column && current.direction === "asc" ? "desc" : "asc",
+      direction:
+        current?.key === column && current.direction === "asc" ? "desc" : "asc",
     }));
     setPage(1);
   };
+
+  //ligacao com a api
+  //await archiveTicket(id) = faz a chamada para arquivar o ticket, e mostra um toast de sucesso ou erro dependendo do resultado
 
   const handleArchive = async (e: React.MouseEvent, id: string) => {
     e.stopPropagation();
@@ -418,7 +548,9 @@ export default function Tickets() {
       await archiveTicket(id);
       toast.success("Ticket arquivado e movido para Histórico");
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Erro ao arquivar ticket");
+      toast.error(
+        error instanceof Error ? error.message : "Erro ao arquivar ticket",
+      );
     }
   };
 
@@ -426,12 +558,15 @@ export default function Tickets() {
     <div className="p-6 space-y-5 animate-fade-in">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-display font-bold">
-            Tickets
-          </h1>
-          <p className="text-sm text-muted-foreground">Visão geral de atendimentos</p>
+          <h1 className="text-2xl font-display font-bold">Tickets</h1>
+          <p className="text-sm text-muted-foreground">
+            Visão geral de atendimentos
+          </p>
         </div>
-        <Button onClick={() => navigate(platformPath("/tickets/new"))} className="shadow-sm">
+        <Button
+          onClick={() => navigate(platformPath("/tickets/new"))}
+          className="shadow-sm"
+        >
           <Plus className="w-4 h-4 mr-2" />
           Criar Ticket
         </Button>
@@ -440,28 +575,63 @@ export default function Tickets() {
       <div className="flex flex-wrap items-center gap-3">
         <div className="relative flex-1 min-w-[200px] max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-          <Input placeholder="Buscar por nome, assunto ou ID..." value={search} onChange={(e) => { setSearch(e.target.value); setPage(1); }} className="pl-9" />
+          <Input
+            placeholder="Buscar por nome, assunto ou ID..."
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setPage(1);
+            }}
+            className="pl-9"
+          />
         </div>
-        <Select value={selectFilterValue(channelFilter)} onValueChange={(v) => handleChannelFilterChange(v as ChannelFilterValue)}>
-          <SelectTrigger className={FILTER_SELECT_CLASS}><SelectValue placeholder="Canais" /></SelectTrigger>
+        <Select
+          value={selectFilterValue(channelFilter)}
+          onValueChange={(v) =>
+            handleChannelFilterChange(v as ChannelFilterValue)
+          }
+        >
+          <SelectTrigger className={FILTER_SELECT_CLASS}>
+            <SelectValue placeholder="Canais" />
+          </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">Todos</SelectItem>
             {CHANNEL_FILTER_OPTIONS.map((option) => (
-              <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
-        <Select value={selectFilterValue(classificationFilter)} onValueChange={(v) => { setClassificationFilter(v as ClassificationFilterValue); setPage(1); }}>
-          <SelectTrigger className={FILTER_SELECT_CLASS}><SelectValue placeholder="Classificação" /></SelectTrigger>
+        <Select
+          value={selectFilterValue(classificationFilter)}
+          onValueChange={(v) => {
+            setClassificationFilter(v as ClassificationFilterValue);
+            setPage(1);
+          }}
+        >
+          <SelectTrigger className={FILTER_SELECT_CLASS}>
+            <SelectValue placeholder="Classificação" />
+          </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">Todos</SelectItem>
             {CLASSIFICATION_FILTER_OPTIONS.map((option) => (
-              <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
-        <Select value={selectFilterValue(priorityFilter)} onValueChange={(v) => { setPriorityFilter(v); setPage(1); }}>
-          <SelectTrigger className={FILTER_SELECT_CLASS}><SelectValue placeholder="Prioridade" /></SelectTrigger>
+        <Select
+          value={selectFilterValue(priorityFilter)}
+          onValueChange={(v) => {
+            setPriorityFilter(v);
+            setPage(1);
+          }}
+        >
+          <SelectTrigger className={FILTER_SELECT_CLASS}>
+            <SelectValue placeholder="Prioridade" />
+          </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">Todos</SelectItem>
             <SelectItem value="Crítica">Crítica</SelectItem>
@@ -470,16 +640,29 @@ export default function Tickets() {
             <SelectItem value="Baixa">Baixa</SelectItem>
           </SelectContent>
         </Select>
-        <Select value={selectFilterValue(statusFilter)} onValueChange={(v) => { setStatusFilter(v as StatusFilterValue); setPage(1); }}>
-          <SelectTrigger className={FILTER_SELECT_CLASS}><SelectValue placeholder="Status" /></SelectTrigger>
+        <Select
+          value={selectFilterValue(statusFilter)}
+          onValueChange={(v) => {
+            setStatusFilter(v as StatusFilterValue);
+            setPage(1);
+          }}
+        >
+          <SelectTrigger className={FILTER_SELECT_CLASS}>
+            <SelectValue placeholder="Status" />
+          </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">Todos</SelectItem>
             {STATUS_FILTER_OPTIONS.map((option) => (
-              <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
-        {(statusFilter !== "all" || priorityFilter !== "all" || classificationFilter !== "all" || channelFilter !== "all") && (
+        {(statusFilter !== "all" ||
+          priorityFilter !== "all" ||
+          classificationFilter !== "all" ||
+          channelFilter !== "all") && (
           <Button
             variant="ghost"
             size="sm"
@@ -500,16 +683,76 @@ export default function Tickets() {
         <Table className="min-w-[1380px] table-fixed">
           <TableHeader>
             <TableRow className="bg-muted/50">
-              <SortableHeader label="ID" column="id" widthClass="w-[160px]" sortConfig={sortConfig} onSort={handleSort} />
-              <SortableHeader label="Canal" column="channel" widthClass="w-[84px]" sortConfig={sortConfig} onSort={handleSort} />
-              <SortableHeader label="Remetente" column="sender" widthClass="w-[180px]" sortConfig={sortConfig} onSort={handleSort} />
-              <SortableHeader label="Tipo" column="type" widthClass="w-[112px]" sortConfig={sortConfig} onSort={handleSort} />
-              <SortableHeader label="Assunto (IA)" column="subject" widthClass="w-[220px]" sortConfig={sortConfig} onSort={handleSort} />
-              <SortableHeader label="Classificação" column="classification" widthClass="w-[132px]" sortConfig={sortConfig} onSort={handleSort} />
-              <SortableHeader label="Prioridade" column="priority" widthClass="w-[112px]" sortConfig={sortConfig} onSort={handleSort} />
-              <SortableHeader label="Status" column="status" widthClass="w-[152px]" sortConfig={sortConfig} onSort={handleSort} />
-              <SortableHeader label="Responsável" column="responsible" widthClass="w-[156px]" sortConfig={sortConfig} onSort={handleSort} />
-              <SortableHeader label="Atualização" column="updated" widthClass="w-[140px]" sortConfig={sortConfig} onSort={handleSort} />
+              <SortableHeader
+                label="ID"
+                column="id"
+                widthClass="w-[160px]"
+                sortConfig={sortConfig}
+                onSort={handleSort}
+              />
+              <SortableHeader
+                label="Canal"
+                column="channel"
+                widthClass="w-[84px]"
+                sortConfig={sortConfig}
+                onSort={handleSort}
+              />
+              <SortableHeader
+                label="Remetente"
+                column="sender"
+                widthClass="w-[180px]"
+                sortConfig={sortConfig}
+                onSort={handleSort}
+              />
+              <SortableHeader
+                label="Tipo"
+                column="type"
+                widthClass="w-[112px]"
+                sortConfig={sortConfig}
+                onSort={handleSort}
+              />
+              <SortableHeader
+                label="Assunto (IA)"
+                column="subject"
+                widthClass="w-[220px]"
+                sortConfig={sortConfig}
+                onSort={handleSort}
+              />
+              <SortableHeader
+                label="Classificação"
+                column="classification"
+                widthClass="w-[132px]"
+                sortConfig={sortConfig}
+                onSort={handleSort}
+              />
+              <SortableHeader
+                label="Prioridade"
+                column="priority"
+                widthClass="w-[112px]"
+                sortConfig={sortConfig}
+                onSort={handleSort}
+              />
+              <SortableHeader
+                label="Status"
+                column="status"
+                widthClass="w-[152px]"
+                sortConfig={sortConfig}
+                onSort={handleSort}
+              />
+              <SortableHeader
+                label="Responsável"
+                column="responsible"
+                widthClass="w-[156px]"
+                sortConfig={sortConfig}
+                onSort={handleSort}
+              />
+              <SortableHeader
+                label="Atualização"
+                column="updated"
+                widthClass="w-[140px]"
+                sortConfig={sortConfig}
+                onSort={handleSort}
+              />
               <TableHead className="w-12 text-center"></TableHead>
             </TableRow>
           </TableHeader>
@@ -517,41 +760,89 @@ export default function Tickets() {
             {paginated.map((t) => {
               const channelLabel = ticketChannelLabel(t.channel);
               const ChIcon = channelIcon[channelLabel] || MoreHorizontal;
-              const chColor = channelColors[channelLabel] || "text-muted-foreground";
+              const chColor =
+                channelColors[channelLabel] || "text-muted-foreground";
               const typeLabel = ticketTypeLabel(t.type);
-              const classificationLabel = ticketClassificationLabel(t.classification);
+              const classificationLabel = ticketClassificationLabel(
+                t.classification,
+              );
               return (
                 <TableRow
                   key={t.id}
                   className="cursor-pointer hover:bg-accent/60 transition-colors"
                   onClick={() => {
-                    navigate(platformPath(`/tickets/${t.id}`), { state: { backUrl: platformPath("/tickets") } });
+                    navigate(platformPath(`/tickets/${t.id}`), {
+                      state: { backUrl: platformPath("/tickets") },
+                    });
                   }}
                 >
-                  <TableCell className="font-mono text-xs whitespace-nowrap">{ticketDisplayProtocol(t)}</TableCell>
-                  <TableCell className="text-center" title={channelLabel} aria-label={channelLabel}>
+                  <TableCell className="font-mono text-xs whitespace-nowrap">
+                    {ticketDisplayProtocol(t)}
+                  </TableCell>
+                  <TableCell
+                    className="text-center"
+                    title={channelLabel}
+                    aria-label={channelLabel}
+                  >
                     <ChIcon className={cn("mx-auto w-4 h-4", chColor)} />
                   </TableCell>
-                  <TableCell className="font-medium text-xs truncate" title={t.sender}>{t.sender}</TableCell>
+                  <TableCell
+                    className="font-medium text-xs truncate"
+                    title={t.sender}
+                  >
+                    {t.sender}
+                  </TableCell>
                   <TableCell>
-                    <Badge variant="outline" className={cn("text-xs min-w-[80px] flex items-center justify-center text-center font-medium", typeColors[typeLabel] || "")}>{typeLabel}</Badge>
+                    <Badge
+                      variant="outline"
+                      className={cn(
+                        "text-xs min-w-[80px] flex items-center justify-center text-center font-medium",
+                        typeColors[typeLabel] || "",
+                      )}
+                    >
+                      {typeLabel}
+                    </Badge>
                   </TableCell>
                   <TableCell className="text-xs">
-                    <span className="block max-w-[188px] truncate" title={t.subject}>{t.subject}</span>
+                    <span
+                      className="block max-w-[188px] truncate"
+                      title={t.subject}
+                    >
+                      {t.subject}
+                    </span>
                   </TableCell>
                   <TableCell>
-                    <Badge variant="secondary" className="text-xs min-w-[80px] flex items-center justify-center text-center">{classificationLabel}</Badge>
+                    <Badge
+                      variant="secondary"
+                      className="text-xs min-w-[80px] flex items-center justify-center text-center"
+                    >
+                      {classificationLabel}
+                    </Badge>
                   </TableCell>
                   <TableCell>
-                    <span className={cn("inline-flex items-center justify-center text-xs font-medium px-2.5 py-0.5 rounded-full min-w-[72px]", priorityClasses[t.priority])}>
+                    <span
+                      className={cn(
+                        "inline-flex items-center justify-center text-xs font-medium px-2.5 py-0.5 rounded-full min-w-[72px]",
+                        priorityClasses[t.priority],
+                      )}
+                    >
                       {t.priority}
                     </span>
                   </TableCell>
-                  <TableCell className="text-xs truncate" title={t.status}>{t.status}</TableCell>
-                  <TableCell className="text-xs truncate" title={t.responsible}>{t.responsible}</TableCell>
-                  <TableCell className="text-xs text-muted-foreground whitespace-nowrap">{t.updated}</TableCell>
+                  <TableCell className="text-xs truncate" title={t.status}>
+                    {t.status}
+                  </TableCell>
+                  <TableCell className="text-xs truncate" title={t.responsible}>
+                    {t.responsible}
+                  </TableCell>
+                  <TableCell className="text-xs text-muted-foreground whitespace-nowrap">
+                    {t.updated}
+                  </TableCell>
                   <TableCell>
-                    <button className="text-muted-foreground hover:text-foreground transition-colors" onClick={(e) => handleArchive(e, t.id)}>
+                    <button
+                      className="text-muted-foreground hover:text-foreground transition-colors"
+                      onClick={(e) => handleArchive(e, t.id)}
+                    >
                       <Archive className="w-4 h-4" />
                     </button>
                   </TableCell>
@@ -560,8 +851,13 @@ export default function Tickets() {
             })}
             {paginated.length === 0 && (
               <TableRow>
-                <TableCell colSpan={11} className="text-center py-8 text-muted-foreground">
-                  {loading ? "Carregando tickets..." : "Nenhum ticket encontrado"}
+                <TableCell
+                  colSpan={11}
+                  className="text-center py-8 text-muted-foreground"
+                >
+                  {loading
+                    ? "Carregando tickets..."
+                    : "Nenhum ticket encontrado"}
                 </TableCell>
               </TableRow>
             )}
@@ -573,17 +869,36 @@ export default function Tickets() {
         <Pagination>
           <PaginationContent>
             <PaginationItem>
-              <PaginationPrevious href="#" onClick={(e) => { e.preventDefault(); setPage(Math.max(1, page - 1)); }} />
+              <PaginationPrevious
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage(Math.max(1, page - 1));
+                }}
+              />
             </PaginationItem>
             {Array.from({ length: totalPages }, (_, i) => (
               <PaginationItem key={i}>
-                <PaginationLink href="#" isActive={page === i + 1} onClick={(e) => { e.preventDefault(); setPage(i + 1); }}>
+                <PaginationLink
+                  href="#"
+                  isActive={page === i + 1}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPage(i + 1);
+                  }}
+                >
                   {i + 1}
                 </PaginationLink>
               </PaginationItem>
             ))}
             <PaginationItem>
-              <PaginationNext href="#" onClick={(e) => { e.preventDefault(); setPage(Math.min(totalPages, page + 1)); }} />
+              <PaginationNext
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage(Math.min(totalPages, page + 1));
+                }}
+              />
             </PaginationItem>
           </PaginationContent>
         </Pagination>

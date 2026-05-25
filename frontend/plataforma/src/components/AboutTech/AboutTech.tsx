@@ -80,8 +80,14 @@ const AboutTech = () => {
                 />
               </div>
               <div className="flex flex-col gap-4 items-center">
-                <UserCircle size={20} className="text-slate-400 dark:text-slate-500 lg:w-[24px]" />
-                <Settings size={20} className="text-slate-400 dark:text-slate-500 lg:w-[24px]" />
+                <UserCircle
+                  size={20}
+                  className="text-slate-400 dark:text-slate-500 lg:w-[24px]"
+                />
+                <Settings
+                  size={20}
+                  className="text-slate-400 dark:text-slate-500 lg:w-[24px]"
+                />
               </div>
             </div>
 
@@ -104,7 +110,10 @@ const AboutTech = () => {
                 />
               </div>
               <div className="flex items-center gap-1 px-2 py-1 bg-slate-200/50">
-                <ChevronDown size={14} className="text-slate-600 dark:text-slate-300" />
+                <ChevronDown
+                  size={14}
+                  className="text-slate-600 dark:text-slate-300"
+                />
                 <span className="text-[10px] font-bold text-slate-700 dark:text-slate-300 uppercase">
                   Link-Aid
                 </span>
@@ -155,7 +164,10 @@ const AboutTech = () => {
                   <span className="text-[11px] lg:text-[12px] text-slate-700 dark:text-slate-300 font-medium">
                     {activeTech.fileName}
                   </span>
-                  <X size={12} className="ml-auto text-slate-400 dark:text-slate-500" />
+                  <X
+                    size={12}
+                    className="ml-auto text-slate-400 dark:text-slate-500"
+                  />
                 </div>
               </div>
 
@@ -195,13 +207,18 @@ const AboutTech = () => {
 
                     <div className="space-y-6">
                       <div className="font-mono text-[12px] lg:text-sm">
-                        <span className="text-slate-300 dark:text-slate-600">/**</span>
+                        <span className="text-slate-300 dark:text-slate-600">
+                          /**
+                        </span>
                         <div className="pl-4 border-l-2 border-slate-100 dark:border-slate-800 my-1">
                           <p className="text-slate-500 dark:text-slate-400 font-mono text-xs lg:text-base leading-relaxed italic">
                             * {activeTech.desc}
                           </p>
                         </div>
-                        <span className="text-slate-300 dark:text-slate-600"> */</span>
+                        <span className="text-slate-300 dark:text-slate-600">
+                          {" "}
+                          */
+                        </span>
                       </div>
 
                       <div className="pt-4 lg:pt-6 border-t border-slate-100 dark:border-slate-800">

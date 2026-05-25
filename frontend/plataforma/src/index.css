@@ -208,29 +208,53 @@ html {
 }
 
 @keyframes orbit-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes orbit-spin-reverse {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
 }
 
 @keyframes soft-pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes slide-in-right {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 .animate-orbit-spin {
@@ -273,15 +297,27 @@ html {
 @layer components {
   .linkaid-site {
     background:
-      radial-gradient(circle at top left, rgb(219 234 254 / 0.55), transparent 34rem),
+      radial-gradient(
+        circle at top left,
+        rgb(219 234 254 / 0.55),
+        transparent 34rem
+      ),
       linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
     color: #0f172a;
   }
 
   .dark .linkaid-site {
     background:
-      radial-gradient(circle at 12% 0%, rgb(37 99 235 / 0.18), transparent 30rem),
-      radial-gradient(circle at 88% 10%, rgb(20 184 166 / 0.11), transparent 26rem),
+      radial-gradient(
+        circle at 12% 0%,
+        rgb(37 99 235 / 0.18),
+        transparent 30rem
+      ),
+      radial-gradient(
+        circle at 88% 10%,
+        rgb(20 184 166 / 0.11),
+        transparent 26rem
+      ),
       linear-gradient(180deg, #020617 0%, #050816 44%, #020617 100%);
     color: #f8fafc;
   }
@@ -374,12 +410,14 @@ html {
 
   .dark .linkaid-site .via-white\/80 {
     --tw-gradient-via: rgb(11 18 32 / 0.8) var(--tw-gradient-via-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
+    --tw-gradient-stops:
+      var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
   }
 
   .dark .linkaid-site .via-white\/40 {
     --tw-gradient-via: rgb(11 18 32 / 0.4) var(--tw-gradient-via-position);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
+    --tw-gradient-stops:
+      var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to);
   }
 
   .dark .linkaid-site .to-white {

@@ -1,4 +1,12 @@
-import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useState,
+  type ReactNode,
+} from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import {
   linkAidApi,
@@ -94,29 +102,353 @@ const initialTeam: TeamMember[] = [
 ];
 
 const initialDentists: Dentist[] = [
-  { id: 1, name: "Dra. Fernanda Costa", specialty: "Ortodontia", status: "Ativo", totalSlots: 10, openSlots: 3, phone: "(41) 97777-6666", email: "fernanda@dentist.com", crm: "CRO-PR 12345", location: "Curitiba", uf: "PR", country: "Brasil", schedule: [{ day: "Segunda", time: "08:00-12:00" }, { day: "Quarta", time: "14:00-18:00" }, { day: "Sexta", time: "08:00-12:00" }] },
-  { id: 2, name: "Dr. Ricardo Souza", specialty: "Endodontia", status: "Ativo", totalSlots: 8, openSlots: 0, phone: "(11) 96666-5555", email: "ricardo@dentist.com", crm: "CRO-SP 67890", location: "São Paulo", uf: "SP", country: "Brasil", schedule: [{ day: "Terça", time: "09:00-13:00" }, { day: "Quinta", time: "09:00-13:00" }] },
-  { id: 3, name: "Dra. Julia Mendes", specialty: "Odontopediatria", status: "Inativo", totalSlots: 6, openSlots: 6, phone: "(21) 95555-4444", email: "julia@dentist.com", crm: "CRO-RJ 11111", location: "Rio de Janeiro", uf: "RJ", country: "Brasil", schedule: [] },
-  { id: 4, name: "Dr. Marcos Lima", specialty: "Implantodontia", status: "Ativo", totalSlots: 12, openSlots: 5, phone: "(31) 94444-3333", email: "marcos@dentist.com", crm: "CRO-MG 22222", location: "Belo Horizonte", uf: "MG", country: "Brasil", schedule: [{ day: "Segunda", time: "14:00-18:00" }, { day: "Quarta", time: "08:00-12:00" }, { day: "Sexta", time: "14:00-18:00" }] },
-  { id: 5, name: "Dra. Ana Ribeiro", specialty: "Periodontia", status: "Ativo", totalSlots: 8, openSlots: 2, phone: "(85) 93333-2222", email: "ana.r@dentist.com", crm: "CRO-CE 33333", location: "Fortaleza", uf: "CE", country: "Brasil", schedule: [{ day: "Terça", time: "14:00-18:00" }, { day: "Quinta", time: "14:00-18:00" }] },
-  { id: 6, name: "Dr. Paulo Nascimento", specialty: "Cirurgia", status: "Ativo", totalSlots: 10, openSlots: 4, phone: "(51) 92222-1111", email: "paulo.n@dentist.com", crm: "CRO-RS 44444", location: "Porto Alegre", uf: "RS", country: "Brasil", schedule: [{ day: "Segunda", time: "08:00-12:00" }, { day: "Quinta", time: "14:00-18:00" }] },
-  { id: 7, name: "Dra. Carla Dias", specialty: "Prótese", status: "Ativo", totalSlots: 6, openSlots: 1, phone: "(62) 91111-0000", email: "carla.d@dentist.com", crm: "CRO-GO 55555", location: "Goiânia", uf: "GO", country: "Brasil", schedule: [{ day: "Quarta", time: "08:00-12:00" }] },
-  { id: 8, name: "Dr. Fernando Tavares", specialty: "Ortodontia", status: "Inativo", totalSlots: 8, openSlots: 8, phone: "(71) 90000-9999", email: "fernando.t@dentist.com", crm: "CRO-BA 66666", location: "Salvador", uf: "BA", country: "Brasil", schedule: [] },
+  {
+    id: 1,
+    name: "Dra. Fernanda Costa",
+    specialty: "Ortodontia",
+    status: "Ativo",
+    totalSlots: 10,
+    openSlots: 3,
+    phone: "(41) 97777-6666",
+    email: "fernanda@dentist.com",
+    crm: "CRO-PR 12345",
+    location: "Curitiba",
+    uf: "PR",
+    country: "Brasil",
+    schedule: [
+      { day: "Segunda", time: "08:00-12:00" },
+      { day: "Quarta", time: "14:00-18:00" },
+      { day: "Sexta", time: "08:00-12:00" },
+    ],
+  },
+  {
+    id: 2,
+    name: "Dr. Ricardo Souza",
+    specialty: "Endodontia",
+    status: "Ativo",
+    totalSlots: 8,
+    openSlots: 0,
+    phone: "(11) 96666-5555",
+    email: "ricardo@dentist.com",
+    crm: "CRO-SP 67890",
+    location: "São Paulo",
+    uf: "SP",
+    country: "Brasil",
+    schedule: [
+      { day: "Terça", time: "09:00-13:00" },
+      { day: "Quinta", time: "09:00-13:00" },
+    ],
+  },
+  {
+    id: 3,
+    name: "Dra. Julia Mendes",
+    specialty: "Odontopediatria",
+    status: "Inativo",
+    totalSlots: 6,
+    openSlots: 6,
+    phone: "(21) 95555-4444",
+    email: "julia@dentist.com",
+    crm: "CRO-RJ 11111",
+    location: "Rio de Janeiro",
+    uf: "RJ",
+    country: "Brasil",
+    schedule: [],
+  },
+  {
+    id: 4,
+    name: "Dr. Marcos Lima",
+    specialty: "Implantodontia",
+    status: "Ativo",
+    totalSlots: 12,
+    openSlots: 5,
+    phone: "(31) 94444-3333",
+    email: "marcos@dentist.com",
+    crm: "CRO-MG 22222",
+    location: "Belo Horizonte",
+    uf: "MG",
+    country: "Brasil",
+    schedule: [
+      { day: "Segunda", time: "14:00-18:00" },
+      { day: "Quarta", time: "08:00-12:00" },
+      { day: "Sexta", time: "14:00-18:00" },
+    ],
+  },
+  {
+    id: 5,
+    name: "Dra. Ana Ribeiro",
+    specialty: "Periodontia",
+    status: "Ativo",
+    totalSlots: 8,
+    openSlots: 2,
+    phone: "(85) 93333-2222",
+    email: "ana.r@dentist.com",
+    crm: "CRO-CE 33333",
+    location: "Fortaleza",
+    uf: "CE",
+    country: "Brasil",
+    schedule: [
+      { day: "Terça", time: "14:00-18:00" },
+      { day: "Quinta", time: "14:00-18:00" },
+    ],
+  },
+  {
+    id: 6,
+    name: "Dr. Paulo Nascimento",
+    specialty: "Cirurgia",
+    status: "Ativo",
+    totalSlots: 10,
+    openSlots: 4,
+    phone: "(51) 92222-1111",
+    email: "paulo.n@dentist.com",
+    crm: "CRO-RS 44444",
+    location: "Porto Alegre",
+    uf: "RS",
+    country: "Brasil",
+    schedule: [
+      { day: "Segunda", time: "08:00-12:00" },
+      { day: "Quinta", time: "14:00-18:00" },
+    ],
+  },
+  {
+    id: 7,
+    name: "Dra. Carla Dias",
+    specialty: "Prótese",
+    status: "Ativo",
+    totalSlots: 6,
+    openSlots: 1,
+    phone: "(62) 91111-0000",
+    email: "carla.d@dentist.com",
+    crm: "CRO-GO 55555",
+    location: "Goiânia",
+    uf: "GO",
+    country: "Brasil",
+    schedule: [{ day: "Quarta", time: "08:00-12:00" }],
+  },
+  {
+    id: 8,
+    name: "Dr. Fernando Tavares",
+    specialty: "Ortodontia",
+    status: "Inativo",
+    totalSlots: 8,
+    openSlots: 8,
+    phone: "(71) 90000-9999",
+    email: "fernando.t@dentist.com",
+    crm: "CRO-BA 66666",
+    location: "Salvador",
+    uf: "BA",
+    country: "Brasil",
+    schedule: [],
+  },
 ];
 
 const initialTickets: Ticket[] = [
-  { id: "TKT-001", channel: "WhatsApp", sender: "Maria Oliveira", subject: "Dúvida sobre tratamento", classification: "Saúde", priority: "Alta", status: "Novo", responsible: "Carlos Silva", dentistResponsible: "Dra. Fernanda Costa", updated: "10 min", openedAt: "05/04/2025 14:28", phone: "(11) 99999-0000", email: "maria@email.com", location: "São Paulo, SP", type: "Solicitante", cpf: "123.456.789-00" },
-  { id: "TKT-002", channel: "E-mail", sender: "Instituto Sorria", subject: "Proposta de parceria", classification: "Parceria", priority: "Média", status: "Aberto", responsible: "Ana Costa", updated: "25 min", openedAt: "05/04/2025 13:45", phone: "(21) 3333-4444", email: "contato@sorria.org", location: "Rio de Janeiro, RJ", type: "Parceiro", cpf: "12.345.678/0001-00" },
-  { id: "TKT-003", channel: "Instagram", sender: "João Santos", subject: "Solicitação de agendamento", classification: "Agendamento", priority: "Baixa", status: "Aguardando", responsible: "Maria Santos", dentistResponsible: "Dr. Marcos Lima", updated: "1h", openedAt: "05/04/2025 12:30", phone: "(31) 93333-4444", email: "joao.s@email.com", location: "Belo Horizonte, MG", type: "Solicitante", cpf: "333.444.555-66" },
-  { id: "TKT-004", channel: "WhatsApp", sender: "Pedro Almeida", subject: "Urgência odontológica", classification: "Saúde", priority: "Crítica", status: "Novo", responsible: "Carlos Silva", updated: "5 min", openedAt: "05/04/2025 14:50", phone: "(31) 95555-6666", email: "pedro.a@email.com", location: "Belo Horizonte, MG", type: "Solicitante", cpf: "555.666.777-88" },
-  { id: "TKT-005", channel: "E-mail", sender: "Fundação ABC", subject: "Doação mensal", classification: "Doação", priority: "Média", status: "Aberto", responsible: "Paula Rocha", updated: "2h", openedAt: "05/04/2025 11:00", phone: "(71) 3222-1111", email: "contato@fundacaoabc.org", location: "Salvador, BA", type: "Doador", cpf: "98.765.432/0001-00" },
-  { id: "TKT-006", channel: "WhatsApp", sender: "Lucia Ferreira", subject: "Feedback pós-atendimento", classification: "Feedback", priority: "Baixa", status: "Aberto", responsible: "João Lima", dentistResponsible: "Dra. Ana Ribeiro", updated: "3h", openedAt: "05/04/2025 10:15", phone: "(85) 94444-5555", email: "lucia.f@email.com", location: "Fortaleza, CE", type: "Solicitante", cpf: "444.555.666-77" },
-  { id: "TKT-007", channel: "Outro", sender: "CREAS Regional", subject: "Encaminhamento social", classification: "Social", priority: "Alta", status: "Novo", responsible: "Ana Costa", updated: "15 min", openedAt: "05/04/2025 14:00", phone: "(62) 3111-0000", email: "creas@gov.br", location: "Goiânia, GO", type: "Parceiro", cpf: "-" },
-  { id: "TKT-008", channel: "WhatsApp", sender: "Roberto Dias", subject: "Agendar retorno", classification: "Agendamento", priority: "Baixa", status: "Aguardando", responsible: "Maria Santos", updated: "4h", openedAt: "05/04/2025 09:00", phone: "(51) 92222-1111", email: "roberto.d@email.com", location: "Porto Alegre, RS", type: "Solicitante", cpf: "666.777.888-99" },
-  { id: "TKT-009", channel: "E-mail", sender: "Empresa XYZ", subject: "Patrocínio mensal", classification: "Doação", priority: "Média", status: "Aberto", responsible: "Paula Rocha", updated: "5h", openedAt: "05/04/2025 08:00", phone: "(11) 4444-5555", email: "contato@xyz.com", location: "São Paulo, SP", type: "Doador", cpf: "11.222.333/0001-44" },
-  { id: "TKT-010", channel: "Instagram", sender: "Carla Nunes", subject: "Informação sobre voluntariado odontológico", classification: "Social", priority: "Baixa", status: "Novo", responsible: "Ana Costa", updated: "6h", openedAt: "05/04/2025 07:30", phone: "(21) 98888-7777", email: "carla.n@email.com", location: "Rio de Janeiro, RJ", type: "Dentista", cpf: "777.888.999-00" },
-  { id: "TKT-011", channel: "WhatsApp", sender: "Fernando Tavares", subject: "Dor de dente aguda", classification: "Saúde", priority: "Crítica", status: "Novo", responsible: "Carlos Silva", updated: "2 min", openedAt: "05/04/2025 14:55", phone: "(71) 91111-0000", email: "fernando.t@email.com", location: "Salvador, BA", type: "Solicitante", cpf: "888.999.000-11" },
-  { id: "TKT-012", channel: "E-mail", sender: "Prefeitura Municipal", subject: "Convênio público", classification: "Parceria", priority: "Alta", status: "Aberto", responsible: "Ana Costa", updated: "1h", openedAt: "05/04/2025 13:00", phone: "(31) 3333-2222", email: "prefeitura@gov.br", location: "Belo Horizonte, MG", type: "Parceiro", cpf: "18.720.000/0001-55" },
+  {
+    id: "TKT-001",
+    channel: "WhatsApp",
+    sender: "Maria Oliveira",
+    subject: "Dúvida sobre tratamento",
+    classification: "Saúde",
+    priority: "Alta",
+    status: "Novo",
+    responsible: "Carlos Silva",
+    dentistResponsible: "Dra. Fernanda Costa",
+    updated: "10 min",
+    openedAt: "05/04/2025 14:28",
+    phone: "(11) 99999-0000",
+    email: "maria@email.com",
+    location: "São Paulo, SP",
+    type: "Solicitante",
+    cpf: "123.456.789-00",
+  },
+  {
+    id: "TKT-002",
+    channel: "E-mail",
+    sender: "Instituto Sorria",
+    subject: "Proposta de parceria",
+    classification: "Parceria",
+    priority: "Média",
+    status: "Aberto",
+    responsible: "Ana Costa",
+    updated: "25 min",
+    openedAt: "05/04/2025 13:45",
+    phone: "(21) 3333-4444",
+    email: "contato@sorria.org",
+    location: "Rio de Janeiro, RJ",
+    type: "Parceiro",
+    cpf: "12.345.678/0001-00",
+  },
+  {
+    id: "TKT-003",
+    channel: "Instagram",
+    sender: "João Santos",
+    subject: "Solicitação de agendamento",
+    classification: "Agendamento",
+    priority: "Baixa",
+    status: "Aguardando",
+    responsible: "Maria Santos",
+    dentistResponsible: "Dr. Marcos Lima",
+    updated: "1h",
+    openedAt: "05/04/2025 12:30",
+    phone: "(31) 93333-4444",
+    email: "joao.s@email.com",
+    location: "Belo Horizonte, MG",
+    type: "Solicitante",
+    cpf: "333.444.555-66",
+  },
+  {
+    id: "TKT-004",
+    channel: "WhatsApp",
+    sender: "Pedro Almeida",
+    subject: "Urgência odontológica",
+    classification: "Saúde",
+    priority: "Crítica",
+    status: "Novo",
+    responsible: "Carlos Silva",
+    updated: "5 min",
+    openedAt: "05/04/2025 14:50",
+    phone: "(31) 95555-6666",
+    email: "pedro.a@email.com",
+    location: "Belo Horizonte, MG",
+    type: "Solicitante",
+    cpf: "555.666.777-88",
+  },
+  {
+    id: "TKT-005",
+    channel: "E-mail",
+    sender: "Fundação ABC",
+    subject: "Doação mensal",
+    classification: "Doação",
+    priority: "Média",
+    status: "Aberto",
+    responsible: "Paula Rocha",
+    updated: "2h",
+    openedAt: "05/04/2025 11:00",
+    phone: "(71) 3222-1111",
+    email: "contato@fundacaoabc.org",
+    location: "Salvador, BA",
+    type: "Doador",
+    cpf: "98.765.432/0001-00",
+  },
+  {
+    id: "TKT-006",
+    channel: "WhatsApp",
+    sender: "Lucia Ferreira",
+    subject: "Feedback pós-atendimento",
+    classification: "Feedback",
+    priority: "Baixa",
+    status: "Aberto",
+    responsible: "João Lima",
+    dentistResponsible: "Dra. Ana Ribeiro",
+    updated: "3h",
+    openedAt: "05/04/2025 10:15",
+    phone: "(85) 94444-5555",
+    email: "lucia.f@email.com",
+    location: "Fortaleza, CE",
+    type: "Solicitante",
+    cpf: "444.555.666-77",
+  },
+  {
+    id: "TKT-007",
+    channel: "Outro",
+    sender: "CREAS Regional",
+    subject: "Encaminhamento social",
+    classification: "Social",
+    priority: "Alta",
+    status: "Novo",
+    responsible: "Ana Costa",
+    updated: "15 min",
+    openedAt: "05/04/2025 14:00",
+    phone: "(62) 3111-0000",
+    email: "creas@gov.br",
+    location: "Goiânia, GO",
+    type: "Parceiro",
+    cpf: "-",
+  },
+  {
+    id: "TKT-008",
+    channel: "WhatsApp",
+    sender: "Roberto Dias",
+    subject: "Agendar retorno",
+    classification: "Agendamento",
+    priority: "Baixa",
+    status: "Aguardando",
+    responsible: "Maria Santos",
+    updated: "4h",
+    openedAt: "05/04/2025 09:00",
+    phone: "(51) 92222-1111",
+    email: "roberto.d@email.com",
+    location: "Porto Alegre, RS",
+    type: "Solicitante",
+    cpf: "666.777.888-99",
+  },
+  {
+    id: "TKT-009",
+    channel: "E-mail",
+    sender: "Empresa XYZ",
+    subject: "Patrocínio mensal",
+    classification: "Doação",
+    priority: "Média",
+    status: "Aberto",
+    responsible: "Paula Rocha",
+    updated: "5h",
+    openedAt: "05/04/2025 08:00",
+    phone: "(11) 4444-5555",
+    email: "contato@xyz.com",
+    location: "São Paulo, SP",
+    type: "Doador",
+    cpf: "11.222.333/0001-44",
+  },
+  {
+    id: "TKT-010",
+    channel: "Instagram",
+    sender: "Carla Nunes",
+    subject: "Informação sobre voluntariado odontológico",
+    classification: "Social",
+    priority: "Baixa",
+    status: "Novo",
+    responsible: "Ana Costa",
+    updated: "6h",
+    openedAt: "05/04/2025 07:30",
+    phone: "(21) 98888-7777",
+    email: "carla.n@email.com",
+    location: "Rio de Janeiro, RJ",
+    type: "Dentista",
+    cpf: "777.888.999-00",
+  },
+  {
+    id: "TKT-011",
+    channel: "WhatsApp",
+    sender: "Fernando Tavares",
+    subject: "Dor de dente aguda",
+    classification: "Saúde",
+    priority: "Crítica",
+    status: "Novo",
+    responsible: "Carlos Silva",
+    updated: "2 min",
+    openedAt: "05/04/2025 14:55",
+    phone: "(71) 91111-0000",
+    email: "fernando.t@email.com",
+    location: "Salvador, BA",
+    type: "Solicitante",
+    cpf: "888.999.000-11",
+  },
+  {
+    id: "TKT-012",
+    channel: "E-mail",
+    sender: "Prefeitura Municipal",
+    subject: "Convênio público",
+    classification: "Parceria",
+    priority: "Alta",
+    status: "Aberto",
+    responsible: "Ana Costa",
+    updated: "1h",
+    openedAt: "05/04/2025 13:00",
+    phone: "(31) 3333-2222",
+    email: "prefeitura@gov.br",
+    location: "Belo Horizonte, MG",
+    type: "Parceiro",
+    cpf: "18.720.000/0001-55",
+  },
 ];
 
 export interface Contact {
@@ -141,11 +473,17 @@ interface TicketsContextType {
   refresh: () => Promise<void>;
   loadTicket: (id: string) => Promise<Ticket | void>;
   updateTicket: (id: string, updates: Partial<Ticket>) => Promise<void>;
-  updateContact: (contact: Contact, previousContact?: Contact) => Promise<Contact | void>;
+  updateContact: (
+    contact: Contact,
+    previousContact?: Contact,
+  ) => Promise<Contact | void>;
   addTicket: (ticket: Ticket) => Promise<Ticket | void>;
   archiveTicket: (id: string) => Promise<void>;
   releasePhoneForTesting: (id: string) => Promise<Ticket | void>;
-  addChatMessage: (id: string, message: { from: string; text: string; time: string }) => Promise<void>;
+  addChatMessage: (
+    id: string,
+    message: { from: string; text: string; time: string },
+  ) => Promise<void>;
   addDentist: (dentist: Dentist) => Promise<Dentist | void>;
   updateDentist: (id: number, updates: Partial<Dentist>) => Promise<void>;
 }
@@ -157,7 +495,10 @@ const onlyDigits = (value?: string) => value?.replace(/\D/g, "") || undefined;
 const fakePhoneForTesting = (id: string) => {
   const idSegment = onlyDigits(id)?.slice(-6).padStart(6, "0") || "000000";
   const timeSegment = String(Date.now()).slice(-6);
-  const randomSegment = String(Math.floor(Math.random() * 1000)).padStart(3, "0");
+  const randomSegment = String(Math.floor(Math.random() * 1000)).padStart(
+    3,
+    "0",
+  );
   return `+55990${idSegment}${timeSegment}${randomSegment}`;
 };
 
@@ -183,7 +524,10 @@ const formatTime = (value?: string) => {
   if (!value) return "";
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
-  return date.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+  return date.toLocaleTimeString("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 };
 
 const messageSenderFromApi = (tipoRemetente: string) => {
@@ -194,11 +538,17 @@ const messageSenderFromApi = (tipoRemetente: string) => {
 };
 
 const legacyAiReply = (ticket: ApiTicketResponse) => {
-  const base = "Recebemos sua mensagem e abrimos uma triagem no LinkAid. Nossa equipe vai analisar e continuar o atendimento.";
-  return ticket.protocolo ? `${base}\n\nProtocolo LinkAid: ${ticket.protocolo}` : base;
+  const base =
+    "Recebemos sua mensagem e abrimos uma triagem no LinkAid. Nossa equipe vai analisar e continuar o atendimento.";
+  return ticket.protocolo
+    ? `${base}\n\nProtocolo LinkAid: ${ticket.protocolo}`
+    : base;
 };
 
-const apiMessageText = (ticket: ApiTicketResponse, mensagem: { tipoRemetente: string; mensagem: string }) => {
+const apiMessageText = (
+  ticket: ApiTicketResponse,
+  mensagem: { tipoRemetente: string; mensagem: string },
+) => {
   const isLegacyAiSummary =
     mensagem.tipoRemetente.toUpperCase() === "IA" &&
     ticket.resumoIa?.trim() &&
@@ -207,7 +557,10 @@ const apiMessageText = (ticket: ApiTicketResponse, mensagem: { tipoRemetente: st
   return isLegacyAiSummary ? legacyAiReply(ticket) : mensagem.mensagem;
 };
 
-const apiTicketToTicket = (ticket: ApiTicketResponse, messagesLoaded = true): Ticket => {
+const apiTicketToTicket = (
+  ticket: ApiTicketResponse,
+  messagesLoaded = true,
+): Ticket => {
   const contato = ticket.contato;
   const cidadeUf = [contato?.cidade, contato?.uf].filter(Boolean).join(", ");
   return {
@@ -220,9 +573,14 @@ const apiTicketToTicket = (ticket: ApiTicketResponse, messagesLoaded = true): Ti
     description: ticket.descricao,
     aiSummary: ticket.resumoIa,
     aiConfidence: ticket.confiancaIa,
-    classification: classificacaoLabel(ticket.classificacaoCodigo) || ticket.classificacaoNome || "Geral",
-    priority: (prioridadeLabel(ticket.prioridadeCodigo) || PRIORIDADE_LABELS.MEDIA) as Priority,
-    status: statusTicketLabel(ticket.statusCodigo) || ticket.statusNome || "Novo",
+    classification:
+      classificacaoLabel(ticket.classificacaoCodigo) ||
+      ticket.classificacaoNome ||
+      "Geral",
+    priority: (prioridadeLabel(ticket.prioridadeCodigo) ||
+      PRIORIDADE_LABELS.MEDIA) as Priority,
+    status:
+      statusTicketLabel(ticket.statusCodigo) || ticket.statusNome || "Novo",
     responsible: ticket.responsavel?.nome || "Sem responsável",
     dentistResponsible: ticket.dentistaResponsavel?.nome,
     updated: formatDateTime(ticket.dataAtualizacao) || "agora",
@@ -230,14 +588,20 @@ const apiTicketToTicket = (ticket: ApiTicketResponse, messagesLoaded = true): Ti
     phone: contato?.telefone || "",
     email: contato?.email || "",
     location: cidadeUf,
-    type: tipoContatoRegistroLabel(contato?.tipoContatoCodigo, contato?.tipoContatoNome) || "Solicitante",
+    type:
+      tipoContatoRegistroLabel(
+        contato?.tipoContatoCodigo,
+        contato?.tipoContatoNome,
+      ) || "Solicitante",
     cpf: contato?.documento || "-",
     messagesLoaded,
-    chatMessages: messagesLoaded ? (ticket.mensagens ?? []).map((mensagem) => ({
-      from: messageSenderFromApi(mensagem.tipoRemetente),
-      text: apiMessageText(ticket, mensagem),
-      time: formatTime(mensagem.dataMensagem),
-    })) : undefined,
+    chatMessages: messagesLoaded
+      ? (ticket.mensagens ?? []).map((mensagem) => ({
+          from: messageSenderFromApi(mensagem.tipoRemetente),
+          text: apiMessageText(ticket, mensagem),
+          time: formatTime(mensagem.dataMensagem),
+        }))
+      : undefined,
   };
 };
 
@@ -248,7 +612,11 @@ const apiContatoToContact = (contato: ApiContatoResponse): Contact => ({
   email: contato.email || "",
   cpf: contato.documento || "-",
   location: [contato.cidade, contato.uf].filter(Boolean).join(", "),
-  type: tipoContatoRegistroLabel(contato.tipoContatoCodigo, contato.tipoContatoNome) || "Solicitante",
+  type:
+    tipoContatoRegistroLabel(
+      contato.tipoContatoCodigo,
+      contato.tipoContatoNome,
+    ) || "Solicitante",
   observation: contato.observacao || "",
   registrationDate: contato.dataCadastro || "",
 });
@@ -281,10 +649,16 @@ const TicketsContext = createContext<TicketsContextType | undefined>(undefined);
 export function TicketsProvider({ children }: { children: ReactNode }) {
   const { token } = useAuth();
   const hasApiSession = Boolean(token);
-  const [tickets, setTickets] = useState<Ticket[]>(() => (hasApiSession ? [] : initialTickets));
+  const [tickets, setTickets] = useState<Ticket[]>(() =>
+    hasApiSession ? [] : initialTickets,
+  );
   const [contacts, setContacts] = useState<Contact[]>([]);
-  const [dentists, setDentists] = useState<Dentist[]>(() => (hasApiSession ? [] : initialDentists));
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>(() => (hasApiSession ? [] : initialTeam));
+  const [dentists, setDentists] = useState<Dentist[]>(() =>
+    hasApiSession ? [] : initialDentists,
+  );
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>(() =>
+    hasApiSession ? [] : initialTeam,
+  );
   const [loading, setLoading] = useState(hasApiSession);
   const [error, setError] = useState<string | null>(null);
 
@@ -302,17 +676,22 @@ export function TicketsProvider({ children }: { children: ReactNode }) {
     setLoading(true);
     setError(null);
     try {
-      const [apiTickets, apiDentists, apiUsuarios, apiContatos] = await Promise.all([
-        linkAidApi.listarTickets(token),
-        linkAidApi.listarDentistas(token),
-        linkAidApi.listarUsuarios(token),
-        linkAidApi.listarContatos(token),
-      ]);
+      const [apiTickets, apiDentists, apiUsuarios, apiContatos] =
+        await Promise.all([
+          linkAidApi.listarTickets(token),
+          linkAidApi.listarDentistas(token),
+          linkAidApi.listarUsuarios(token),
+          linkAidApi.listarContatos(token),
+        ]);
 
-      const listedTickets = apiTickets.map((ticket) => apiTicketToTicket(ticket, false));
+      const listedTickets = apiTickets.map((ticket) =>
+        apiTicketToTicket(ticket, false),
+      );
       setTickets((previousTickets) =>
         listedTickets.map((ticket) => {
-          const previous = previousTickets.find((item) => item.id === ticket.id);
+          const previous = previousTickets.find(
+            (item) => item.id === ticket.id,
+          );
           if (!previous?.messagesLoaded) return ticket;
 
           return {
@@ -326,7 +705,11 @@ export function TicketsProvider({ children }: { children: ReactNode }) {
       setTeamMembers(apiUsuarios.map(apiUsuarioToTeamMember));
       setContacts(apiContatos.map(apiContatoToContact));
     } catch (loadError) {
-      setError(loadError instanceof Error ? loadError.message : "Falha ao carregar dados da API.");
+      setError(
+        loadError instanceof Error
+          ? loadError.message
+          : "Falha ao carregar dados da API.",
+      );
     } finally {
       setLoading(false);
     }
@@ -355,24 +738,35 @@ export function TicketsProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const loadTicket = useCallback(async (id: string) => {
-    if (!token || !isRemoteId(id)) return;
+  const loadTicket = useCallback(
+    async (id: string) => {
+      if (!token || !isRemoteId(id)) return;
 
-    try {
-      const apiTicket = await linkAidApi.buscarTicket(token, id);
-      const mapped = apiTicketToTicket(apiTicket, true);
-      upsertTicket(mapped);
-      return mapped;
-    } catch (loadError) {
-      setError(loadError instanceof Error ? loadError.message : "Falha ao carregar ticket.");
-      throw loadError;
-    }
-  }, [token, upsertTicket]);
+      try {
+        const apiTicket = await linkAidApi.buscarTicket(token, id);
+        const mapped = apiTicketToTicket(apiTicket, true);
+        upsertTicket(mapped);
+        return mapped;
+      } catch (loadError) {
+        setError(
+          loadError instanceof Error
+            ? loadError.message
+            : "Falha ao carregar ticket.",
+        );
+        throw loadError;
+      }
+    },
+    [token, upsertTicket],
+  );
 
   const buildTicketRequest = (ticket: Ticket): ApiTicketRequest => {
     const { city, uf } = splitLocation(ticket.location);
-    const responsavel = teamMembers.find((member) => member.name === ticket.responsible);
-    const dentista = dentists.find((item) => item.name === ticket.dentistResponsible);
+    const responsavel = teamMembers.find(
+      (member) => member.name === ticket.responsible,
+    );
+    const dentista = dentists.find(
+      (item) => item.name === ticket.dentistResponsible,
+    );
 
     return {
       idContato: ticket.idContato,
@@ -385,7 +779,8 @@ export function TicketsProvider({ children }: { children: ReactNode }) {
       ufContato: uf,
       canalCodigo: canalCodigo(ticket.channel) || "OUTROS",
       prioridadeCodigo: prioridadeCodigo(ticket.priority) || "MEDIA",
-      classificacaoCodigo: classificacaoCodigo(ticket.classification) || "GERAL",
+      classificacaoCodigo:
+        classificacaoCodigo(ticket.classification) || "GERAL",
       idUsuarioResponsavel: responsavel?.id,
       idDentistaResponsavel: dentista?.id,
       assunto: ticket.subject,
@@ -393,21 +788,31 @@ export function TicketsProvider({ children }: { children: ReactNode }) {
     };
   };
 
-  const buildTicketUpdateRequest = (updates: Partial<Ticket>): ApiTicketUpdateRequest => {
+  const buildTicketUpdateRequest = (
+    updates: Partial<Ticket>,
+  ): ApiTicketUpdateRequest => {
     const body: ApiTicketUpdateRequest = {};
     if (updates.channel) body.canalCodigo = canalCodigo(updates.channel);
     if (updates.status) body.statusCodigo = statusTicketCodigo(updates.status);
-    if (updates.priority) body.prioridadeCodigo = prioridadeCodigo(updates.priority);
-    if (updates.classification) body.classificacaoCodigo = classificacaoCodigo(updates.classification);
+    if (updates.priority)
+      body.prioridadeCodigo = prioridadeCodigo(updates.priority);
+    if (updates.classification)
+      body.classificacaoCodigo = classificacaoCodigo(updates.classification);
     if (updates.responsible) {
-      body.idUsuarioResponsavel = teamMembers.find((member) => member.name === updates.responsible)?.id;
+      body.idUsuarioResponsavel = teamMembers.find(
+        (member) => member.name === updates.responsible,
+      )?.id;
     }
     if (updates.dentistResponsible) {
-      body.idDentistaResponsavel = dentists.find((dentist) => dentist.name === updates.dentistResponsible)?.id;
+      body.idDentistaResponsavel = dentists.find(
+        (dentist) => dentist.name === updates.dentistResponsible,
+      )?.id;
     }
     if (updates.subject) body.assunto = updates.subject;
     if (updates.description) body.descricao = updates.description;
-    return Object.fromEntries(Object.entries(body).filter(([, value]) => value !== undefined));
+    return Object.fromEntries(
+      Object.entries(body).filter(([, value]) => value !== undefined),
+    );
   };
 
   const buildDentistaRequest = (dentist: Dentist) => ({
@@ -439,33 +844,52 @@ export function TicketsProvider({ children }: { children: ReactNode }) {
   const sameContactIdentity = (contact: Contact, reference?: Contact) => {
     if (!reference) return false;
     if (contact.id && reference.id && contact.id === reference.id) return true;
-    if (contact.cpf && contact.cpf !== "-" && reference.cpf && reference.cpf !== "-") {
+    if (
+      contact.cpf &&
+      contact.cpf !== "-" &&
+      reference.cpf &&
+      reference.cpf !== "-"
+    ) {
       return onlyDigits(contact.cpf) === onlyDigits(reference.cpf);
     }
     return contact.name === reference.name;
   };
 
-  const ticketBelongsToContact = (ticket: Ticket, contact: Contact, previousContact?: Contact) => {
+  const ticketBelongsToContact = (
+    ticket: Ticket,
+    contact: Contact,
+    previousContact?: Contact,
+  ) => {
     if (contact.id && ticket.idContato === contact.id) return true;
-    if (previousContact?.id && ticket.idContato === previousContact.id) return true;
+    if (previousContact?.id && ticket.idContato === previousContact.id)
+      return true;
 
     const ticketDocument = onlyDigits(ticket.cpf);
     const currentDocument = onlyDigits(contact.cpf);
     const previousDocument = onlyDigits(previousContact?.cpf);
     if (ticketDocument && ticketDocument !== onlyDigits("-")) {
-      return ticketDocument === currentDocument || ticketDocument === previousDocument;
+      return (
+        ticketDocument === currentDocument ||
+        ticketDocument === previousDocument
+      );
     }
 
-    return ticket.sender === previousContact?.name || ticket.sender === contact.name;
+    return (
+      ticket.sender === previousContact?.name || ticket.sender === contact.name
+    );
   };
 
   const applyContactLocally = (contact: Contact, previousContact?: Contact) => {
     setContacts((prev) => {
-      const exists = prev.some((item) => sameContactIdentity(item, previousContact || contact));
+      const exists = prev.some((item) =>
+        sameContactIdentity(item, previousContact || contact),
+      );
       if (!exists) return [...prev, contact];
 
       return prev.map((item) =>
-        sameContactIdentity(item, previousContact || contact) ? { ...item, ...contact } : item,
+        sameContactIdentity(item, previousContact || contact)
+          ? { ...item, ...contact }
+          : item,
       );
     });
     setTickets((prev) =>
@@ -510,12 +934,18 @@ export function TicketsProvider({ children }: { children: ReactNode }) {
       if (mapped.idContato) {
         setContacts((prev) =>
           prev.map((contact) =>
-            contact.id === mapped.idContato ? { ...contact, name: mapped.sender } : contact
-          )
+            contact.id === mapped.idContato
+              ? { ...contact, name: mapped.sender }
+              : contact,
+          ),
         );
       }
     } catch (updateError) {
-      setError(updateError instanceof Error ? updateError.message : "Falha ao atualizar ticket.");
+      setError(
+        updateError instanceof Error
+          ? updateError.message
+          : "Falha ao atualizar ticket.",
+      );
       throw updateError;
     }
   };
@@ -523,12 +953,20 @@ export function TicketsProvider({ children }: { children: ReactNode }) {
   const updateContact = async (contact: Contact, previousContact?: Contact) => {
     if (token && contact.id) {
       try {
-        const saved = await linkAidApi.atualizarContato(token, contact.id, buildContactRequest(contact));
+        const saved = await linkAidApi.atualizarContato(
+          token,
+          contact.id,
+          buildContactRequest(contact),
+        );
         const mapped = apiContatoToContact(saved);
         applyContactLocally(mapped, previousContact || contact);
         return mapped;
       } catch (contactError) {
-        setError(contactError instanceof Error ? contactError.message : "Falha ao atualizar contato.");
+        setError(
+          contactError instanceof Error
+            ? contactError.message
+            : "Falha ao atualizar contato.",
+        );
         throw contactError;
       }
     }
@@ -540,28 +978,39 @@ export function TicketsProvider({ children }: { children: ReactNode }) {
   const addTicket = async (ticket: Ticket) => {
     if (token) {
       try {
-        const created = await linkAidApi.criarTicket(token, buildTicketRequest(ticket));
+        const created = await linkAidApi.criarTicket(
+          token,
+          buildTicketRequest(ticket),
+        );
         const mapped = apiTicketToTicket(created);
         upsertTicket(mapped);
         return mapped;
       } catch (createError) {
-        setError(createError instanceof Error ? createError.message : "Falha ao criar ticket.");
+        setError(
+          createError instanceof Error
+            ? createError.message
+            : "Falha ao criar ticket.",
+        );
         throw createError;
       }
     }
 
     setTickets((prev) => [ticket, ...prev]);
-    const exists = contacts.some((c) => c.cpf === ticket.cpf) ||
-                   initialTickets.some((t) => t.cpf === ticket.cpf);
+    const exists =
+      contacts.some((c) => c.cpf === ticket.cpf) ||
+      initialTickets.some((t) => t.cpf === ticket.cpf);
     if (!exists && ticket.cpf && ticket.cpf !== "-") {
-      setContacts((prev) => [...prev, {
-        name: ticket.sender,
-        phone: ticket.phone,
-        email: ticket.email,
-        cpf: ticket.cpf,
-        location: ticket.location,
-        type: ticket.type,
-      }]);
+      setContacts((prev) => [
+        ...prev,
+        {
+          name: ticket.sender,
+          phone: ticket.phone,
+          email: ticket.email,
+          cpf: ticket.cpf,
+          location: ticket.location,
+          type: ticket.type,
+        },
+      ]);
     }
     return ticket;
   };
@@ -573,15 +1022,19 @@ export function TicketsProvider({ children }: { children: ReactNode }) {
         upsertTicket(apiTicketToTicket(updated));
         return;
       } catch (archiveError) {
-        setError(archiveError instanceof Error ? archiveError.message : "Falha ao arquivar ticket.");
+        setError(
+          archiveError instanceof Error
+            ? archiveError.message
+            : "Falha ao arquivar ticket.",
+        );
         throw archiveError;
       }
     }
 
     setTickets((prev) =>
       prev.map((t) =>
-        t.id === id ? { ...t, status: "Resolvido", updated: "agora" } : t
-      )
+        t.id === id ? { ...t, status: "Resolvido", updated: "agora" } : t,
+      ),
     );
   };
 
@@ -593,12 +1046,18 @@ export function TicketsProvider({ children }: { children: ReactNode }) {
         upsertTicket(mapped);
         setContacts((prev) =>
           prev.map((contact) =>
-            contact.id === mapped.idContato ? { ...contact, phone: mapped.phone } : contact
-          )
+            contact.id === mapped.idContato
+              ? { ...contact, phone: mapped.phone }
+              : contact,
+          ),
         );
         return mapped;
       } catch (releaseError) {
-        setError(releaseError instanceof Error ? releaseError.message : "Falha ao liberar telefone para teste.");
+        setError(
+          releaseError instanceof Error
+            ? releaseError.message
+            : "Falha ao liberar telefone para teste.",
+        );
         throw releaseError;
       }
     }
@@ -611,23 +1070,40 @@ export function TicketsProvider({ children }: { children: ReactNode }) {
         const nextTicket = { ...ticket, phone: fakePhone, updated: "agora" };
         updatedTicket = nextTicket;
         return nextTicket;
-      })
+      }),
     );
     return updatedTicket;
   };
 
-  const addChatMessage = async (id: string, message: { from: string; text: string; time: string }) => {
+  const addChatMessage = async (
+    id: string,
+    message: { from: string; text: string; time: string },
+  ) => {
     if (token && isRemoteId(id)) {
       try {
-        const tipoRemetente = message.from === "client" ? "CONTATO" : message.from === "ai" ? "IA" : "ATENDENTE";
-        const created = await linkAidApi.adicionarMensagem(token, id, message.text, tipoRemetente);
+        const tipoRemetente =
+          message.from === "client"
+            ? "CONTATO"
+            : message.from === "ai"
+              ? "IA"
+              : "ATENDENTE";
+        const created = await linkAidApi.adicionarMensagem(
+          token,
+          id,
+          message.text,
+          tipoRemetente,
+        );
         message = {
           from: messageSenderFromApi(created.tipoRemetente),
           text: created.mensagem,
           time: formatTime(created.dataMensagem),
         };
       } catch (messageError) {
-        setError(messageError instanceof Error ? messageError.message : "Falha ao adicionar mensagem.");
+        setError(
+          messageError instanceof Error
+            ? messageError.message
+            : "Falha ao adicionar mensagem.",
+        );
         throw messageError;
       }
     }
@@ -635,21 +1111,32 @@ export function TicketsProvider({ children }: { children: ReactNode }) {
     setTickets((prev) =>
       prev.map((t) =>
         t.id === id
-          ? { ...t, messagesLoaded: true, chatMessages: [...(t.chatMessages || []), message] }
-          : t
-      )
+          ? {
+              ...t,
+              messagesLoaded: true,
+              chatMessages: [...(t.chatMessages || []), message],
+            }
+          : t,
+      ),
     );
   };
 
   const addDentist = async (dentist: Dentist) => {
     if (token) {
       try {
-        const created = await linkAidApi.criarDentista(token, buildDentistaRequest(dentist));
+        const created = await linkAidApi.criarDentista(
+          token,
+          buildDentistaRequest(dentist),
+        );
         const mapped = apiDentistaToDentist(created);
         setDentists((prev) => [...prev, mapped]);
         return mapped;
       } catch (dentistError) {
-        setError(dentistError instanceof Error ? dentistError.message : "Falha ao cadastrar dentista.");
+        setError(
+          dentistError instanceof Error
+            ? dentistError.message
+            : "Falha ao cadastrar dentista.",
+        );
         throw dentistError;
       }
     }
@@ -665,21 +1152,54 @@ export function TicketsProvider({ children }: { children: ReactNode }) {
   const updateDentist = async (id: number, updates: Partial<Dentist>) => {
     const current = dentists.find((dentist) => dentist.id === id);
     const updated = current ? { ...current, ...updates } : undefined;
-    setDentists((prev) => prev.map((d) => d.id === id ? { ...d, ...updates } : d));
+    setDentists((prev) =>
+      prev.map((d) => (d.id === id ? { ...d, ...updates } : d)),
+    );
 
     if (!token || !updated) return;
 
     try {
-      const saved = await linkAidApi.atualizarDentista(token, id, buildDentistaRequest(updated));
-      setDentists((prev) => prev.map((dentist) => dentist.id === id ? apiDentistaToDentist(saved) : dentist));
+      const saved = await linkAidApi.atualizarDentista(
+        token,
+        id,
+        buildDentistaRequest(updated),
+      );
+      setDentists((prev) =>
+        prev.map((dentist) =>
+          dentist.id === id ? apiDentistaToDentist(saved) : dentist,
+        ),
+      );
     } catch (dentistError) {
-      setError(dentistError instanceof Error ? dentistError.message : "Falha ao atualizar dentista.");
+      setError(
+        dentistError instanceof Error
+          ? dentistError.message
+          : "Falha ao atualizar dentista.",
+      );
       throw dentistError;
     }
   };
 
   return (
-    <TicketsContext.Provider value={{ tickets, contacts, teamMembers, dentists, loading, error, refresh, loadTicket, updateTicket, updateContact, addTicket, archiveTicket, releasePhoneForTesting, addChatMessage, addDentist, updateDentist }}>
+    <TicketsContext.Provider
+      value={{
+        tickets,
+        contacts,
+        teamMembers,
+        dentists,
+        loading,
+        error,
+        refresh,
+        loadTicket,
+        updateTicket,
+        updateContact,
+        addTicket,
+        archiveTicket,
+        releasePhoneForTesting,
+        addChatMessage,
+        addDentist,
+        updateDentist,
+      }}
+    >
       {children}
     </TicketsContext.Provider>
   );

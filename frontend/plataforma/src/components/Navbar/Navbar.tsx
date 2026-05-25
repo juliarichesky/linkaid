@@ -68,22 +68,40 @@ const Navbar = () => {
   const menuLinks = [
     { name: "Início", to: "/", icon: <Home size={18} />, external: false },
     { name: "Sobre", to: "/sobre", icon: <Info size={18} />, external: false },
-    { name: "Equipe", to: "/equipe", icon: <Users size={18} />, external: false },
+    {
+      name: "Equipe",
+      to: "/equipe",
+      icon: <Users size={18} />,
+      external: false,
+    },
     {
       name: "Solução",
       to: platformPath("/"),
       icon: <Lightbulb size={18} />,
       external: false,
     },
-    { name: "FAQ", to: "/faq", icon: <HelpCircle size={18} />, external: false },
-    { name: "Contato", to: "/contato", icon: <Mail size={18} />, external: false },
+    {
+      name: "FAQ",
+      to: "/faq",
+      icon: <HelpCircle size={18} />,
+      external: false,
+    },
+    {
+      name: "Contato",
+      to: "/contato",
+      icon: <Mail size={18} />,
+      external: false,
+    },
   ];
 
   const buttonBaseClass =
     "w-10 h-10 flex items-center justify-center rounded-full bg-slate-900/5 border border-slate-950/10 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-900 transition-all shadow-sm cursor-pointer active:scale-95 z-[150]";
 
   return (
-    <nav style={{ display: isMenuOpen ? "none" : "block" }} className="fixed top-0 left-0 w-full z-[100] px-4 pt-0 md:px-10 font-sans">
+    <nav
+      style={{ display: isMenuOpen ? "none" : "block" }}
+      className="fixed top-0 left-0 w-full z-[100] px-4 pt-0 md:px-10 font-sans"
+    >
       {/* nav desktop */}
       <div
         style={{ display: isMenuOpen ? "none" : "flex" }}

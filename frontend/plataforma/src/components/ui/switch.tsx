@@ -2,15 +2,30 @@ import * as React from "react";
 
 import { cn } from "@/lib/classnames";
 
-type SwitchProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onChange"> & {
+type SwitchProps = Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  "onChange"
+> & {
   checked?: boolean;
   defaultChecked?: boolean;
   onCheckedChange?: (checked: boolean) => void;
 };
 
 const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
-  ({ className, checked, defaultChecked = false, onCheckedChange, onClick, disabled, ...props }, ref) => {
-    const [internalChecked, setInternalChecked] = React.useState(defaultChecked);
+  (
+    {
+      className,
+      checked,
+      defaultChecked = false,
+      onCheckedChange,
+      onClick,
+      disabled,
+      ...props
+    },
+    ref,
+  ) => {
+    const [internalChecked, setInternalChecked] =
+      React.useState(defaultChecked);
     const isChecked = checked ?? internalChecked;
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

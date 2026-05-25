@@ -1,5 +1,7 @@
 const configuredApiUrl = import.meta.env.VITE_API_URL?.trim();
-const API_BASE_URL = (configuredApiUrl || (import.meta.env.DEV ? "http://localhost:8080" : "")).replace(/\/$/, "");
+const API_BASE_URL = (
+  configuredApiUrl || (import.meta.env.DEV ? "http://localhost:8080" : "")
+).replace(/\/$/, "");
 
 export interface ApiUsuarioResponse {
   idUsuario: number;
@@ -180,9 +182,15 @@ export class ApiError extends Error {
   }
 }
 
-async function request<T>(path: string, options: RequestOptions = {}): Promise<T> {
+async function request<T>(
+  path: string,
+  options: RequestOptions = {},
+): Promise<T> {
   if (!API_BASE_URL) {
-    throw new ApiError("Configuração da API ausente. Defina VITE_API_URL no deploy do frontend.", 0);
+    throw new ApiError(
+      "Configuração da API ausente. Defina VITE_API_URL no deploy do frontend.",
+      0,
+    );
   }
 
   const headers = new Headers(options.headers);
@@ -190,7 +198,12 @@ async function request<T>(path: string, options: RequestOptions = {}): Promise<T
 
   const rawBody = options.body;
   let body: BodyInit | null | undefined;
-  if (rawBody && typeof rawBody === "object" && !(rawBody instanceof FormData) && !(rawBody instanceof Blob)) {
+  if (
+    rawBody &&
+    typeof rawBody === "object" &&
+    !(rawBody instanceof FormData) &&
+    !(rawBody instanceof Blob)
+  ) {
     headers.set("Content-Type", "application/json");
     body = JSON.stringify(rawBody);
   } else {
@@ -230,8 +243,7 @@ export const linkAidApi = {
       body: { email, senha: password },
     }),
 
-  me: (token: string) =>
-    request<ApiUsuarioResponse>("/auth/me", { token }),
+  me: (token: string) => request<ApiUsuarioResponse>("/auth/me", { token }),
 
   listarTickets: (token: string) =>
     request<ApiTicketResponse[]>("/tickets?size=100", { token }),
@@ -246,7 +258,11 @@ export const linkAidApi = {
       body,
     }),
 
-  atualizarTicket: (token: string, idTicket: string | number, body: ApiTicketUpdateRequest) =>
+  atualizarTicket: (
+    token: string,
+    idTicket: string | number,
+    body: ApiTicketUpdateRequest,
+  ) =>
     request<ApiTicketResponse>(`/tickets/${idTicket}`, {
       method: "PUT",
       token,
@@ -265,7 +281,12 @@ export const linkAidApi = {
       token,
     }),
 
-  adicionarMensagem: (token: string, idTicket: string | number, mensagem: string, tipoRemetente = "ATENDENTE") =>
+  adicionarMensagem: (
+    token: string,
+    idTicket: string | number,
+    mensagem: string,
+    tipoRemetente = "ATENDENTE",
+  ) =>
     request<ApiMensagemResponse>(`/tickets/${idTicket}/mensagens`, {
       method: "POST",
       token,
@@ -282,7 +303,11 @@ export const linkAidApi = {
       body,
     }),
 
-  atualizarDentista: (token: string, idDentista: string | number, body: ApiDentistaRequest) =>
+  atualizarDentista: (
+    token: string,
+    idDentista: string | number,
+    body: ApiDentistaRequest,
+  ) =>
     request<ApiDentistaResponse>(`/dentistas/${idDentista}`, {
       method: "PUT",
       token,
@@ -295,7 +320,11 @@ export const linkAidApi = {
   listarContatos: (token: string) =>
     request<ApiContatoResponse[]>("/contatos", { token }),
 
-  atualizarContato: (token: string, idContato: string | number, body: ApiContatoRequest) =>
+  atualizarContato: (
+    token: string,
+    idContato: string | number,
+    body: ApiContatoRequest,
+  ) =>
     request<ApiContatoResponse>(`/contatos/${idContato}`, {
       method: "PUT",
       token,

@@ -1,22 +1,47 @@
-import { ArrowDown, ArrowLeft, ArrowUp, ArrowUpDown, Save, Search } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowUp,
+  ArrowUpDown,
+  Save,
+  Search,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import {
-  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 import {
-  Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import {
-  Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious,
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
 } from "@/components/ui/pagination";
 import { useEffect, useState, useMemo } from "react";
 import { useTickets, type Contact } from "@/contexts/TicketsContext";
 import { cn } from "@/lib/classnames";
-import { EDITABLE_CONTACT_TYPE_LABELS, editableContactTypeLabel, TIPO_CONTATO_LABELS } from "@/lib/linkaidMappings";
+import {
+  EDITABLE_CONTACT_TYPE_LABELS,
+  editableContactTypeLabel,
+  TIPO_CONTATO_LABELS,
+} from "@/lib/linkaidMappings";
 import { maskCNPJ, maskCPF, maskPhone } from "@/lib/masks";
 import { platformPath } from "@/routes/platform";
 import { useNavigate } from "react-router-dom";
@@ -34,7 +59,12 @@ const ITEMS_PER_PAGE = 10;
 
 const typeOptions = [...EDITABLE_CONTACT_TYPE_LABELS];
 
-type SortKey = "name" | "type" | "location" | "ticketCount" | "registrationDate";
+type SortKey =
+  | "name"
+  | "type"
+  | "location"
+  | "ticketCount"
+  | "registrationDate";
 type SortDirection = "asc" | "desc";
 type SortConfig = {
   key: SortKey;
@@ -53,7 +83,13 @@ interface DerivedContact {
   lastInteraction: string;
   observation?: string;
   registrationDate?: string;
-  linkedTickets: { id: string; protocol?: string; subject: string; date: string; status: string }[];
+  linkedTickets: {
+    id: string;
+    protocol?: string;
+    subject: string;
+    date: string;
+    status: string;
+  }[];
 }
 
 const contactKey = (contact: Pick<DerivedContact, "id" | "cpf" | "name">) => {
@@ -126,10 +162,24 @@ type SortableHeaderProps = {
   onSort: (column: SortKey) => void;
 };
 
-const SortableHeader = ({ label, column, className, sortConfig, onSort }: SortableHeaderProps) => {
+const SortableHeader = ({
+  label,
+  column,
+  className,
+  sortConfig,
+  onSort,
+}: SortableHeaderProps) => {
   const isActive = sortConfig?.key === column;
-  const Icon = isActive ? (sortConfig.direction === "asc" ? ArrowUp : ArrowDown) : ArrowUpDown;
-  const ariaSort = isActive ? (sortConfig.direction === "asc" ? "ascending" : "descending") : "none";
+  const Icon = isActive
+    ? sortConfig.direction === "asc"
+      ? ArrowUp
+      : ArrowDown
+    : ArrowUpDown;
+  const ariaSort = isActive
+    ? sortConfig.direction === "asc"
+      ? "ascending"
+      : "descending"
+    : "none";
 
   return (
     <TableHead className={cn("p-0", className)} aria-sort={ariaSort}>
@@ -142,14 +192,19 @@ const SortableHeader = ({ label, column, className, sortConfig, onSort }: Sortab
         onClick={() => onSort(column)}
       >
         <span className="truncate">{label}</span>
-        <Icon className={cn("h-3.5 w-3.5 shrink-0", isActive && "text-foreground")} />
+        <Icon
+          className={cn("h-3.5 w-3.5 shrink-0", isActive && "text-foreground")}
+        />
       </button>
     </TableHead>
   );
 };
 
 const contactTypeBadgeClass = (type: string) =>
-  cn("flex w-28 justify-center text-center font-medium", typeColors[type] || "");
+  cn(
+    "flex w-28 justify-center text-center font-medium",
+    typeColors[type] || "",
+  );
 
 export default function Contacts() {
   const { tickets, contacts, loading, updateContact } = useTickets();
@@ -220,15 +275,25 @@ export default function Contacts() {
       }
       const c = map.get(key)!;
       c.ticketCount++;
-      c.lastInteraction = c.lastInteraction === "-" ? t.openedAt : c.lastInteraction;
-      c.linkedTickets.push({ id: t.id, protocol: t.protocol, subject: t.subject, date: t.openedAt, status: t.status });
+      c.lastInteraction =
+        c.lastInteraction === "-" ? t.openedAt : c.lastInteraction;
+      c.linkedTickets.push({
+        id: t.id,
+        protocol: t.protocol,
+        subject: t.subject,
+        date: t.openedAt,
+        status: t.status,
+      });
     });
 
     return Array.from(map.values());
   }, [tickets, contacts]);
 
-  const filtered = allContacts.filter((c) =>
-    c.name.toLowerCase().includes(search.toLowerCase()) || c.type.toLowerCase().includes(search.toLowerCase()) || c.cpf.toLowerCase().includes(search.toLowerCase())
+  const filtered = allContacts.filter(
+    (c) =>
+      c.name.toLowerCase().includes(search.toLowerCase()) ||
+      c.type.toLowerCase().includes(search.toLowerCase()) ||
+      c.cpf.toLowerCase().includes(search.toLowerCase()),
   );
 
   const sorted = useMemo(() => {
@@ -244,19 +309,25 @@ export default function Contacts() {
   }, [filtered, sortConfig]);
 
   const totalPages = Math.ceil(sorted.length / ITEMS_PER_PAGE);
-  const paginated = sorted.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+  const paginated = sorted.slice(
+    (page - 1) * ITEMS_PER_PAGE,
+    page * ITEMS_PER_PAGE,
+  );
 
   const handleSort = (column: SortKey) => {
     setSortConfig((current) => ({
       key: column,
-      direction: current?.key === column && current.direction === "asc" ? "desc" : "asc",
+      direction:
+        current?.key === column && current.direction === "asc" ? "desc" : "asc",
     }));
     setPage(1);
   };
 
   useEffect(() => {
     if (!selected) return;
-    const current = allContacts.find((contact) => contactKey(contact) === contactKey(selected));
+    const current = allContacts.find(
+      (contact) => contactKey(contact) === contactKey(selected),
+    );
     if (current && current !== selected) {
       setSelected(current);
     }
@@ -296,7 +367,12 @@ export default function Contacts() {
       cpf: contactForm.cpf.trim() || "-",
       phone: contactForm.phone.trim(),
       email: contactForm.email.trim(),
-      location: [contactForm.city.trim(), contactForm.uf.trim().toUpperCase().slice(0, 2)].filter(Boolean).join(", "),
+      location: [
+        contactForm.city.trim(),
+        contactForm.uf.trim().toUpperCase().slice(0, 2),
+      ]
+        .filter(Boolean)
+        .join(", "),
       observation: contactForm.observation.trim(),
       registrationDate: selected.registrationDate,
     };
@@ -309,85 +385,165 @@ export default function Contacts() {
         ...(saved || updatedContact),
         ticketCount: selected.ticketCount,
         lastInteraction: selected.lastInteraction,
-        registrationDate: saved?.registrationDate || updatedContact.registrationDate,
+        registrationDate:
+          saved?.registrationDate || updatedContact.registrationDate,
         linkedTickets: selected.linkedTickets,
       };
       setSelected(nextSelected);
-      toast.success(selected.id ? "Contato atualizado no frontend e no banco de dados" : "Contato atualizado no frontend");
+      toast.success(
+        selected.id
+          ? "Contato atualizado no frontend e no banco de dados"
+          : "Contato atualizado no frontend",
+      );
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Erro ao atualizar contato");
+      toast.error(
+        error instanceof Error ? error.message : "Erro ao atualizar contato",
+      );
     } finally {
       setSaving(false);
     }
   };
 
   if (selected) {
-    const filteredTickets = selected.linkedTickets.filter((t) =>
-      t.subject.toLowerCase().includes(detailSearch.toLowerCase()) || (t.protocol || t.id).toLowerCase().includes(detailSearch.toLowerCase())
+    const filteredTickets = selected.linkedTickets.filter(
+      (t) =>
+        t.subject.toLowerCase().includes(detailSearch.toLowerCase()) ||
+        (t.protocol || t.id).toLowerCase().includes(detailSearch.toLowerCase()),
     );
 
     return (
       <div className="p-6 space-y-5 animate-fade-in">
-        <Button variant="ghost" size="sm" onClick={() => { setSelected(null); setDetailSearch(""); }}>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => {
+            setSelected(null);
+            setDetailSearch("");
+          }}
+        >
           <ArrowLeft className="w-4 h-4 mr-1" /> Voltar para Contatos
         </Button>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <Card className="lg:col-span-1 shadow-sm">
-            <CardHeader><CardTitle className="text-base">Informações Pessoais</CardTitle></CardHeader>
+            <CardHeader>
+              <CardTitle className="text-base">Informações Pessoais</CardTitle>
+            </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-lg">
-                  {contactForm.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                  {contactForm.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")
+                    .slice(0, 2)}
                 </div>
                 <div>
-                  <p className="font-semibold">{contactForm.name || "Contato"}</p>
-                  <Badge variant="secondary" className={contactTypeBadgeClass(contactForm.type)}>{contactForm.type}</Badge>
+                  <p className="font-semibold">
+                    {contactForm.name || "Contato"}
+                  </p>
+                  <Badge
+                    variant="secondary"
+                    className={contactTypeBadgeClass(contactForm.type)}
+                  >
+                    {contactForm.type}
+                  </Badge>
                 </div>
               </div>
               <div className="space-y-3">
                 <div className="space-y-1.5">
                   <Label htmlFor="contact-name">Nome</Label>
-                  <Input id="contact-name" value={contactForm.name} onChange={(e) => handleFormChange("name", e.target.value)} />
+                  <Input
+                    id="contact-name"
+                    value={contactForm.name}
+                    onChange={(e) => handleFormChange("name", e.target.value)}
+                  />
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="contact-type">Tipo</Label>
-                  <Select value={contactForm.type} onValueChange={(value) => handleFormChange("type", value)}>
-                    <SelectTrigger id="contact-type"><SelectValue placeholder="Tipo do contato" /></SelectTrigger>
+                  <Select
+                    value={contactForm.type}
+                    onValueChange={(value) => handleFormChange("type", value)}
+                  >
+                    <SelectTrigger id="contact-type">
+                      <SelectValue placeholder="Tipo do contato" />
+                    </SelectTrigger>
                     <SelectContent>
                       {typeOptions.map((type) => (
-                        <SelectItem key={type} value={type}>{type}</SelectItem>
+                        <SelectItem key={type} value={type}>
+                          {type}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="contact-document">CPF/CNPJ</Label>
-                  <Input id="contact-document" value={contactForm.cpf} onChange={(e) => handleFormChange("cpf", maskDocument(e.target.value))} />
+                  <Input
+                    id="contact-document"
+                    value={contactForm.cpf}
+                    onChange={(e) =>
+                      handleFormChange("cpf", maskDocument(e.target.value))
+                    }
+                  />
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="contact-phone">Telefone</Label>
-                  <Input id="contact-phone" value={contactForm.phone} onChange={(e) => handleFormChange("phone", maskPhone(e.target.value))} />
+                  <Input
+                    id="contact-phone"
+                    value={contactForm.phone}
+                    onChange={(e) =>
+                      handleFormChange("phone", maskPhone(e.target.value))
+                    }
+                  />
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="contact-email">E-mail</Label>
-                  <Input id="contact-email" type="email" value={contactForm.email} onChange={(e) => handleFormChange("email", e.target.value)} />
+                  <Input
+                    id="contact-email"
+                    type="email"
+                    value={contactForm.email}
+                    onChange={(e) => handleFormChange("email", e.target.value)}
+                  />
                 </div>
                 <div className="grid grid-cols-[1fr_72px] gap-2">
                   <div className="space-y-1.5">
                     <Label htmlFor="contact-city">Cidade</Label>
-                    <Input id="contact-city" value={contactForm.city} onChange={(e) => handleFormChange("city", e.target.value)} />
+                    <Input
+                      id="contact-city"
+                      value={contactForm.city}
+                      onChange={(e) => handleFormChange("city", e.target.value)}
+                    />
                   </div>
                   <div className="space-y-1.5">
                     <Label htmlFor="contact-uf">UF</Label>
-                    <Input id="contact-uf" value={contactForm.uf} onChange={(e) => handleFormChange("uf", e.target.value.toUpperCase().slice(0, 2))} />
+                    <Input
+                      id="contact-uf"
+                      value={contactForm.uf}
+                      onChange={(e) =>
+                        handleFormChange(
+                          "uf",
+                          e.target.value.toUpperCase().slice(0, 2),
+                        )
+                      }
+                    />
                   </div>
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="contact-observation">Observações</Label>
-                  <Input id="contact-observation" value={contactForm.observation} onChange={(e) => handleFormChange("observation", e.target.value)} />
+                  <Input
+                    id="contact-observation"
+                    value={contactForm.observation}
+                    onChange={(e) =>
+                      handleFormChange("observation", e.target.value)
+                    }
+                  />
                 </div>
-                <Button className="w-full" onClick={handleSaveContact} disabled={saving}>
+                <Button
+                  className="w-full"
+                  onClick={handleSaveContact}
+                  disabled={saving}
+                >
                   <Save className="w-4 h-4 mr-2" />
                   {saving ? "Salvando..." : "Salvar alterações"}
                 </Button>
@@ -399,10 +555,17 @@ export default function Contacts() {
             <Card className="shadow-sm">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm font-medium">Tickets Vinculados ({selected.linkedTickets.length})</CardTitle>
+                  <CardTitle className="text-sm font-medium">
+                    Tickets Vinculados ({selected.linkedTickets.length})
+                  </CardTitle>
                   <div className="relative w-48">
                     <Search className="absolute left-2 top-1/2 -translate-y-1/2 w-3 h-3 text-muted-foreground" />
-                    <Input placeholder="Buscar..." value={detailSearch} onChange={(e) => setDetailSearch(e.target.value)} className="h-7 text-xs pl-7" />
+                    <Input
+                      placeholder="Buscar..."
+                      value={detailSearch}
+                      onChange={(e) => setDetailSearch(e.target.value)}
+                      className="h-7 text-xs pl-7"
+                    />
                   </div>
                 </div>
               </CardHeader>
@@ -418,15 +581,34 @@ export default function Contacts() {
                   </TableHeader>
                   <TableBody>
                     {filteredTickets.map((t) => (
-                      <TableRow key={t.id} className="hover:bg-accent/50 cursor-pointer transition-colors" onClick={() => navigate(platformPath(`/tickets/${t.id}`))}>
-                        <TableCell className="font-mono text-xs">{t.protocol || t.id}</TableCell>
+                      <TableRow
+                        key={t.id}
+                        className="hover:bg-accent/50 cursor-pointer transition-colors"
+                        onClick={() =>
+                          navigate(platformPath(`/tickets/${t.id}`))
+                        }
+                      >
+                        <TableCell className="font-mono text-xs">
+                          {t.protocol || t.id}
+                        </TableCell>
                         <TableCell className="text-sm">{t.subject}</TableCell>
-                        <TableCell className="text-sm text-muted-foreground">{t.date}</TableCell>
-                        <TableCell><Badge variant="secondary">{t.status}</Badge></TableCell>
+                        <TableCell className="text-sm text-muted-foreground">
+                          {t.date}
+                        </TableCell>
+                        <TableCell>
+                          <Badge variant="secondary">{t.status}</Badge>
+                        </TableCell>
                       </TableRow>
                     ))}
                     {filteredTickets.length === 0 && (
-                      <TableRow><TableCell colSpan={4} className="text-center py-4 text-muted-foreground text-sm">Nenhum ticket</TableCell></TableRow>
+                      <TableRow>
+                        <TableCell
+                          colSpan={4}
+                          className="text-center py-4 text-muted-foreground text-sm"
+                        >
+                          Nenhum ticket
+                        </TableCell>
+                      </TableRow>
                     )}
                   </TableBody>
                 </Table>
@@ -442,41 +624,99 @@ export default function Contacts() {
     <div className="p-6 space-y-5 animate-fade-in">
       <div>
         <h1 className="text-2xl font-display font-bold">Contatos</h1>
-        <p className="text-sm text-muted-foreground">Gestão de relacionamentos</p>
+        <p className="text-sm text-muted-foreground">
+          Gestão de relacionamentos
+        </p>
       </div>
 
       <div className="relative max-w-sm">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-        <Input placeholder="Buscar contatos..." value={search} onChange={(e) => { setSearch(e.target.value); setPage(1); }} className="pl-9" />
+        <Input
+          placeholder="Buscar contatos..."
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setPage(1);
+          }}
+          className="pl-9"
+        />
       </div>
 
       <div className="border border-border rounded-lg overflow-auto shadow-sm">
         <Table className="min-w-[980px]">
           <TableHeader>
             <TableRow className="bg-muted/50">
-              <SortableHeader label="Nome" column="name" sortConfig={sortConfig} onSort={handleSort} />
-              <SortableHeader label="Tipo" column="type" sortConfig={sortConfig} onSort={handleSort} />
-              <SortableHeader label="Localização" column="location" sortConfig={sortConfig} onSort={handleSort} />
+              <SortableHeader
+                label="Nome"
+                column="name"
+                sortConfig={sortConfig}
+                onSort={handleSort}
+              />
+              <SortableHeader
+                label="Tipo"
+                column="type"
+                sortConfig={sortConfig}
+                onSort={handleSort}
+              />
+              <SortableHeader
+                label="Localização"
+                column="location"
+                sortConfig={sortConfig}
+                onSort={handleSort}
+              />
               <TableHead>CPF/CNPJ</TableHead>
-              <SortableHeader label="Tickets" column="ticketCount" className="text-right" sortConfig={sortConfig} onSort={handleSort} />
-              <SortableHeader label="Data de cadastro" column="registrationDate" sortConfig={sortConfig} onSort={handleSort} />
+              <SortableHeader
+                label="Tickets"
+                column="ticketCount"
+                className="text-right"
+                sortConfig={sortConfig}
+                onSort={handleSort}
+              />
+              <SortableHeader
+                label="Data de cadastro"
+                column="registrationDate"
+                sortConfig={sortConfig}
+                onSort={handleSort}
+              />
             </TableRow>
           </TableHeader>
           <TableBody>
             {paginated.map((c) => (
-              <TableRow key={contactKey(c)} className="cursor-pointer hover:bg-accent/60 transition-colors" onClick={() => setSelected(c)}>
+              <TableRow
+                key={contactKey(c)}
+                className="cursor-pointer hover:bg-accent/60 transition-colors"
+                onClick={() => setSelected(c)}
+              >
                 <TableCell className="font-medium">{c.name}</TableCell>
-                <TableCell><Badge variant="secondary" className={contactTypeBadgeClass(c.type)}>{c.type}</Badge></TableCell>
+                <TableCell>
+                  <Badge
+                    variant="secondary"
+                    className={contactTypeBadgeClass(c.type)}
+                  >
+                    {c.type}
+                  </Badge>
+                </TableCell>
                 <TableCell className="text-sm">{c.location}</TableCell>
-                <TableCell className="text-sm text-muted-foreground">{c.cpf}</TableCell>
-                <TableCell className="text-right font-medium">{c.ticketCount}</TableCell>
-                <TableCell className="text-sm text-muted-foreground">{formatRegistrationDate(c.registrationDate)}</TableCell>
+                <TableCell className="text-sm text-muted-foreground">
+                  {c.cpf}
+                </TableCell>
+                <TableCell className="text-right font-medium">
+                  {c.ticketCount}
+                </TableCell>
+                <TableCell className="text-sm text-muted-foreground">
+                  {formatRegistrationDate(c.registrationDate)}
+                </TableCell>
               </TableRow>
             ))}
             {paginated.length === 0 && (
               <TableRow>
-                <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
-                  {loading ? "Carregando contatos..." : "Nenhum contato encontrado"}
+                <TableCell
+                  colSpan={6}
+                  className="text-center py-8 text-muted-foreground"
+                >
+                  {loading
+                    ? "Carregando contatos..."
+                    : "Nenhum contato encontrado"}
                 </TableCell>
               </TableRow>
             )}
@@ -487,11 +727,38 @@ export default function Contacts() {
       {totalPages > 1 && (
         <Pagination>
           <PaginationContent>
-            <PaginationItem><PaginationPrevious href="#" onClick={(e) => { e.preventDefault(); setPage(Math.max(1, page - 1)); }} /></PaginationItem>
+            <PaginationItem>
+              <PaginationPrevious
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage(Math.max(1, page - 1));
+                }}
+              />
+            </PaginationItem>
             {Array.from({ length: totalPages }, (_, i) => (
-              <PaginationItem key={i}><PaginationLink href="#" isActive={page === i + 1} onClick={(e) => { e.preventDefault(); setPage(i + 1); }}>{i + 1}</PaginationLink></PaginationItem>
+              <PaginationItem key={i}>
+                <PaginationLink
+                  href="#"
+                  isActive={page === i + 1}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPage(i + 1);
+                  }}
+                >
+                  {i + 1}
+                </PaginationLink>
+              </PaginationItem>
             ))}
-            <PaginationItem><PaginationNext href="#" onClick={(e) => { e.preventDefault(); setPage(Math.min(totalPages, page + 1)); }} /></PaginationItem>
+            <PaginationItem>
+              <PaginationNext
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage(Math.min(totalPages, page + 1));
+                }}
+              />
+            </PaginationItem>
           </PaginationContent>
         </Pagination>
       )}

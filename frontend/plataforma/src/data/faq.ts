@@ -1,7 +1,8 @@
 export const faqData = [
   {
     id: "01",
-    question: "O que diferencia o LinkAid de outras plataformas de atendimento?",
+    question:
+      "O que diferencia o LinkAid de outras plataformas de atendimento?",
     answer:
       "Diferente de soluções comerciais de mercado focadas em vendas, o LinkAid é uma ferramenta exclusiva para o Terceiro Setor. Ele é desenvolvido sob medida para se adaptar aos processos da ONG e oferece um atendimento híbrido estratégico: automação e IA nos bastidores, com atendimento 100% humano para quem precisa de acolhimento.",
   },

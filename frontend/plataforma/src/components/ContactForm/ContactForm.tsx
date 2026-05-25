@@ -108,7 +108,10 @@ const ContactForm = () => {
                       <div
                         className={`flex items-center gap-4 px-5 py-3.5 rounded-2xl bg-white dark:bg-slate-950 border transition-all duration-300 focus-within:shadow-md dark:focus-within:shadow-blue-950/20 focus-within:border-blue-600 ${errors.name ? "border-red-200" : "border-slate-200 dark:border-slate-700"}`}
                       >
-                        <User size={18} className="text-slate-400 dark:text-slate-500" />
+                        <User
+                          size={18}
+                          className="text-slate-400 dark:text-slate-500"
+                        />
                         <input
                           {...register("name", { required: true })}
                           placeholder="Ex: João da Silva"
@@ -130,7 +133,10 @@ const ContactForm = () => {
                       <div
                         className={`flex items-center gap-4 px-5 py-3.5 rounded-2xl bg-white dark:bg-slate-950 border transition-all duration-300 focus-within:shadow-md dark:focus-within:shadow-blue-950/20 focus-within:border-blue-600 ${errors.email ? "border-red-200" : "border-slate-200 dark:border-slate-700"}`}
                       >
-                        <Mail size={18} className="text-slate-400 dark:text-slate-500" />
+                        <Mail
+                          size={18}
+                          className="text-slate-400 dark:text-slate-500"
+                        />
                         <input
                           {...register("email", { required: true })}
                           placeholder="nome@empresa.com"
@@ -152,7 +158,10 @@ const ContactForm = () => {
                       <div
                         className={`flex items-center gap-4 px-5 py-3.5 rounded-2xl bg-white dark:bg-slate-950 border transition-all duration-300 focus-within:shadow-md dark:focus-within:shadow-blue-950/20 focus-within:border-blue-600 ${errors.subject ? "border-red-200" : "border-slate-200 dark:border-slate-700"}`}
                       >
-                        <MessageSquare size={18} className="text-slate-400 dark:text-slate-500" />
+                        <MessageSquare
+                          size={18}
+                          className="text-slate-400 dark:text-slate-500"
+                        />
                         <input
                           {...register("subject", { required: true })}
                           placeholder="Ex: Parceria, Dúvidas..."

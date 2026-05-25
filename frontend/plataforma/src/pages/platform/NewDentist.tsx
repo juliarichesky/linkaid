@@ -59,7 +59,9 @@ export default function NewDentist() {
       toast.success("Dentista cadastrado com sucesso!");
       navigate(platformPath("/dentists"));
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Erro ao cadastrar dentista");
+      toast.error(
+        error instanceof Error ? error.message : "Erro ao cadastrar dentista",
+      );
     } finally {
       setSaving(false);
     }
@@ -67,47 +69,123 @@ export default function NewDentist() {
 
   return (
     <div className="p-6 max-w-2xl mx-auto space-y-5 animate-fade-in">
-      <Button variant="ghost" size="sm" onClick={() => navigate(platformPath("/dentists"))}>
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => navigate(platformPath("/dentists"))}
+      >
         <ArrowLeft className="w-4 h-4 mr-1" /> Voltar
       </Button>
 
       <div>
         <h1 className="text-2xl font-display font-bold">Cadastrar Dentista</h1>
-        <p className="text-sm text-muted-foreground">Cadastro manual de dentista voluntário</p>
+        <p className="text-sm text-muted-foreground">
+          Cadastro manual de dentista voluntário
+        </p>
       </div>
 
       <Card className="shadow-sm">
-        <CardHeader><CardTitle className="text-base">Dados do Dentista</CardTitle></CardHeader>
+        <CardHeader>
+          <CardTitle className="text-base">Dados do Dentista</CardTitle>
+        </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div><Label>Nome Completo *</Label><Input placeholder="Nome completo do profissional" value={name} onChange={(e) => setName(e.target.value)} /></div>
-            <div><Label>Especialidade *</Label><Input placeholder="Ex: Ortodontia, Endodontia" value={specialty} onChange={(e) => setSpecialty(e.target.value)} /></div>
+            <div>
+              <Label>Nome Completo *</Label>
+              <Input
+                placeholder="Nome completo do profissional"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div>
+              <Label>Especialidade *</Label>
+              <Input
+                placeholder="Ex: Ortodontia, Endodontia"
+                value={specialty}
+                onChange={(e) => setSpecialty(e.target.value)}
+              />
+            </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div><Label>CRO *</Label><Input placeholder="CRO-XX 00000" value={crm} onChange={(e) => setCrm(e.target.value)} /></div>
+            <div>
+              <Label>CRO *</Label>
+              <Input
+                placeholder="CRO-XX 00000"
+                value={crm}
+                onChange={(e) => setCrm(e.target.value)}
+              />
+            </div>
             <div>
               <Label>Status</Label>
               <Select value={status} onValueChange={setStatus}>
-                <SelectTrigger><SelectValue placeholder="Status" /></SelectTrigger>
+                <SelectTrigger>
+                  <SelectValue placeholder="Status" />
+                </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value={DENTISTA_STATUS_LABELS.A}>Ativo</SelectItem>
-                  <SelectItem value={DENTISTA_STATUS_LABELS.I}>Inativo</SelectItem>
-                  <SelectItem value={DENTISTA_STATUS_LABELS.F}>Férias</SelectItem>
+                  <SelectItem value={DENTISTA_STATUS_LABELS.A}>
+                    Ativo
+                  </SelectItem>
+                  <SelectItem value={DENTISTA_STATUS_LABELS.I}>
+                    Inativo
+                  </SelectItem>
+                  <SelectItem value={DENTISTA_STATUS_LABELS.F}>
+                    Férias
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div><Label>Telefone</Label><Input placeholder="(00) 00000-0000" value={phone} onChange={(e) => setPhone(maskPhone(e.target.value))} /></div>
-            <div><Label>E-mail</Label><Input type="email" placeholder="email@exemplo.com" value={email} onChange={(e) => setEmail(e.target.value)} /></div>
+            <div>
+              <Label>Telefone</Label>
+              <Input
+                placeholder="(00) 00000-0000"
+                value={phone}
+                onChange={(e) => setPhone(maskPhone(e.target.value))}
+              />
+            </div>
+            <div>
+              <Label>E-mail</Label>
+              <Input
+                type="email"
+                placeholder="email@exemplo.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-[1fr_96px] gap-4">
-            <div><Label>Cidade</Label><Input placeholder="Cidade" value={city} onChange={(e) => setCity(e.target.value)} /></div>
-            <div><Label>UF</Label><Input placeholder="UF" value={uf} onChange={(e) => setUf(e.target.value.toUpperCase().slice(0, 2))} /></div>
+            <div>
+              <Label>Cidade</Label>
+              <Input
+                placeholder="Cidade"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+            </div>
+            <div>
+              <Label>UF</Label>
+              <Input
+                placeholder="UF"
+                value={uf}
+                onChange={(e) =>
+                  setUf(e.target.value.toUpperCase().slice(0, 2))
+                }
+              />
+            </div>
           </div>
-          <Button className="w-full" onClick={handleCreateDentist} disabled={saving || loading}>
+          <Button
+            className="w-full"
+            onClick={handleCreateDentist}
+            disabled={saving || loading}
+          >
             <Plus className="w-4 h-4 mr-2" />
-            {loading ? "Carregando dados..." : saving ? "Cadastrando..." : "Cadastrar Dentista"}
+            {loading
+              ? "Carregando dados..."
+              : saving
+                ? "Cadastrando..."
+                : "Cadastrar Dentista"}
           </Button>
         </CardContent>
       </Card>

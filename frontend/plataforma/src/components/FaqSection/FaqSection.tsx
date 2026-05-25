@@ -133,7 +133,7 @@ const FaqSection = ({ searchTerm, activeId }: FaqSectionProps) => {
                       <span
                         className={`font-mono text-[10px] lg:text-xs font-bold transition-colors duration-300 tracking-[0.3em] ${isActive ? "text-blue-600" : "text-slate-400 dark:text-slate-500"}`}
                       >
-                        {item.id.toString().padStart(2, '0')}
+                        {item.id.toString().padStart(2, "0")}
                       </span>
 
                       {/* question */}
@@ -148,7 +148,11 @@ const FaqSection = ({ searchTerm, activeId }: FaqSectionProps) => {
                     <div
                       className={`shrink-0 flex items-center justify-center transition-all duration-500 ${isActive ? "rotate-180 text-blue-600" : "text-slate-300 dark:text-slate-600 group-hover:text-blue-600"}`}
                     >
-                      <ChevronDown size={24} strokeWidth={2.5} className="lg:w-7 lg:h-7" />
+                      <ChevronDown
+                        size={24}
+                        strokeWidth={2.5}
+                        className="lg:w-7 lg:h-7"
+                      />
                     </div>
                   </button>
 

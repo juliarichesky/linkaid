@@ -1,5 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { linkAidApi, type ApiLoginResponse, type ApiUsuarioResponse } from "@/lib/linkaidApi";
+import {
+  linkAidApi,
+  type ApiLoginResponse,
+  type ApiUsuarioResponse,
+} from "@/lib/linkaidApi";
 import { perfilFrontRole, perfilLabel } from "@/lib/linkaidMappings";
 
 export type Role = "admin" | "colaborador";
@@ -17,7 +21,10 @@ export interface User {
 interface AuthContextValue {
   user: User | null;
   token: string | null;
-  login: (email: string, password: string) => Promise<{ ok: boolean; error?: string }>;
+  login: (
+    email: string,
+    password: string,
+  ) => Promise<{ ok: boolean; error?: string }>;
   logout: () => void;
   updateUser: (patch: Partial<User>) => void;
 }
@@ -49,7 +56,9 @@ const userFromApi = (data: ApiLoginResponse | ApiUsuarioResponse): User => {
     name: data.nome,
     role,
     initials: initialsFromName(data.nome),
-    roleLabel: perfilLabel(data.perfil) || (role === "admin" ? "Administradora" : "Colaborador"),
+    roleLabel:
+      perfilLabel(data.perfil) ||
+      (role === "admin" ? "Administradora" : "Colaborador"),
   };
 };
 
@@ -83,7 +92,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (!token) return;
 
     let active = true;
-    linkAidApi.me(token)
+    linkAidApi
+      .me(token)
       .then((response) => {
         if (active) setUser(userFromApi(response));
       })
@@ -100,14 +110,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await linkAidApi.login(email.trim().toLowerCase(), password);
+      const response = await linkAidApi.login(
+        email.trim().toLowerCase(),
+        password,
+      );
       setToken(response.token);
       setUser(userFromApi(response));
       return { ok: true };
     } catch (error) {
       return {
         ok: false,
-        error: error instanceof Error ? error.message : "E-mail ou senha inválidos.",
+        error:
+          error instanceof Error ? error.message : "E-mail ou senha inválidos.",
       };
     }
   };

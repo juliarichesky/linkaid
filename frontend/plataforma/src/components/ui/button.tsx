@@ -1,7 +1,11 @@
 import * as React from "react";
 
 import { cn } from "@/lib/classnames";
-import { buttonVariants, type ButtonSize, type ButtonVariant } from "@/lib/variants";
+import {
+  buttonVariants,
+  type ButtonSize,
+  type ButtonVariant,
+} from "@/lib/variants";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
