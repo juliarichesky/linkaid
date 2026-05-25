@@ -4,7 +4,7 @@
 A vitrine digital da próxima geração em automação e centralização de contatos.
 
 <div>
-  <img src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-3D4053?style=flat&logo=github&logoColor=white" alt="Status: Em Desenvolvimento">
+  <img src="https://img.shields.io/badge/Status-Concluído-3D4053?style=flat&logo=github&logoColor=white" alt="Status: Concluído">
   <img src="https://img.shields.io/badge/Tecnologias-React%20%7C%20Tailwind%20%7C%20TypeScript-61DAFB?style=flat&logo=react&logoColor=white" alt="Foco: React, Tailwind e TypeScript">
   <img src="https://img.shields.io/badge/Design-Responsivo-1572B6?style=flat&logo=tailwindcss&logoColor=white" alt="Design: Desktop, Tablet e Mobile">
 </div>
@@ -12,17 +12,17 @@ A vitrine digital da próxima geração em automação e centralização de cont
 <br/>
 
 🔗 **Acesse o repositório do projeto**
-👉 [github.com/Calegor/LinkAid](https://github.com/Calegor/LinkAid)
+👉 [github.com/juliarichesky/linkaid](https://github.com/juliarichesky/linkaid)
 
 🔗 **Acesse o vídeo:**
-👉 [YouTube](https://youtu.be/IK4B1GOjPhk)
+👉 [YouTube](xxx)
 
 🔗 **Veja o site online:**
-👉 [link-aid-chi.vercel.app](https://link-aid-chi.vercel.app/)
+👉 [link-aid-connect.vercel.app](https://link-aid-connect.vercel.app/)
 
 <br/>
 
-<img src="link-aid/src/assets/images/site/home.png" alt="Interface da home do LinkAid" width="100%">
+<img src="plataforma/src/assets/images/site/home.png" alt="Interface da home do LinkAid" width="100%">
 
 <br/> 
 
@@ -72,95 +72,275 @@ O front-end do **LinkAid** foi desenvolvido com tecnologias de ponta para garant
 
 <br/>
 
-## 💻 Entregas Funcionais (Challenge)
-Abaixo estão as funcionalidades centrais do Frontend:
+## 💻 Entregas Funcionais
+Abaixo estão as funcionalidades centrais implementadas no Frontend:
 
-| Categoria | Tecnologia | Status | Uso no Projeto |
+| Categoria | Tecnologia / Recurso | Status | Uso no Projeto |
 | :--- | :--- | :---: | :--- |
-| **Arquitetura Moderno** | **React & TypeScript** | :heavy_check_mark: | Conversão completa das páginas obrigatórias (Home, Sobre, FAQ, Contato, Equipe e Solução) para componentes funcionais com tipagem estática. |
-| **Navegação SPA** | **React Router Dom** | :heavy_check_mark: | Implementação de navegação fluida sem recarregamento de página, garantindo a experiência de uma Single Page Application. |
-| **Componentização** | **Modularidade React** | :heavy_check_mark: | Organização profissional em `/src/components` e `/src/pages` com componentes 100% reutilizáveis (Header, Footer, Layout, Cards). |
-| **Gerenciamento de Estado** | **useState Hook** | :heavy_check_mark: | `AboutFeaturesOrbit`: Controle de interface de órbita interativa e animações.<br>`AboutTech`: Simulação de editor de código com filtros e toggle de sidebar. |
-| **Efeitos e Ciclo de Vida** | **useEffect Hook** | :heavy_check_mark: | `ContactMap`: Inicialização e limpeza de animações GSAP ScrollTrigger.<br>`Navbar`: Controle de bloqueio de scroll global para o menu mobile. |
-| **Rotas Dinâmicas** | **useParams** | :heavy_check_mark: | `TeamDetails`: Renderização dinâmica de perfis de membros (RM, Bio, Links) via `developers.json` através de IDs na URL. |
-| **Navegação Programática**| **useNavigate** | :heavy_check_mark: | **Breadcrumb:** Implementação de botão "Voltar" inteligente baseado no histórico real do navegador (`Maps(-1)`). |
-| **Comunicação** | **Props** | :heavy_check_mark: | Passagem eficiente de dados entre componentes pais e filhos, garantindo a integridade da árvore de componentes. |
-| **Estilização** | **Tailwind CSS** | :heavy_check_mark: | Design profissional utility-first, eliminando CSS externo e garantindo performance superior. |
-| **Responsividade Total** | **Mobile/Tablet/Desktop** | :heavy_check_mark: | Layout adaptável para todas as resoluções (480px, 768px, 992px, 1300px) utilizando as classes utilitárias do Tailwind. |
-| **Formulários** | **React Hook Form** | :heavy_check_mark: | **Página de Contato:** Gestão de formulários e validações de input utilizando o hook `useForm()` para maior performance. |
+| **Definição de Rotas** | **React Router Dom** | :heavy_check_mark: | Estruturação das rotas da aplicação para organização das páginas e fluxo de navegação entre módulos do sistema. |
+| **Navegação SPA** | **Navegação Fluida** | :heavy_check_mark: | Implementação de navegação sem recarregamento de página, garantindo experiência fluida em toda a aplicação. |
+| **Parâmetros e Rotas Dinâmicas** | **useParams** | :heavy_check_mark: | Uso de parâmetros dinâmicos para identificação e carregamento de conteúdos específicos através da URL. |
+| **Feedback ao Usuário** | **Mensagens e Estados Visuais** | :heavy_check_mark: | Implementação de feedback visual para carregamento, sucesso, falha e estados da aplicação, melhorando a experiência do usuário. |
+| **Criação de Tipos de Dados** | **TypeScript** | :heavy_check_mark: | Estruturação de tipagem para garantir maior segurança, previsibilidade e manutenção do código. |
+| **Tipos Básicos** | **string, number, boolean, arrays e object** | :heavy_check_mark: | Utilização de tipos básicos em diversos componentes para definição e manipulação de dados. <br>Ex.: `FaqSearch.tsx`, `technologies.ts`, `TeamSection.tsx`. |
+| **Interfaces** | **interface** | :heavy_check_mark: | Uso extensivo de interfaces para modelagem de entidades e tipagem de props. <br>Ex.: `Ticket`, `User`, `ButtonProps`. |
+| **Union Types** | **Tipos Literais** | :heavy_check_mark: | Implementação de tipos restritivos utilizando unions para aumentar segurança de dados. <br>Ex.: `Theme = "light" \| "dark"` e `Role = "admin" \| "colaborador"`. |
+| **Intersection Types** | **Composição de Tipos** | :heavy_check_mark: | Combinação e adaptação de tipos através de `Omit<>`, `extends` e `React.HTMLAttributes`. <br>Ex.: `linkaidApi.ts`, `tabs.tsx`. |
+| **Tipos Avançados** | **TypeScript Avançado** | :heavy_check_mark: | Aplicação de recursos avançados para composição e reutilização de estruturas tipadas. |
+| **Responsividade Total** | **Mobile / Tablet / Desktop** | :heavy_check_mark: | Desenvolvimento adaptável para diferentes tamanhos de tela, garantindo compatibilidade em múltiplos dispositivos. |
+| **Consumo de API** | **Fetch API** | :heavy_check_mark: | Integração com APIs para obtenção e envio de dados dinâmicos utilizados pela aplicação. |
+| **Manipulação HTTP** | **GET, POST, PUT, DELETE** | :heavy_check_mark: | Implementação completa dos principais métodos HTTP para operações de consulta, criação, atualização e remoção de dados. |
+| **Tratamento de Dados e Erros** | **try/catch e ApiError** | :heavy_check_mark: | Implementação de tratamento de respostas inesperadas e gerenciamento de erros através do `request()` presente em `linkaidApi.ts`, realizando validações, tratamento de status HTTP e mensagens personalizadas. |
+| **Tratamento de Respostas** | **Serialização e Controle de Fluxo** | :heavy_check_mark: | Conversão automática de JSON, validação de respostas (`response.ok`) e tratamento de respostas vazias (`204 No Content`). |
+| **Organização do Projeto** | **Arquitetura Modular** | :heavy_check_mark: | Estruturação organizada em componentes, páginas, contextos, serviços, hooks e tipagens, visando manutenção, escalabilidade e reutilização de código. |
 
 <br/>
 
-## 📂 Estrutura de Pastas
+## 📁 Estrutura de Pastas
 
 ```text
-link-aid/
-├── public/                     # Arquivos estáticos acessíveis diretamente
+plataforma/
+│
+├── public/ → arquivos públicos acessados diretamente pelo navegador
+│   └── favicon.ico
+│
 ├── src/
-│   ├── assets/                 # Recursos de mídia do projeto
-│   │   ├── icons/              # Favicon e variações de logo
-│   │   └── images/             # Imagens organizadas por seção (404, contact, painel, site, team)
-│   ├── components/             # Componentes React modulares e reutilizáveis
-│   │   ├── About...            # Componentes específicos da página Sobre
-│   │   ├── Contact...          # Componentes de formulário e mapa
-│   │   ├── Faq...              # Componentes de busca e sanfona de dúvidas
-│   │   ├── Home...             # Seções da página inicial (Hero, Showcase)
-│   │   ├── Navbar/Footer       # Navegação global
-│   │   ├── Team...             # Seções de equipe e detalhes de membros
-│   │   ├── Breadcrumb...       # Navegação hierárquica e botão "Voltar"
-│   │   └── ScrollToTop...      # Componente para retorno ao topo da página
-│   ├── data/                   # Arquivos JSON e TS para dados e conteúdos
-│   │   ├── developers.json
-│   │   ├── faq.ts
-│   │   ├── features.json
-│   │   └── tecnologias.ts
-│   ├── layout/                 # Estruturas de páginas (Default, Hero, Home)
-│   ├── pages/                  # Páginas principais da aplicação (Rotas)
-│   │   ├── Contato/
-│   │   ├── Sobre/
-│   │   ├── Equipe/
-│   │   ├── Faq/
-│   │   ├── Home/
-│   │   ├── Mapa/
-│   │   └── NotFound/
-│   ├── App.tsx                 # Configuração de rotas e estrutura principal
-│   ├── index.css               # Estilos globais e diretivas do Tailwind CSS
-│   └── main.tsx                # Ponto de entrada da aplicação React
-├── tailwind.config.js          # Configurações de design system do Tailwind
-├── tsconfig.json               # Configurações de tipagem do TypeScript
-├── vite.config.ts              # Configurações do ambiente de build Vite
-└── README.md                   # Documentação do projeto
+│   │
+│   ├── assets/ → arquivos estáticos utilizados pela aplicação
+│   │   ├── icons/ → ícones utilizados no sistema
+│   │   └── images/ → imagens organizadas por contexto
+│   │       ├── 404/ → imagens da página de erro
+│   │       ├── contact/ → imagens da página de contato
+│   │       ├── painel/ → imagens internas da plataforma/dashboard
+│   │       ├── site/ → imagens gerais do site
+│   │       └── team/ → fotos e imagens da equipe
+│   │
+│   ├── components/ → componentes reutilizáveis da aplicação
+│   │   │
+│   │   ├── feedback/ → componentes de feedback visual
+│   │   │   └── Toaster.tsx
+│   │   │
+│   │   ├── layout/ → componentes estruturais do sistema
+│   │   │   ├── AppHeader.tsx
+│   │   │   ├── AppLayout.tsx
+│   │   │   ├── AppSidebar.tsx
+│   │   │   └── TeamPanel.tsx
+│   │   │
+│   │   ├── ui/ → componentes genéricos reutilizáveis
+│   │   │   ├── button.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── table.tsx
+│   │   │   └── tabs.tsx
+│   │   │
+│   │   └── componentes específicos → componentes das páginas
+│   │
+│   ├── contexts/ → gerenciamento global de estados
+│   │   ├── AuthContext.tsx → autenticação do usuário
+│   │   ├── ThemeContext.tsx → gerenciamento de tema
+│   │   └── TicketsContext.tsx → gerenciamento de tickets
+│   │
+│   ├── data/ → arquivos de dados estáticos
+│   │   ├── developers.json → informações da equipe
+│   │   ├── faq.ts → perguntas frequentes
+│   │   ├── features.json → funcionalidades do sistema
+│   │   └── tecnologies.ts → tecnologias utilizadas
+│   │
+│   ├── layouts/ → layouts compartilhados
+│   │   ├── DefaultLayout.tsx → layout padrão
+│   │   ├── HeroDefault.tsx → layout de hero sections
+│   │   └── HomeLayout.tsx → layout da home
+│   │
+│   ├── lib/ → funções auxiliares e integração externa
+│   │   ├── linkaidApi.ts → comunicação com API
+│   │   ├── linkaidMappings.ts → mapeamentos
+│   │   ├── masks.ts → máscaras de dados
+│   │   ├── ticketDisplay.ts → regras de exibição
+│   │   └── variants.ts → variações e constantes
+│   │
+│   ├── pages/ → páginas principais da aplicação
+│   │   │
+│   │   ├── platform/ → páginas internas da plataforma
+│   │   │   ├── Dashboard.tsx → painel principal
+│   │   │   ├── Tickets.tsx → gerenciamento de tickets
+│   │   │   ├── TicketDetail.tsx → detalhes do ticket
+│   │   │   ├── CreateTicket.tsx → criação de tickets
+│   │   │   ├── History.tsx → histórico
+│   │   │   ├── Contacts.tsx → contatos
+│   │   │   ├── Reports.tsx → relatórios
+│   │   │   ├── Financial.tsx → financeiro
+│   │   │   ├── Settings.tsx → configurações
+│   │   │   ├── Login.tsx → autenticação
+│   │   │   └── NotFound.tsx → página de erro
+│   │   │
+│   │   └── site/ → páginas institucionais
+│   │       ├── Home/ → página inicial
+│   │       ├── Sobre/ → informações do projeto
+│   │       ├── Faq/ → perguntas frequentes
+│   │       ├── Contato/ → contato
+│   │       ├── Equipe/ → equipe do projeto
+│   │       ├── Mapa/ → localização/mapa
+│   │       └── NotFound/ → página não encontrada
+│   │
+│   ├── routes/ → gerenciamento das rotas
+│   │   ├── platform.ts → definições das rotas
+│   │   └── PlatformRoutes.tsx → agrupamento das rotas
+│   │
+│   ├── types/ → interfaces e tipagens globais
+│   │
+│   ├── App.tsx → componente raiz da aplicação
+│   ├── main.tsx → ponto de inicialização do React
+│   ├── index.css → estilos globais
+│   └── vite-env.d.ts → definições do Vite
+│
+├── index.html → arquivo principal HTML
+├── package.json → dependências e scripts
+├── vite.config.ts → configuração do Vite
+├── tailwind.config.ts → configuração do Tailwind
+├── tsconfig.json → configuração TypeScript
+└── vercel.json → configuração de deploy
+└── README.md → documentação do projeto
 ```
 
 <br/>
 
 ## 🚀 Execução
-
 Siga os passos abaixo para executar o projeto localmente:
-> ⚠️ Este projeto faz parte do repositório principal do LinkAid.
+
+> ⚠️ Esse projeto faz parte do repositório principal do LinkAid.  
+> Para o funcionamento completo da aplicação, é necessário executar o **backend** e o **frontend** simultaneamente.
 
 <br/>
 
-### 📥 Clonando o repositório
+### Clonando o repositório
 ```bash
-git clone https://github.com/Calegor/LinkAid.git
+git clone https://github.com/juliarichesky/linkaid.git
 cd LinkAid
 ```
 
 ---
 
-### ▶️ Frontend
+## ▶️ Executando o Backend / API
+A API foi desenvolvida em **Java 17** com **Quarkus** e utiliza banco de dados **Oracle**.
+Acesse a pasta do backend:
+```bash
+cd backend/api
+```
 
+Configure as variáveis de ambiente necessárias para conexão com o banco Oracle:
+
+### Windows (PowerShell)
+```bash
+$env:ORACLE_USERNAME="rm"
+$env:ORACLE_PASSWORD="senha"
+$env:ORACLE_JDBC_URL="jdbc:oracle:thin:@host:porta/service"
+$env:PORT="8080"
+```
+
+### Linux / macOS
+Garanta permissão de execução no Maven wrapper:
+```bash
+chmod +x ./mvnw
+```
+
+Configure as variáveis de ambiente:
+```bash
+export ORACLE_USERNAME="rm"
+export ORACLE_PASSWORD="senha"
+export ORACLE_JDBC_URL="jdbc:oracle:thin:@host:porta/service"
+export PORT="8080"
+```
+
+Depois execute a aplicação em modo desenvolvimento:
+
+### Windows (PowerShell)
+```bash
+mvnw.cmd quarkus:dev
+```
+
+### Linux / macOS
+```bash
+./mvnw quarkus:dev
+```
+
+A API estará disponível em:
+👉 http://localhost:8080
+
+A documentação Swagger estará disponível em:
+👉 http://localhost:8080/swagger-ui
+
+</br>
+
+## ▶️ Executando o Frontend
+Com o backend ainda em execução, abra um **novo terminal** e acesse a pasta do frontend:
 ```bash
 cd front-end
+```
+
+Instale as dependências:
+### Windows (PowerShell)
+```powershell
 npm install
+```
+
+### Linux / macOS
+```bash
+npm install
+```
+
+### Configuração da API
+O frontend já possui configuração automática para ambiente local.
+Durante o desenvolvimento (`npm run dev`), caso nenhuma variável seja definida, a aplicação utilizará automaticamente:
+
+```bash
+http://localhost:8080
+```
+
+Opcionalmente, é possível sobrescrever a URL da API através de uma variável de ambiente.
+
+### Windows (PowerShell)
+```powershell
+$env:VITE_API_URL="http://localhost:8080"
+```
+
+### Linux / macOS
+```bash
+export VITE_API_URL="http://localhost:8080"
+```
+
+> Caso nenhuma variável seja informada, o sistema utilizará automaticamente a configuração padrão para desenvolvimento local.
+
+Execute a aplicação:
+### Windows (PowerShell)
+```powershell
+npm run dev
+```
+
+### Linux / macOS
+```bash
 npm run dev
 ```
 
 O frontend estará disponível em:
 👉 http://localhost:5173
 
-<br/>
+</br>
+
+## 🔗 Integração entre Frontend e Backend
+
+Para funcionamento completo da aplicação, o backend e frontend precisam estar executando simultaneamente.
+
+| Serviço | Tecnologia | URL local |
+| :--- | :--- | :--- |
+| Backend / API | Java + Quarkus | http://localhost:8080 |
+| Frontend | React + Vite | http://localhost:5173 |
+
+> Caso o backend não esteja em execução, o frontend continuará abrindo normalmente, porém funcionalidades que dependem da API (login, dashboard, tickets, contatos, relatórios, financeiro e demais recursos dinâmicos) poderão apresentar erros ou não carregar informações.
+
+---
+
+</br>
 
 ## 🤝 Contribuidores
 
@@ -168,7 +348,7 @@ O frontend estará disponível em:
   <tr>
     <td align="center">
       <a href="https://github.com/juliarichesky">
-        <img src="link-aid/src/assets/images/team/julia-guimaraes.png" width="200px;" style="border-radius: 50%;" alt="Julia Guimarães"/><br>
+        <img src="plataforma/src/assets/images/team/julia-guimaraes.png" width="200px;" style="border-radius: 50%;" alt="Julia Guimarães"/><br>
         <sub><b>Julia Guimarães</b></sub>
       </a><br>
       RM: 568275<br>
@@ -182,7 +362,7 @@ O frontend estará disponível em:
     </td>
     <td align="center">
       <a href="https://github.com/juspanopoulos">
-        <img src="link-aid/src/assets/images/team/julia-spanopoulos.png" width="200px;" style="border-radius: 50%;" alt="Julia Spanopoulos"/><br>
+        <img src="plataforma/src/assets/images/team/julia-spanopoulos.png" width="200px;" style="border-radius: 50%;" alt="Julia Spanopoulos"/><br>
         <sub><b>Julia Spanopoulos</b></sub>
       </a><br>
       RM: 566754<br>
@@ -194,41 +374,20 @@ O frontend estará disponível em:
         <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
       </a>
     </td>
-    <td align="center">
-      <a href="https://github.com/thiagogramorelli">
-        <img src="link-aid/src/assets/images/team/thiago-lima.png" width="200px;" style="border-radius: 50%;" alt="Thiago Gramorelli"/><br>
-        <sub><b>Thiago Gramorelli</b></sub>
-      </a><br>
-      RM: 567630<br>
-      Turma: 1TDSPA<br><br>
-      <a href="https://www.linkedin.com/in/thiago-gramorelli-lima-070097185/">
-        <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
-      </a>
-      <a href="https://github.com/Calegor">
-        <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
-      </a>
-    </td>
   </tr>
 </table>
 
+</br>
+
+## 📬 Contato da Equipe
+Caso tenha dúvidas ou sugestões:
+
+📧 **Julia Guimarães:** juliavaleriogs@gmail.com
+<br/>
+📧 **Julia Spanopoulos:** jusspan@gmail.com
+<br/>
+
+[![GitHub](https://img.shields.io/badge/GitHub-Repositório-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/juliarichesky/linkaid)
+
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
